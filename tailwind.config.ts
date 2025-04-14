@@ -61,6 +61,17 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				portfolio: {
+					'navy': '#33415C',
+					'teal': '#5C97AB',
+					'light-blue': '#D3E4FD',
+					'cream': '#F6F6F7',
+					'soft-blue': '#7B9DB3',
+					'accent': '#EC6C4C',
+					'text': '#333333',
+					'light-text': '#555555',
+					'dark-accent': '#1C2C42'
 				}
 			},
 			borderRadius: {
