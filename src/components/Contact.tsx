@@ -31,10 +31,10 @@ export default function Contact() {
 
   return (
     <section id="contact" className="section-container bg-gray-50">
-      <h2 className="section-title">Contact Me</h2>
+      <h2 className="section-title">Get in Touch</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mt-8">
         <div>
-          <h3 className="text-2xl font-bold text-portfolio-navy mb-6">Get in Touch</h3>
+          <h3 className="text-2xl font-bold text-portfolio-navy mb-6">Contact Me</h3>
           <p className="text-portfolio-light-text mb-8">
             I'm always interested in new opportunities, projects, and collaborations. 
             Feel free to reach out if you have any questions or just want to say hello!
@@ -70,7 +70,7 @@ export default function Contact() {
             <div className="flex items-start">
               <MapPin className="h-6 w-6 text-portfolio-accent mt-1 mr-4" />
               <div>
-                <h4 className="font-semibold text-portfolio-navy mb-1">Address</h4>
+                <h4 className="font-semibold text-portfolio-navy mb-1">Location</h4>
                 <p className="text-portfolio-light-text">
                   Eastern Housing, Rupnagar, Mirpur, Dhaka-1216, Bangladesh
                 </p>
@@ -85,7 +85,7 @@ export default function Contact() {
                   href="https://www.linkedin.com/in/lianmollick" 
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-portfolio-light-text hover:text-portfolio-accent transition-colors"
+                  className="text-portfolio-light-text hover:text-portfolio-accent transition-colors break-words"
                 >
                   linkedin.com/in/lianmollick
                 </a>
@@ -95,7 +95,7 @@ export default function Contact() {
         </div>
         
         <div>
-          <form onSubmit={handleSubmit} className="space-y-6 bg-white p-6 rounded-lg shadow-sm">
+          <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6 bg-white p-4 md:p-6 rounded-lg shadow-sm">
             <div>
               <Input
                 type="text"
@@ -135,7 +135,7 @@ export default function Contact() {
                 placeholder="Your Message"
                 value={formData.message}
                 onChange={handleChange}
-                className="w-full h-32"
+                className="w-full min-h-[120px] md:h-32"
                 required
               />
             </div>

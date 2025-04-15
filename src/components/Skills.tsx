@@ -1,5 +1,5 @@
 
-import { Code, Database, Cpu, Server, Terminal, Wrench } from "lucide-react";
+import { Code, Database, Cpu, Server, Terminal, Wrench, Bot, Rocket } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 
 export default function Skills() {
@@ -22,7 +22,7 @@ export default function Skills() {
     {
       title: "Domain Knowledge",
       icon: <Cpu className="h-6 w-6 text-portfolio-teal" />,
-      skills: ["IoT", "Analog Layout Design", "VLSI", "Circuit Design", "PCB Design"]
+      skills: ["IoT Systems", "Rocket Telemetry", "Analog/Digital Circuit Design", "PCB Design", "VLSI", "GNC Systems"]
     }
   ];
 

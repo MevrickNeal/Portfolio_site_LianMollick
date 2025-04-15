@@ -8,13 +8,13 @@ export default function About() {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
         <div className="md:col-span-2">
           <p className="text-lg text-portfolio-light-text mb-6">
-            I'm an embedded systems designer with a passion for rocket avionics and hardware development. Currently pursuing my degree in Electrical and Electronic Engineering, I specialize in designing and implementing electronic systems for aerospace applications.
+            Passionate about electronics, robotics, rocketry, and all things that fly, I am an Electrical and Electronic Engineering graduate with hands-on experience in embedded systems, rocket telemetry, and guidance systems.
           </p>
           <p className="text-lg text-portfolio-light-text mb-6">
             At DhumketuX, I work on rocket avionics circuit assembly, sensor integration, and telemetry systems. My focus is on creating reliable electronic systems that can withstand the extreme conditions of rocket launches.
           </p>
           <p className="text-lg text-portfolio-light-text">
-            I'm constantly exploring new technologies and methodologies in embedded systems, PCB design, and VLSI. My goal is to contribute to the advancement of aerospace technology in Bangladesh through innovative engineering solutions.
+            I aim to dive deeper into Guidance, Navigation, and Control (GNC) to ensure that rockets find their way—because getting lost in space isn't an option!
           </p>
         </div>
         <div className="md:col-span-1 bg-gray-50 p-6 rounded-lg shadow-sm">
