@@ -7,10 +7,15 @@ import { Textarea } from "@/components/ui/textarea";
 import { toast } from "@/components/ui/use-toast";
 import emailjs from '@emailjs/browser';
 
-// Replace these with your actual EmailJS credentials
-const EMAILJS_SERVICE_ID = "service_qeh2lsb";
-const EMAILJS_TEMPLATE_ID = "template_k1lcz7j";
-const EMAILJS_PUBLIC_KEY = "N6ZKoGLg0GUovM1at";
+// Replace these with your actual EmailJS credentials from your EmailJS account
+// You need to:
+// 1. Create an account at https://www.emailjs.com
+// 2. Set up an email service (Gmail, Outlook, etc.)
+// 3. Create an email template
+// 4. Replace these values with your actual credentials
+const EMAILJS_SERVICE_ID = "YOUR_SERVICE_ID"; // From Email Services tab
+const EMAILJS_TEMPLATE_ID = "YOUR_TEMPLATE_ID"; // From Email Templates tab
+const EMAILJS_PUBLIC_KEY = "YOUR_PUBLIC_KEY"; // From Account > API Keys
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -30,6 +35,18 @@ export default function Contact() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formRef.current) return;
+    
+    // Check if EmailJS credentials have been set
+    if (EMAILJS_SERVICE_ID === "YOUR_SERVICE_ID" || 
+        EMAILJS_TEMPLATE_ID === "YOUR_TEMPLATE_ID" || 
+        EMAILJS_PUBLIC_KEY === "YOUR_PUBLIC_KEY") {
+      toast({
+        title: "Configuration Error",
+        description: "Please set up your EmailJS credentials first. Check the comments in the code.",
+        variant: "destructive",
+      });
+      return;
+    }
     
     try {
       setIsSubmitting(true);
@@ -188,9 +205,19 @@ export default function Contact() {
                 </>
               )}
             </Button>
+            
+            {/* Add this notice to make setup instructions clearer */}
+            {(EMAILJS_SERVICE_ID === "YOUR_SERVICE_ID" || 
+              EMAILJS_TEMPLATE_ID === "YOUR_TEMPLATE_ID" || 
+              EMAILJS_PUBLIC_KEY === "YOUR_PUBLIC_KEY") && (
+              <p className="text-xs text-red-500 mt-2 text-center">
+                ⚠️ EmailJS is not configured. Please replace the placeholder credentials in the code.
+              </p>
+            )}
           </form>
         </div>
       </div>
     </section>
   );
 }
+
