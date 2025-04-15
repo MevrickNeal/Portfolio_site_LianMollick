@@ -1,10 +1,16 @@
 
-import { useState } from "react";
-import { Mail, Phone, MapPin, Linkedin, Send } from "lucide-react";
+import { useState, useRef } from "react";
+import { Mail, Phone, MapPin, Linkedin, Send, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "@/components/ui/use-toast";
+import emailjs from '@emailjs/browser';
+
+// Replace these with your actual EmailJS credentials
+const EMAILJS_SERVICE_ID = "service_qeh2lsb";
+const EMAILJS_TEMPLATE_ID = "template_k1lcz7j";
+const EMAILJS_PUBLIC_KEY = "N6ZKoGLg0GUovM1at";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -13,20 +19,47 @@ export default function Contact() {
     subject: "",
     message: ""
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const formRef = useRef<HTMLFormElement>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // This would connect to a backend service in a real application
-    toast({
-      title: "Message Sent",
-      description: "Thank you for your message. I'll get back to you soon!",
-    });
-    setFormData({ name: "", email: "", subject: "", message: "" });
+    if (!formRef.current) return;
+    
+    try {
+      setIsSubmitting(true);
+      
+      // Send the email using EmailJS
+      await emailjs.sendForm(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        formRef.current,
+        EMAILJS_PUBLIC_KEY
+      );
+
+      // Show success message
+      toast({
+        title: "Message Sent",
+        description: "Thank you for your message. I'll get back to you soon!",
+      });
+      
+      // Reset form after successful submission
+      setFormData({ name: "", email: "", subject: "", message: "" });
+    } catch (error) {
+      console.error('Error sending email:', error);
+      toast({
+        title: "Error",
+        description: "Failed to send message. Please try again later.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -95,7 +128,7 @@ export default function Contact() {
         </div>
         
         <div>
-          <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6 bg-white p-4 md:p-6 rounded-lg shadow-sm">
+          <form ref={formRef} onSubmit={handleSubmit} className="space-y-4 md:space-y-6 bg-white p-4 md:p-6 rounded-lg shadow-sm">
             <div>
               <Input
                 type="text"
@@ -142,8 +175,18 @@ export default function Contact() {
             <Button 
               type="submit" 
               className="w-full bg-portfolio-navy hover:bg-portfolio-dark-accent text-white"
+              disabled={isSubmitting}
             >
-              Send Message <Send className="ml-2 h-4 w-4" />
+              {isSubmitting ? (
+                <>
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  Sending...
+                </>
+              ) : (
+                <>
+                  Send Message <Send className="ml-2 h-4 w-4" />
+                </>
+              )}
             </Button>
           </form>
         </div>
