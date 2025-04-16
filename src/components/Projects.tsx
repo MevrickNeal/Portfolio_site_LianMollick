@@ -98,6 +98,16 @@ export default function Projects() {
                 <p className="text-portfolio-light-text mb-4">
                   Research and implementation of advanced navigation and control systems for stabilizing rocket flight. The thesis explores various control methodologies including thrust vector control for achieving precise flight paths.
                 </p>
+                <div className="mb-4">
+                  <img 
+                    src="/lovable-uploads/9bb0f2d1-6f94-4e8c-8f1b-d67358fe2989.png" 
+                    alt="Rocket Flight Simulation" 
+                    className="w-full rounded-lg border border-gray-200 shadow-sm" 
+                  />
+                  <p className="text-sm text-portfolio-light-text mt-2 italic">
+                    ProjectNeal1.2 Rocket Flight Simulation showing velocity, acceleration, and trajectory data
+                  </p>
+                </div>
                 <a 
                   href="https://www.linkedin.com/posts/lianmollick_rocketry-thesisdefense-thrustvectorcontrol-activity-7290674776816173056-7DhU" 
                   target="_blank" 

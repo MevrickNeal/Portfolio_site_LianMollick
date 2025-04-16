@@ -21,6 +21,18 @@ export default function Certifications() {
       issuer: "NASA",
       year: "2023",
       link: "https://drive.google.com/drive/folders/1cE9iPPTE2vz2R7t6SNu08gT15XpSTB5m"
+    },
+    {
+      title: "Electrical Engineering Job Simulation",
+      issuer: "GE Aerospace (Forage)",
+      year: "2025",
+      link: "https://forage-uploads-prod.s3.amazonaws.com/completion-certificates/ay2tsYxaTif7Nt6z7/ntFrRvKxX5AmquXRr_ay2tsYxaTif7Nt6z7_RAZA8nua5RLumyJpu_1740978804858_completion_certificate.pdf"
+    },
+    {
+      title: "Industrial Technology on Electrical Engineering",
+      issuer: "Training Institute for Chemical Industries (TICI)",
+      year: "May 2025",
+      link: "https://drive.google.com/drive/folders/1cE9iPPTE2vz2R7t6SNu08gT15XpSTB5m?usp=drive_link"
     }
   ];
 

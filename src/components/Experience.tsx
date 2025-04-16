@@ -156,6 +156,52 @@ export default function Experience() {
                 </div>
               </CardContent>
             </Card>
+            
+            <Card className="card-hover">
+              <CardContent className="p-6">
+                <div className="flex flex-col gap-4">
+                  <h3 className="text-xl font-bold text-portfolio-navy">Electrical Engineering Job Simulation</h3>
+                  <div className="flex flex-wrap justify-between items-center">
+                    <h4 className="text-lg font-medium">GE Aerospace (Forage)</h4>
+                    <span className="text-portfolio-accent font-medium">2025</span>
+                  </div>
+                  <p className="text-portfolio-light-text">
+                    Virtual job simulation focused on aerospace electrical engineering practices, system design, and troubleshooting. Industry-relevant training covering real-world aerospace engineering challenges.
+                  </p>
+                  <a 
+                    href="https://forage-uploads-prod.s3.amazonaws.com/completion-certificates/ay2tsYxaTif7Nt6z7/ntFrRvKxX5AmquXRr_ay2tsYxaTif7Nt6z7_RAZA8nua5RLumyJpu_1740978804858_completion_certificate.pdf" 
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-portfolio-teal hover:text-portfolio-accent transition-colors inline-flex items-center"
+                  >
+                    View Certificate <ExternalLink className="ml-1 h-4 w-4" />
+                  </a>
+                </div>
+              </CardContent>
+            </Card>
+            
+            <Card className="card-hover">
+              <CardContent className="p-6">
+                <div className="flex flex-col gap-4">
+                  <h3 className="text-xl font-bold text-portfolio-navy">Industrial Technology on Electrical Engineering</h3>
+                  <div className="flex flex-wrap justify-between items-center">
+                    <h4 className="text-lg font-medium">Training Institute for Chemical Industries (TICI)</h4>
+                    <span className="text-portfolio-accent font-medium">May 2025</span>
+                  </div>
+                  <p className="text-portfolio-light-text">
+                    Specialized training on industrial electrical systems, focusing on implementation and maintenance of electrical infrastructure in chemical and manufacturing environments.
+                  </p>
+                  <a 
+                    href="https://drive.google.com/drive/folders/1cE9iPPTE2vz2R7t6SNu08gT15XpSTB5m?usp=drive_link" 
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-portfolio-teal hover:text-portfolio-accent transition-colors inline-flex items-center"
+                  >
+                    View Certificate <ExternalLink className="ml-1 h-4 w-4" />
+                  </a>
+                </div>
+              </CardContent>
+            </Card>
           </div>
         </TabsContent>
       </Tabs>
