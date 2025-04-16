@@ -1,5 +1,5 @@
 
-import { ExternalLink, Youtube, Rocket, Bot, Smartphone, Cpu } from "lucide-react";
+import { ExternalLink, Youtube, Rocket, Bot, Smartphone, Cpu, Satellite } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 
 export default function Projects() {
@@ -60,6 +60,32 @@ export default function Projects() {
                   />
                   <p className="text-sm text-portfolio-light-text mt-2 italic">
                     Testing rocket avionics and telemetry systems in the field
+                  </p>
+                </div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card className="card-hover">
+          <CardContent className="p-6">
+            <div className="flex items-start gap-4">
+              <div className="flex-shrink-0 w-12 h-12 bg-portfolio-navy/10 rounded-full flex items-center justify-center">
+                <Satellite className="h-6 w-6 text-portfolio-navy" />
+              </div>
+              <div>
+                <h3 className="text-xl font-bold text-portfolio-navy mb-2">Space Weather Prediction</h3>
+                <p className="text-portfolio-light-text mb-4">
+                  Developed an AI-assisted advanced software system that detects faulty behavior and inconsistencies in DSCOVR's real-time data. Using historical data to train machine learning models to observe DSCOVR's data and predict occasional faults in its readings that may prevent damages from solar storms and geomagnetic disruptions on Earth.
+                </p>
+                <div className="mb-4">
+                  <img 
+                    src="/lovable-uploads/b9d2c90a-71e6-4f1c-accd-de40b7a9b806.png" 
+                    alt="Space Weather Prediction Dashboard" 
+                    className="w-full rounded-lg border border-gray-200 shadow-sm" 
+                  />
+                  <p className="text-sm text-portfolio-light-text mt-2 italic">
+                    RSSI - Team SolarSentinel dashboard showing solar wind and geomagnetic field data
                   </p>
                 </div>
               </div>
@@ -154,3 +180,4 @@ export default function Projects() {
     </section>
   );
 }
+
