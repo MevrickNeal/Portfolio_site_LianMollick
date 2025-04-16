@@ -20,7 +20,7 @@ export default function Projects() {
                 </p>
                 <div className="mb-4">
                   <img 
-                    src="/lovable-uploads/41ac8062-02c7-4569-86cc-b16d933c1cf1.png" 
+                    src="/lovable-uploads/97da3591-aa27-464b-b81c-c8d2f868ba6e.png" 
                     alt="PUTIMACH Rocket Launch" 
                     className="w-full rounded-lg border border-gray-200 shadow-sm" 
                   />
