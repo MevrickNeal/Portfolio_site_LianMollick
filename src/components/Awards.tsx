@@ -1,5 +1,5 @@
 
-import { Award, Trophy, Medal, ExternalLink } from "lucide-react";
+import { Award, Trophy, Medal, ExternalLink, Star } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 
 export default function Awards() {
@@ -22,6 +22,16 @@ export default function Awards() {
                 <p className="text-sm text-portfolio-light-text mb-2">
                   Organized by a2i & Bangabandhu Aviation and Aerospace University
                 </p>
+                <div className="mb-3">
+                  <img 
+                    src="/lovable-uploads/e00a481e-4e06-4e62-b409-b39661c31fcd.png" 
+                    alt="Rocketry Innovation Challenge 2022" 
+                    className="w-full rounded-lg border border-gray-200 shadow-sm" 
+                  />
+                  <p className="text-sm text-portfolio-light-text mt-2 italic">
+                    Award ceremony at the Rocketry Innovation Challenge 2022
+                  </p>
+                </div>
                 <a 
                   href="https://drive.google.com/drive/folders/1cE9iPPTE2vz2R7t6SNu08gT15XpSTB5m" 
                   target="_blank"
@@ -50,6 +60,16 @@ export default function Awards() {
                 <p className="text-sm text-portfolio-light-text mb-2">
                   Team Solar Sentinel
                 </p>
+                <div className="mb-3">
+                  <img 
+                    src="/lovable-uploads/c7364aa4-f619-4066-8c11-4af77564283c.png" 
+                    alt="NASA Space Apps Challenge 2023" 
+                    className="w-full rounded-lg border border-gray-200 shadow-sm" 
+                  />
+                  <p className="text-sm text-portfolio-light-text mt-2 italic">
+                    Award ceremony at NASA Space Apps Challenge 2023
+                  </p>
+                </div>
               </div>
             </div>
           </CardContent>
@@ -70,6 +90,36 @@ export default function Awards() {
                 <p className="text-sm text-portfolio-light-text mb-2">
                   Project: Wireless Energy Transmission
                 </p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card className="card-hover bg-gradient-to-br from-white to-indigo-50">
+          <CardContent className="p-6">
+            <div className="flex items-start gap-4">
+              <div className="flex-shrink-0 w-12 h-12 bg-indigo-100 rounded-full flex items-center justify-center">
+                <Star className="h-6 w-6 text-indigo-600" />
+              </div>
+              <div>
+                <div className="flex items-center mb-2">
+                  <h3 className="text-xl font-bold text-portfolio-navy">Finalist</h3>
+                  <span className="ml-2 bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-xs">Top Team</span>
+                </div>
+                <h4 className="text-lg text-portfolio-light-text mb-1">National STEAM Olympiad</h4>
+                <p className="text-sm text-portfolio-light-text mb-2">
+                  Organized by iTesseract & Ministry of Education
+                </p>
+                <div className="mb-3">
+                  <img 
+                    src="/lovable-uploads/cacaca86-a46b-419a-bec9-5777b25a91a1.png" 
+                    alt="National STEAM Olympiad" 
+                    className="w-full rounded-lg border border-gray-200 shadow-sm" 
+                  />
+                  <p className="text-sm text-portfolio-light-text mt-2 italic">
+                    Receiving recognition at the National STEAM Olympiad
+                  </p>
+                </div>
               </div>
             </div>
           </CardContent>

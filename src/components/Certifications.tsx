@@ -38,7 +38,7 @@ export default function Certifications() {
 
   return (
     <section id="certifications" className="section-container bg-white">
-      <h2 className="section-title">Certifications</h2>
+      <h2 className="section-title">Training and Certified Courses</h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
         {certifications.map((cert, index) => (
           <Card key={index} className="card-hover">
