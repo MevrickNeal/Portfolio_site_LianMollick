@@ -20,7 +20,7 @@ export default function Projects() {
                 </p>
                 <div className="mb-4">
                   <img 
-                    src="/lovable-uploads/97da3591-aa27-464b-b81c-c8d2f868ba6e.png" 
+                    src="/lovable-uploads/3bdf51d8-1122-46a2-82ca-48f6ffc98de1.png" 
                     alt="PUTIMACH Rocket Launch" 
                     className="w-full rounded-lg border border-gray-200 shadow-sm" 
                   />
@@ -54,7 +54,7 @@ export default function Projects() {
                 </p>
                 <div className="mb-4">
                   <img 
-                    src="/lovable-uploads/3bdf51d8-1122-46a2-82ca-48f6ffc98de1.png" 
+                    src="/lovable-uploads/a7b917fd-f5c0-4add-b4bc-28c1906dc326.png" 
                     alt="Rocket Avionics Testing" 
                     className="w-full rounded-lg border border-gray-200 shadow-sm" 
                   />
@@ -122,7 +122,7 @@ export default function Projects() {
                 </p>
                 <div className="mb-4">
                   <img 
-                    src="/lovable-uploads/a7b917fd-f5c0-4add-b4bc-28c1906dc326.png" 
+                    src="/lovable-uploads/cacaca86-a46b-419a-bec9-5777b25a91a1.png" 
                     alt="Combat Robot Team" 
                     className="w-full rounded-lg border border-gray-200 shadow-sm" 
                   />
@@ -180,4 +180,3 @@ export default function Projects() {
     </section>
   );
 }
-
