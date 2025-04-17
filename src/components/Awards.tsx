@@ -122,7 +122,7 @@ export default function Awards() {
                 </p>
                 <div className="mb-3">
                   <img 
-                    src="/lovable-uploads/9bb0f2d1-6f94-4e8c-8f1b-d67358fe2989.png" 
+                    src="/lovable-uploads/01c1360a-62bc-4bad-996f-e32d933b1d48.png" 
                     alt="Technoxian WRC National Finalist 2024" 
                     className="w-full rounded-lg border border-gray-200 shadow-sm" 
                   />

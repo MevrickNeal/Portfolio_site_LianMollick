@@ -65,6 +65,17 @@ export default function About() {
           </ul>
         </div>
       </div>
+      
+      {/* Project NealDX Logo */}
+      <div className="flex justify-center mt-12">
+        <div className="max-w-md">
+          <img 
+            src="/lovable-uploads/1f0035ab-5c37-4af5-bc47-f963b943b90e.png" 
+            alt="Project NealDX" 
+            className="w-full" 
+          />
+        </div>
+      </div>
     </section>
   );
 }
