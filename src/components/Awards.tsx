@@ -24,7 +24,7 @@ export default function Awards() {
                 </p>
                 <div className="mb-3">
                   <img 
-                    src="/lovable-uploads/c7364aa4-f619-4066-8c11-4af77564283c.png" 
+                    src="/lovable-uploads/e00a481e-4e06-4e62-b409-b39661c31fcd.png" 
                     alt="Rocketry Innovation Challenge 2022" 
                     className="w-full rounded-lg border border-gray-200 shadow-sm" 
                   />
@@ -92,12 +92,42 @@ export default function Awards() {
                 </p>
                 <div className="mb-3">
                   <img 
-                    src="/lovable-uploads/e00a481e-4e06-4e62-b409-b39661c31fcd.png" 
+                    src="/lovable-uploads/c7364aa4-f619-4066-8c11-4af77564283c.png" 
                     alt="NASA Space Apps Challenge 2023" 
                     className="w-full rounded-lg border border-gray-200 shadow-sm" 
                   />
                   <p className="text-sm text-portfolio-light-text mt-2 italic">
                     Award ceremony at NASA Space Apps Challenge 2023
+                  </p>
+                </div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card className="card-hover bg-gradient-to-br from-white to-blue-50">
+          <CardContent className="p-6">
+            <div className="flex items-start gap-4">
+              <div className="flex-shrink-0 w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
+                <Trophy className="h-6 w-6 text-blue-600" />
+              </div>
+              <div>
+                <div className="flex items-center mb-2">
+                  <h3 className="text-xl font-bold text-portfolio-navy">National Finalist</h3>
+                  <span className="ml-2 bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-xs">Top 10</span>
+                </div>
+                <h4 className="text-lg text-portfolio-light-text mb-1">Technoxian WRC National Finalist 2024</h4>
+                <p className="text-sm text-portfolio-light-text mb-2">
+                  World Robotics Championship
+                </p>
+                <div className="mb-3">
+                  <img 
+                    src="/lovable-uploads/9bb0f2d1-6f94-4e8c-8f1b-d67358fe2989.png" 
+                    alt="Technoxian WRC National Finalist 2024" 
+                    className="w-full rounded-lg border border-gray-200 shadow-sm" 
+                  />
+                  <p className="text-sm text-portfolio-light-text mt-2 italic">
+                    Team presentation at Technoxian World Robotics Championship 2024
                   </p>
                 </div>
               </div>
