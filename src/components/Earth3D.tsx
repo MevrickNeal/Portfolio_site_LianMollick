@@ -50,13 +50,20 @@ function Earth() {
   const earthRef = useRef<THREE.Mesh>(null!);
   const cloudsRef = useRef<THREE.Mesh>(null!);
   
-  // Load textures
-  const [earthTexture, earthNormalMap, earthSpecularMap, cloudsTexture] = useTexture([
-    'https://cdn.jsdelivr.net/gh/pmndrs/drei-assets@latest/earth/earth-day.jpg',
-    'https://cdn.jsdelivr.net/gh/pmndrs/drei-assets@latest/earth/earth-normal.jpg',
-    'https://cdn.jsdelivr.net/gh/pmndrs/drei-assets@latest/earth/earth-specular.jpg',
-    'https://cdn.jsdelivr.net/gh/pmndrs/drei-assets@latest/earth/earth-clouds.jpg'
-  ]);
+  // Create basic materials with colors instead of relying on textures
+  const earthMaterial = new THREE.MeshPhongMaterial({ 
+    color: '#2233aa', // Ocean blue
+    shininess: 5,
+    emissive: '#001133',
+    emissiveIntensity: 0.2
+  });
+
+  const cloudsMaterial = new THREE.MeshPhongMaterial({
+    color: '#ffffff',
+    transparent: true,
+    opacity: 0.4,
+    depthWrite: false
+  });
 
   // Earth rotation
   useFrame(({ clock }) => {
@@ -86,23 +93,34 @@ function Earth() {
       {/* Earth */}
       <mesh ref={earthRef}>
         <sphereGeometry args={[2, 64, 64]} />
-        <meshPhongMaterial 
-          map={earthTexture} 
-          normalMap={earthNormalMap}
-          specularMap={earthSpecularMap}
-          shininess={5}
-        />
+        <primitive object={earthMaterial} attach="material" />
 
         {/* Clouds layer */}
         <mesh ref={cloudsRef} scale={1.01}>
           <sphereGeometry args={[2, 64, 64]} />
-          <meshPhongMaterial 
-            map={cloudsTexture} 
-            transparent={true} 
-            opacity={0.4} 
-            depthWrite={false}
-          />
+          <primitive object={cloudsMaterial} attach="material" />
         </mesh>
+
+        {/* Add some continents as green patches */}
+        <group>
+          {/* Africa/Europe */}
+          <mesh position={[0, 0.1, 2]} rotation={[0, 0, 0]}>
+            <sphereGeometry args={[1.2, 32, 32, 0, Math.PI * 0.4, Math.PI * 0.3, Math.PI * 0.4]} />
+            <meshStandardMaterial color="#22aa44" transparent opacity={0.8} />
+          </mesh>
+          
+          {/* Americas */}
+          <mesh position={[0, 0, -1.8]} rotation={[0, Math.PI, 0]}>
+            <sphereGeometry args={[1.2, 32, 32, 0, Math.PI * 0.3, Math.PI * 0.3, Math.PI * 0.5]} />
+            <meshStandardMaterial color="#117733" transparent opacity={0.8} />
+          </mesh>
+          
+          {/* Asia/Australia */}
+          <mesh position={[-1.9, 0, -0.5]} rotation={[0, Math.PI / 1.5, 0]}>
+            <sphereGeometry args={[1.2, 32, 32, 0, Math.PI * 0.5, Math.PI * 0.3, Math.PI * 0.4]} />
+            <meshStandardMaterial color="#22aa44" transparent opacity={0.8} />
+          </mesh>
+        </group>
 
         {/* Satellite */}
         <Satellite position={[0, 0, 0]} />
