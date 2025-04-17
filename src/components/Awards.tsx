@@ -114,7 +114,7 @@ export default function Awards() {
               <div>
                 <div className="flex items-center mb-2">
                   <h3 className="text-xl font-bold text-portfolio-navy">National Finalist</h3>
-                  <span className="ml-2 bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-xs">Top 10</span>
+                  <span className="ml-2 bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-xs">Top 3</span>
                 </div>
                 <h4 className="text-lg text-portfolio-light-text mb-1">Technoxian WRC National Finalist 2024</h4>
                 <p className="text-sm text-portfolio-light-text mb-2">
