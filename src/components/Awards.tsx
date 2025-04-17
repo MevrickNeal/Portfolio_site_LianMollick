@@ -45,6 +45,36 @@ export default function Awards() {
           </CardContent>
         </Card>
 
+        <Card className="card-hover bg-gradient-to-br from-white to-indigo-50">
+          <CardContent className="p-6">
+            <div className="flex items-start gap-4">
+              <div className="flex-shrink-0 w-12 h-12 bg-indigo-100 rounded-full flex items-center justify-center">
+                <Star className="h-6 w-6 text-indigo-600" />
+              </div>
+              <div>
+                <div className="flex items-center mb-2">
+                  <h3 className="text-xl font-bold text-portfolio-navy">Finalist</h3>
+                  <span className="ml-2 bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-xs">Top Team</span>
+                </div>
+                <h4 className="text-lg text-portfolio-light-text mb-1">National STEAM Olympiad</h4>
+                <p className="text-sm text-portfolio-light-text mb-2">
+                  Organized by iTesseract & Ministry of Education
+                </p>
+                <div className="mb-3">
+                  <img 
+                    src="/lovable-uploads/ecf8b8e8-f9be-4a89-9b69-a4578f9ba6df.png" 
+                    alt="National STEAM Olympiad" 
+                    className="w-full rounded-lg border border-gray-200 shadow-sm" 
+                  />
+                  <p className="text-sm text-portfolio-light-text mt-2 italic">
+                    Receiving recognition at the National STEAM Olympiad
+                  </p>
+                </div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
         <Card className="card-hover bg-gradient-to-br from-white to-gray-50">
           <CardContent className="p-6">
             <div className="flex items-start gap-4">
@@ -90,34 +120,14 @@ export default function Awards() {
                 <p className="text-sm text-portfolio-light-text mb-2">
                   Project: Wireless Energy Transmission
                 </p>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-
-        <Card className="card-hover bg-gradient-to-br from-white to-indigo-50">
-          <CardContent className="p-6">
-            <div className="flex items-start gap-4">
-              <div className="flex-shrink-0 w-12 h-12 bg-indigo-100 rounded-full flex items-center justify-center">
-                <Star className="h-6 w-6 text-indigo-600" />
-              </div>
-              <div>
-                <div className="flex items-center mb-2">
-                  <h3 className="text-xl font-bold text-portfolio-navy">Finalist</h3>
-                  <span className="ml-2 bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-xs">Top Team</span>
-                </div>
-                <h4 className="text-lg text-portfolio-light-text mb-1">National STEAM Olympiad</h4>
-                <p className="text-sm text-portfolio-light-text mb-2">
-                  Organized by iTesseract & Ministry of Education
-                </p>
                 <div className="mb-3">
                   <img 
-                    src="/lovable-uploads/ecf8b8e8-f9be-4a89-9b69-a4578f9ba6df.png" 
-                    alt="National STEAM Olympiad" 
+                    src="/lovable-uploads/98808512-2995-4e9b-822e-702b4422ce82.png" 
+                    alt="3rd National Science Fest" 
                     className="w-full rounded-lg border border-gray-200 shadow-sm" 
                   />
                   <p className="text-sm text-portfolio-light-text mt-2 italic">
-                    Receiving recognition at the National STEAM Olympiad
+                    Award ceremony at 3rd National Science Fest
                   </p>
                 </div>
               </div>

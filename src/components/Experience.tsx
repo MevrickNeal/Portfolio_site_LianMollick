@@ -107,6 +107,39 @@ export default function Experience() {
             <Card className="card-hover">
               <CardContent className="p-6">
                 <div className="flex flex-col gap-4">
+                  <h3 className="text-xl font-bold text-portfolio-navy">7 Days Industrial Training on Analog Design</h3>
+                  <div className="flex flex-wrap justify-between items-center">
+                    <h4 className="text-lg font-medium">ULKASEMI PVT Limited</h4>
+                    <span className="text-portfolio-accent font-medium">2024</span>
+                  </div>
+                  <p className="text-portfolio-light-text">
+                    Intensive industrial training focused on Analog Design, IC Mask Design (Mixed-Signal Layout), and IC Physical Design. Conducted hands-on work with industry-standard tools and methodologies.
+                  </p>
+                  <div className="mb-3">
+                    <img 
+                      src="/lovable-uploads/34415cf9-ffa7-445e-ac9e-d7c51cbbc77c.png" 
+                      alt="ULKASEMI Training Certificate" 
+                      className="w-full rounded-lg border border-gray-200 shadow-sm" 
+                    />
+                    <p className="text-sm text-portfolio-light-text mt-2 italic">
+                      Certificate of Appreciation from ULKASEMI for completing the industrial training
+                    </p>
+                  </div>
+                  <a 
+                    href="https://drive.google.com/file/d/1I2O84TAIzwUc64hMu_hTgsM5hklZjBLS/view?usp=sharing" 
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-portfolio-teal hover:text-portfolio-accent transition-colors inline-flex items-center"
+                  >
+                    View Certificate <ExternalLink className="ml-1 h-4 w-4" />
+                  </a>
+                </div>
+              </CardContent>
+            </Card>
+            
+            <Card className="card-hover">
+              <CardContent className="p-6">
+                <div className="flex flex-col gap-4">
                   <h3 className="text-xl font-bold text-portfolio-navy">Semiconductor Fabrication 101</h3>
                   <div className="flex flex-wrap justify-between items-center">
                     <h4 className="text-lg font-medium">Purdue University Texas (Intel Sponsored)</h4>
@@ -115,6 +148,24 @@ export default function Experience() {
                   <p className="text-portfolio-light-text">
                     Comprehensive training on semiconductor fabrication processes, wafer processing, and chip design fundamentals. Intel-sponsored program focused on practical industry applications.
                   </p>
+                  <div className="mb-3">
+                    <img 
+                      src="/lovable-uploads/3517d79a-d999-4d53-9657-4b63294aff2c.png" 
+                      alt="Semiconductor Fabrication Certificate" 
+                      className="w-full rounded-lg border border-gray-200 shadow-sm" 
+                    />
+                    <p className="text-sm text-portfolio-light-text mt-2 italic">
+                      Certificate of Completion for Semiconductor Fabrication 101
+                    </p>
+                  </div>
+                  <a 
+                    href="https://drive.google.com/file/d/14ia5I0FDjxTf5xi-Km52sgq4yWEfW-DS/view?usp=drive_link" 
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-portfolio-teal hover:text-portfolio-accent transition-colors inline-flex items-center"
+                  >
+                    View Certificate <ExternalLink className="ml-1 h-4 w-4" />
+                  </a>
                 </div>
               </CardContent>
             </Card>
@@ -145,8 +196,18 @@ export default function Experience() {
                   <p className="text-portfolio-light-text">
                     Training on NASA's Transform to Open Science (TOPS) program, focusing on open science principles, collaborative research methodologies, and data sharing practices in aerospace technology.
                   </p>
+                  <div className="mb-3">
+                    <img 
+                      src="/lovable-uploads/17bb8bd3-60ac-4845-b7b6-a7873fdef2ab.png" 
+                      alt="NASA TOPS Certificate" 
+                      className="w-full rounded-lg border border-gray-200 shadow-sm" 
+                    />
+                    <p className="text-sm text-portfolio-light-text mt-2 italic">
+                      NASA TOPS Open Science Program Certificate of Achievement
+                    </p>
+                  </div>
                   <a 
-                    href="https://drive.google.com/drive/folders/1cE9iPPTE2vz2R7t6SNu08gT15XpSTB5m" 
+                    href="https://drive.google.com/file/d/1KuzsNyLZcl4_8vKka9NezhwVf94Iz1a9/view?usp=drive_link" 
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-portfolio-teal hover:text-portfolio-accent transition-colors inline-flex items-center"
@@ -168,8 +229,18 @@ export default function Experience() {
                   <p className="text-portfolio-light-text">
                     Virtual job simulation focused on aerospace electrical engineering practices, system design, and troubleshooting. Industry-relevant training covering real-world aerospace engineering challenges.
                   </p>
+                  <div className="mb-3">
+                    <img 
+                      src="/lovable-uploads/2d8f4dce-367b-4608-a99e-691c8d31dd08.png" 
+                      alt="GE Aerospace Job Simulation Certificate" 
+                      className="w-full rounded-lg border border-gray-200 shadow-sm" 
+                    />
+                    <p className="text-sm text-portfolio-light-text mt-2 italic">
+                      GE Aerospace Electrical Engineering Job Simulation Certificate
+                    </p>
+                  </div>
                   <a 
-                    href="https://forage-uploads-prod.s3.amazonaws.com/completion-certificates/ay2tsYxaTif7Nt6z7/ntFrRvKxX5AmquXRr_ay2tsYxaTif7Nt6z7_RAZA8nua5RLumyJpu_1740978804858_completion_certificate.pdf" 
+                    href="https://drive.google.com/file/d/1XNnSxMHMGWc4CjjUxsWN4oxMW0STRNHh/view?usp=drive_link" 
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-portfolio-teal hover:text-portfolio-accent transition-colors inline-flex items-center"
