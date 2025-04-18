@@ -1,9 +1,9 @@
 
-/* Custom rocket cursor styles */
+/* Normal cursor styles */
 body {
-  cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='%23000000' stroke='%23000000' stroke-width='1' stroke-linecap='round' stroke-linejoin='round'><path d='M12 19l3-3a22 22 0 0 0 2-3.95A12.88 12.88 0 0 0 22 2c-2.72 0-7.5.78-11 6a22.35 22.35 0 0 0-2 4l-3 3'/><path d='M12 19L9 22'/><path d='m8 14 3-3'/><path d='M17 9a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z'/></svg>"), auto;
+  cursor: default;
 }
 
 a, button, [role="button"], .card, .card-hover {
-  cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='%23EC6C4C' stroke='%23EC6C4C' stroke-width='1' stroke-linecap='round' stroke-linejoin='round'><path d='M12 19l3-3a22 22 0 0 0 2-3.95A12.88 12.88 0 0 0 22 2c-2.72 0-7.5.78-11 6a22.35 22.35 0 0 0-2 4l-3 3'/><path d='M12 19L9 22'/><path d='m8 14 3-3'/><path d='M17 9a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z'/></svg>"), pointer;
+  cursor: pointer;
 }

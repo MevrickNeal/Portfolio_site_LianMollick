@@ -10,7 +10,6 @@ import Awards from "@/components/Awards";
 import Certifications from "@/components/Certifications";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
-import Earth3D from "@/components/Earth3D";
 
 const Index = () => {
   return (
@@ -21,7 +20,6 @@ const Index = () => {
       <Education />
       <Skills />
       <Experience />
-      <Earth3D />
       <Projects />
       <Awards />
       <Certifications />
