@@ -24,7 +24,7 @@ export default function Awards() {
                 </p>
                 <div className="mb-3">
                   <img 
-                    src="/lovable-uploads/e00a481e-4e06-4e62-b409-b39661c31fcd.png" 
+                    src="/lovable-uploads/c7364aa4-f619-4066-8c11-4af77564283c.png" 
                     alt="Rocketry Innovation Challenge 2022" 
                     className="w-full rounded-lg border border-gray-200 shadow-sm" 
                   />
@@ -92,7 +92,7 @@ export default function Awards() {
                 </p>
                 <div className="mb-3">
                   <img 
-                    src="/lovable-uploads/c7364aa4-f619-4066-8c11-4af77564283c.png" 
+                    src="/lovable-uploads/e00a481e-4e06-4e62-b409-b39661c31fcd.png" 
                     alt="NASA Space Apps Challenge 2023" 
                     className="w-full rounded-lg border border-gray-200 shadow-sm" 
                   />
@@ -195,3 +195,4 @@ export default function Awards() {
     </section>
   );
 }
+
