@@ -1,4 +1,3 @@
-
 import { Briefcase, Calendar, ExternalLink } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -262,6 +261,16 @@ export default function Experience() {
                   <p className="text-portfolio-light-text">
                     Specialized training on industrial electrical systems, focusing on implementation and maintenance of electrical infrastructure in chemical and manufacturing environments.
                   </p>
+                  <div className="mb-3">
+                    <img 
+                      src="/lovable-uploads/603836fa-feeb-4a00-b7fd-0bd5609a9888.png" 
+                      alt="TICI Industrial Technology Certificate" 
+                      className="w-full rounded-lg border border-gray-200 shadow-sm" 
+                    />
+                    <p className="text-sm text-portfolio-light-text mt-2 italic">
+                      Certificate from Training Institute for Chemical Industries (TICI)
+                    </p>
+                  </div>
                   <a 
                     href="https://drive.google.com/drive/folders/1cE9iPPTE2vz2R7t6SNu08gT15XpSTB5m?usp=drive_link" 
                     target="_blank"

@@ -7,6 +7,8 @@ import Experience from "@/components/Experience";
 import Skills from "@/components/Skills";
 import Projects from "@/components/Projects";
 import Awards from "@/components/Awards";
+import WallOfFame from "@/components/WallOfFame";
+import Gallery from "@/components/Gallery";
 import Certifications from "@/components/Certifications";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
@@ -22,6 +24,8 @@ const Index = () => {
       <Experience />
       <Projects />
       <Awards />
+      <WallOfFame />
+      <Gallery />
       <Certifications />
       <Contact />
       <Footer />
