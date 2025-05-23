@@ -1,11 +1,12 @@
-import { Award, Trophy } from "lucide-react";
+
+import { Award, Trophy, Medal, Star, Zap } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 
 export default function WallOfFame() {
   return (
     <section id="wall-of-fame" className="section-container bg-gray-50">
       <h2 className="section-title">Wall of Fame</h2>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
         <Card className="card-hover bg-gradient-to-br from-blue-50 to-indigo-50">
           <CardContent className="p-6">
             <div className="flex flex-col gap-4">
@@ -84,6 +85,62 @@ export default function WallOfFame() {
                 />
                 <p className="text-sm text-portfolio-light-text mt-2 italic">
                   Certificate from the International Astronomical Search Collaboration (IASC)
+                </p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card className="card-hover bg-gradient-to-br from-purple-50 to-pink-50">
+          <CardContent className="p-6">
+            <div className="flex flex-col gap-4">
+              <div className="flex items-center gap-3">
+                <div className="flex-shrink-0 w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center">
+                  <Medal className="h-6 w-6 text-purple-600" />
+                </div>
+                <h3 className="text-xl font-bold text-portfolio-navy">1st Runner Up - NASA Space Apps Challenge</h3>
+              </div>
+              
+              <p className="text-portfolio-light-text">
+                Achieved 1st Runner Up position (Mymensingh) at NASA Space Apps Challenge Bangladesh 2023 as part of Team SolarSentinel for outstanding participation and efforts to solve challenges on Earth and in space.
+              </p>
+              
+              <div className="mb-3">
+                <img 
+                  src="/lovable-uploads/429deff5-c417-48f8-8aed-2b208ab805ac.png" 
+                  alt="NASA Space Apps Challenge 1st Runner Up Certificate" 
+                  className="w-full rounded-lg border border-gray-200 shadow-sm" 
+                />
+                <p className="text-sm text-portfolio-light-text mt-2 italic">
+                  1st Runner Up at NASA Space Apps Challenge Bangladesh 2023
+                </p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card className="card-hover bg-gradient-to-br from-red-50 to-orange-50">
+          <CardContent className="p-6">
+            <div className="flex flex-col gap-4">
+              <div className="flex items-center gap-3">
+                <div className="flex-shrink-0 w-12 h-12 bg-red-100 rounded-full flex items-center justify-center">
+                  <Zap className="h-6 w-6 text-red-600" />
+                </div>
+                <h3 className="text-xl font-bold text-portfolio-navy">Technoxian National Round 2024</h3>
+              </div>
+              
+              <p className="text-portfolio-light-text">
+                Certificate of participation in the 1st Technoxian Bangladesh National Round 2024, entering into the world's largest robotics competition organized by Bangladesh Open Source Network and Frontiers Limited.
+              </p>
+              
+              <div className="mb-3">
+                <img 
+                  src="/lovable-uploads/1e267b93-7f22-4576-954d-f6f8c53ad535.png" 
+                  alt="Technoxian National Round 2024 Certificate" 
+                  className="w-full rounded-lg border border-gray-200 shadow-sm" 
+                />
+                <p className="text-sm text-portfolio-light-text mt-2 italic">
+                  Certificate of Participation in Technoxian Bangladesh National Round 2024
                 </p>
               </div>
             </div>
