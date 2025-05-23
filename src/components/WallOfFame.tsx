@@ -1,4 +1,3 @@
-
 import { Award, Trophy } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 
@@ -74,7 +73,7 @@ export default function WallOfFame() {
               </div>
               
               <p className="text-portfolio-light-text">
-                As part of Team MeteoriteX, I participated in NASA-supported asteroid tracking and analysis through the International Astronomical Search Collaboration (IASC). Our team successfully contributed to the identification of near-Earth objects, with one of our preliminary discoveries officially recorded as P129NRx.
+                Contributed to asteroid discovery as part of Team MeteoriteX under the NASA-supported IASC program. One of our findings, P129NRx, was recorded as a preliminary discovery.
               </p>
               
               <div className="mb-3">
