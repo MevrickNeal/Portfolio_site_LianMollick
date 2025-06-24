@@ -150,7 +150,7 @@ export default function Projects() {
                 <Cpu className="h-6 w-6 text-portfolio-navy" />
               </div>
               <div>
-                <h3 className="text-xl font-bold text-portfolio-navy mb-2">Thesis: Guided Rocket Flight Stabilization using Navigation and Control</h3>
+                <h3 className="text-xl font-bold text-portfolio-navy mb-2">Thesis: Active Control and Thrust Vector Control system of a Amateur Rocket Flight Stabilization using PID</h3>
                 <p className="text-portfolio-light-text mb-4">
                   Research and implementation of advanced navigation and control systems for stabilizing rocket flight. The thesis explores various control methodologies including thrust vector control for achieving precise flight paths.
                 </p>

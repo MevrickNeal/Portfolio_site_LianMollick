@@ -1,11 +1,18 @@
-
 import { BookOpen, ExternalLink } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 
 export default function Education() {
   return (
     <section id="education" className="section-container bg-gray-50">
-      <h2 className="section-title">Education</h2>
+      <div className="flex items-center gap-4 mb-8">
+        <img 
+          src="/lovable-uploads/project-neal-logo.png" 
+          alt="Project Neal Logo" 
+          className="h-16 w-auto"
+        />
+        <h2 className="section-title">Education</h2>
+      </div>
+      
       <div className="space-y-8 mt-8">
         <Card className="card-hover animate-fade-in">
           <CardContent className="p-6">
