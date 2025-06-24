@@ -154,15 +154,47 @@ export default function Projects() {
                 <p className="text-portfolio-light-text mb-4">
                   Research and implementation of advanced navigation and control systems for stabilizing rocket flight. The thesis explores various control methodologies including thrust vector control for achieving precise flight paths.
                 </p>
-                <div className="mb-4">
-                  <img 
-                    src="/lovable-uploads/9bb0f2d1-6f94-4e8c-8f1b-d67358fe2989.png" 
-                    alt="Rocket Flight Simulation" 
-                    className="w-full rounded-lg border border-gray-200 shadow-sm" 
-                  />
-                  <p className="text-sm text-portfolio-light-text mt-2 italic">
-                    ProjectNeal1.2 Rocket Flight Simulation showing velocity, acceleration, and trajectory data
-                  </p>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                  <div>
+                    <img 
+                      src="/lovable-uploads/9bb0f2d1-6f94-4e8c-8f1b-d67358fe2989.png" 
+                      alt="Rocket Flight Simulation" 
+                      className="w-full rounded-lg border border-gray-200 shadow-sm" 
+                    />
+                    <p className="text-sm text-portfolio-light-text mt-2 italic">
+                      ProjectNeal1.2 Rocket Flight Simulation showing velocity, acceleration, and trajectory data
+                    </p>
+                  </div>
+                  <div>
+                    <img 
+                      src="/lovable-uploads/f76e9520-627b-496b-b2ad-6c3ad9625331.png" 
+                      alt="PID Simulation Control System" 
+                      className="w-full rounded-lg border border-gray-200 shadow-sm" 
+                    />
+                    <p className="text-sm text-portfolio-light-text mt-2 italic">
+                      Thrust Vector Control System Using LTI & PID - Complete control system simulation
+                    </p>
+                  </div>
+                  <div>
+                    <img 
+                      src="/lovable-uploads/9276d9c7-e271-46ce-93a0-3812a467b57b.png" 
+                      alt="Angle Degrees Simulation" 
+                      className="w-full rounded-lg border border-gray-200 shadow-sm" 
+                    />
+                    <p className="text-sm text-portfolio-light-text mt-2 italic">
+                      Angular response simulation showing rocket stabilization over time
+                    </p>
+                  </div>
+                  <div>
+                    <img 
+                      src="/lovable-uploads/2af70cce-1601-40a8-a6c5-fe74bc9d42a5.png" 
+                      alt="Orientation TVC Output" 
+                      className="w-full rounded-lg border border-gray-200 shadow-sm" 
+                    />
+                    <p className="text-sm text-portfolio-light-text mt-2 italic">
+                      Orientation/TVC Output showing target setpoint vs actual output with PID control
+                    </p>
+                  </div>
                 </div>
                 <a 
                   href="https://www.linkedin.com/posts/lianmollick_rocketry-thesisdefense-thrustvectorcontrol-activity-7290674776816173056-7DhU" 
