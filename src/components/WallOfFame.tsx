@@ -1,5 +1,5 @@
 
-import { Award, Trophy, Medal, Star, Zap } from "lucide-react";
+import { Award, Trophy, Medal, Star, Zap, Lightbulb } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 
 export default function WallOfFame() {
@@ -141,6 +141,34 @@ export default function WallOfFame() {
                 />
                 <p className="text-sm text-portfolio-light-text mt-2 italic">
                   Certificate of Participation in Technoxian Bangladesh National Round 2024
+                </p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card className="card-hover bg-gradient-to-br from-cyan-50 to-teal-50">
+          <CardContent className="p-6">
+            <div className="flex flex-col gap-4">
+              <div className="flex items-center gap-3">
+                <div className="flex-shrink-0 w-12 h-12 bg-cyan-100 rounded-full flex items-center justify-center">
+                  <Lightbulb className="h-6 w-6 text-cyan-600" />
+                </div>
+                <h3 className="text-xl font-bold text-portfolio-navy">Xylem Global Student Innovation Challenge 2025</h3>
+              </div>
+              
+              <p className="text-portfolio-light-text">
+                Completion of project submission for the 2025 Xylem Global Student Innovation Challenge, focusing on innovative solutions for water and environmental challenges.
+              </p>
+              
+              <div className="mb-3">
+                <img 
+                  src="/lovable-uploads/4110bdb4-908d-4993-ba9d-6df3c08c8453.png" 
+                  alt="Xylem Global Student Innovation Challenge 2025 Certificate" 
+                  className="w-full rounded-lg border border-gray-200 shadow-sm" 
+                />
+                <p className="text-sm text-portfolio-light-text mt-2 italic">
+                  Project Submission Certificate for Xylem Global Student Innovation Challenge 2025
                 </p>
               </div>
             </div>
