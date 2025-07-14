@@ -29,7 +29,7 @@ export default function Experience() {
                     <div className="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-2">
                       <h3 className="text-xl font-bold text-portfolio-navy">Embedded System Intern</h3>
                       <span className="text-portfolio-accent font-medium flex items-center">
-                        <Calendar className="h-4 w-4 mr-1" /> Feb 2021 - Present
+                        <Calendar className="h-4 w-4 mr-1" /> Feb 2021 - January 2025
                       </span>
                     </div>
                     <h4 className="text-lg font-medium mb-4">DhumketuX, Mymensingh</h4>
