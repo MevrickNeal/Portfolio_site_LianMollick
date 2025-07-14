@@ -1,3 +1,4 @@
+
 import { Briefcase, Calendar, ExternalLink } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -26,7 +27,7 @@ export default function Experience() {
                   </div>
                   <div className="flex-grow">
                     <div className="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-2">
-                      <h3 className="text-xl font-bold text-portfolio-navy">Embedded System Designer</h3>
+                      <h3 className="text-xl font-bold text-portfolio-navy">Embedded System Intern</h3>
                       <span className="text-portfolio-accent font-medium flex items-center">
                         <Calendar className="h-4 w-4 mr-1" /> Feb 2021 - Present
                       </span>
@@ -54,7 +55,7 @@ export default function Experience() {
                   </div>
                   <div className="flex-grow">
                     <div className="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-2">
-                      <h3 className="text-xl font-bold text-portfolio-navy">Head of Robotics</h3>
+                      <h3 className="text-xl font-bold text-portfolio-navy">Robotics Lead</h3>
                       <span className="text-portfolio-accent font-medium flex items-center">
                         <Calendar className="h-4 w-4 mr-1" /> 2022 - Present
                       </span>
