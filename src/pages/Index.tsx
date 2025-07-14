@@ -9,6 +9,7 @@ import Projects from "@/components/Projects";
 import Awards from "@/components/Awards";
 import WallOfFame from "@/components/WallOfFame";
 import Gallery from "@/components/Gallery";
+import CoolStuffs from "@/components/CoolStuffs";
 import Certifications from "@/components/Certifications";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
@@ -26,6 +27,7 @@ const Index = () => {
       <Awards />
       <WallOfFame />
       <Gallery />
+      <CoolStuffs />
       <Certifications />
       <Contact />
       <Footer />
