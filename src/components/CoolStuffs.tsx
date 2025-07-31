@@ -17,7 +17,7 @@ const products = [
     name: "40kV Taser Module - Compact",
     description: "High-voltage compact taser module designed for safety and protection applications. Features adjustable voltage output and safety mechanisms.",
     image: "/lovable-uploads/d83efb7b-9341-46a3-b52a-1a99878a90bf.png",
-    price: "$89.99",
+    price: "৳899",
     category: "Security",
     icon: Zap,
     features: ["40kV Output", "Compact Design", "Safety Switch", "LED Indicator"]
@@ -27,7 +27,7 @@ const products = [
     name: "40kV Taser Module - Extended",
     description: "Extended range high-voltage taser module with enhanced power delivery system and integrated safety features for professional use.",
     image: "/lovable-uploads/0cb967a1-bb49-4f78-9c95-e8ebbb91e08d.png",
-    price: "$129.99",
+    price: "৳999",
     category: "Security",
     icon: Zap,
     features: ["40kV Output", "Extended Range", "Power Boost", "Professional Grade"]

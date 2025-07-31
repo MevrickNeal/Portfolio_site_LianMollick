@@ -28,13 +28,6 @@ export default function About() {
               </div>
             </li>
             <li className="flex items-start">
-              <Calendar className="h-5 w-5 text-portfolio-accent mr-3 mt-1" />
-              <div>
-                <p className="font-medium">Date of Birth</p>
-                <p className="text-portfolio-light-text">19 November 2000</p>
-              </div>
-            </li>
-            <li className="flex items-start">
               <Globe className="h-5 w-5 text-portfolio-accent mr-3 mt-1" />
               <div>
                 <p className="font-medium">Nationality</p>
@@ -53,13 +46,6 @@ export default function About() {
               <div>
                 <p className="font-medium">Phone</p>
                 <p className="text-portfolio-light-text">+8801518664917</p>
-              </div>
-            </li>
-            <li className="flex items-start">
-              <MapPin className="h-5 w-5 text-portfolio-accent mr-3 mt-1" />
-              <div>
-                <p className="font-medium">Address</p>
-                <p className="text-portfolio-light-text">Eastern Housing, Rupnagar, Mirpur, Dhaka-1216, Bangladesh</p>
               </div>
             </li>
           </ul>
