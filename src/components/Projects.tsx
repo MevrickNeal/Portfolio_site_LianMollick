@@ -97,6 +97,32 @@ export default function Projects() {
           <CardContent className="p-6">
             <div className="flex items-start gap-4">
               <div className="flex-shrink-0 w-12 h-12 bg-portfolio-navy/10 rounded-full flex items-center justify-center">
+                <Satellite className="h-6 w-6 text-portfolio-navy" />
+              </div>
+              <div>
+                <h3 className="text-xl font-bold text-portfolio-navy mb-2">Ground Station Unit for Small Scaled Rocket</h3>
+                <p className="text-portfolio-light-text mb-4">
+                  LoRa based communication module and a custom GUI system integrated WebApp is developed showing real time updates of the rocket data logger. Features live telemetry monitoring, GPS tracking, altitude/velocity graphs, and 3D trajectory visualization.
+                </p>
+                <div className="mb-4">
+                  <img 
+                    src="/lovable-uploads/8fe81e8c-3d39-45f9-8ea2-3707ad4088e2.png" 
+                    alt="Ground Station Telemetry Interface" 
+                    className="w-full rounded-lg border border-gray-200 shadow-sm" 
+                  />
+                  <p className="text-sm text-portfolio-light-text mt-2 italic">
+                    Real-time telemetry interface showing rocket flight data and visualization
+                  </p>
+                </div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card className="card-hover">
+          <CardContent className="p-6">
+            <div className="flex items-start gap-4">
+              <div className="flex-shrink-0 w-12 h-12 bg-portfolio-navy/10 rounded-full flex items-center justify-center">
                 <Smartphone className="h-6 w-6 text-portfolio-navy" />
               </div>
               <div>
