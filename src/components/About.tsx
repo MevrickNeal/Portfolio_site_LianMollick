@@ -52,12 +52,12 @@ export default function About() {
         </div>
       </div>
       
-      {/* Project NealDX Logo */}
+      {/* Project NEAU Logo */}
       <div className="flex justify-center mt-12">
         <div className="max-w-md">
           <img 
-            src="/lovable-uploads/1f0035ab-5c37-4af5-bc47-f963b943b90e.png" 
-            alt="Project NealDX" 
+            src="/lovable-uploads/5e9aa584-e39f-426c-b9fe-dc65ce0f79da.png" 
+            alt="Project NEAU TVC & Guidance" 
             className="w-full" 
           />
         </div>
