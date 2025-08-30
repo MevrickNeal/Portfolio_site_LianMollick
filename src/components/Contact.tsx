@@ -1,6 +1,6 @@
 
 import { useState } from "react";
-import { Mail, Phone, MapPin, Linkedin, Send } from "lucide-react";
+import { Mail, Phone, MapPin, Linkedin, Github, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -88,6 +88,21 @@ export default function Contact() {
                   className="text-portfolio-light-text hover:text-portfolio-accent transition-colors break-words"
                 >
                   linkedin.com/in/lianmollick
+                </a>
+              </div>
+            </div>
+            
+            <div className="flex items-start">
+              <Github className="h-6 w-6 text-portfolio-accent mt-1 mr-4" />
+              <div>
+                <h4 className="font-semibold text-portfolio-navy mb-1">GitHub</h4>
+                <a 
+                  href="https://github.com/MevrickNeal" 
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-portfolio-light-text hover:text-portfolio-accent transition-colors break-words"
+                >
+                  github.com/MevrickNeal
                 </a>
               </div>
             </div>

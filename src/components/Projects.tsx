@@ -126,6 +126,32 @@ export default function Projects() {
                 <Smartphone className="h-6 w-6 text-portfolio-navy" />
               </div>
               <div>
+                <h3 className="text-xl font-bold text-portfolio-navy mb-2">IOT Low Cost Smart Solution for Water Purifier</h3>
+                <p className="text-portfolio-light-text mb-4">
+                  IoT low cost smart solution for Water Purifier water flow count and cartridge replacement notifier with separate counter for each cartridge, admin panel and direct console control with HTML CSS coded user interface.
+                </p>
+                <div className="mb-4">
+                  <img 
+                    src="/lovable-uploads/56392b97-45a5-4722-a185-5c4d1221044c.png" 
+                    alt="Dr. Water Live Monitor Dashboard" 
+                    className="w-full rounded-lg border border-gray-200 shadow-sm" 
+                  />
+                  <p className="text-sm text-portfolio-light-text mt-2 italic">
+                    Dr. Water Live Monitor - Real-time water flow monitoring and cartridge management dashboard
+                  </p>
+                </div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card className="card-hover">
+          <CardContent className="p-6">
+            <div className="flex items-start gap-4">
+              <div className="flex-shrink-0 w-12 h-12 bg-portfolio-navy/10 rounded-full flex items-center justify-center">
+                <Smartphone className="h-6 w-6 text-portfolio-navy" />
+              </div>
+              <div>
                 <h3 className="text-xl font-bold text-portfolio-navy mb-2">Smart Home Automation & Anti Power Theft System</h3>
                 <p className="text-portfolio-light-text mb-4">
                   Developed an IoT-based smart home system with integrated power theft detection capabilities. The system includes remote monitoring, automated control, and security features to prevent unauthorized electricity usage.
