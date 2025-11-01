@@ -199,6 +199,44 @@ export default function Projects() {
           <CardContent className="p-6">
             <div className="flex items-start gap-4">
               <div className="flex-shrink-0 w-12 h-12 bg-portfolio-navy/10 rounded-full flex items-center justify-center">
+                <Rocket className="h-6 w-6 text-portfolio-navy" />
+              </div>
+              <div>
+                <h3 className="text-xl font-bold text-portfolio-navy mb-2">DETS - Static Fire Test Unit with Thrust Measuring System for DhumketuX</h3>
+                <p className="text-portfolio-light-text mb-4">
+                  Designed and developed the DhumketuX Engine Telemetry System (DETS), a high-reliability, bi-directional telemetry and ignition-control system for the DhumketuX Propulsion Research Program. The system enables safe remote rocket engine testing with real-time telemetry (thrust, temperature, humidity) via a web-based mission control UI. Features custom GUI-based ground station unit, long-range communication system, data logging, and two-way data transmission with safety-first workflow for arming and remote ignition.
+                </p>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                  <div>
+                    <img 
+                      src="/lovable-uploads/dhumketux-ground-station.jpg" 
+                      alt="DhumketuX Ground Station Hardware" 
+                      className="w-full rounded-lg border border-gray-200 shadow-sm" 
+                    />
+                    <p className="text-sm text-portfolio-light-text mt-2 italic">
+                      Ground station unit with rugged case and long-range communication system
+                    </p>
+                  </div>
+                  <div>
+                    <img 
+                      src="/lovable-uploads/dhumketux-gui.png" 
+                      alt="DhumketuX Mission Control GUI" 
+                      className="w-full rounded-lg border border-gray-200 shadow-sm" 
+                    />
+                    <p className="text-sm text-portfolio-light-text mt-2 italic">
+                      Real-time mission control interface with thrust graph, video feed, and system controls
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card className="card-hover md:col-span-2">
+          <CardContent className="p-6">
+            <div className="flex items-start gap-4">
+              <div className="flex-shrink-0 w-12 h-12 bg-portfolio-navy/10 rounded-full flex items-center justify-center">
                 <Cpu className="h-6 w-6 text-portfolio-navy" />
               </div>
               <div>
