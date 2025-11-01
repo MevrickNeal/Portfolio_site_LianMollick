@@ -39,7 +39,7 @@ export default function Hero() {
                 <LinkedinIcon className="h-6 w-6" />
               </a>
               <a 
-                href="https://github.com" 
+                href="https://github.com/MevrickNeal" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="text-portfolio-navy hover:text-portfolio-accent transition-colors"
