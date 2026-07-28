@@ -1,5 +1,34 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Play, Pause, RotateCcw, Activity, Cpu } from "lucide-react";
+import { Play, Pause, RotateCcw, Activity, Cpu, Info, TrendingUp } from "lucide-react";
+import {
+  LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine, Legend, AreaChart, Area
+} from "recharts";
+
+interface SimPoint {
+  t: number;
+  angle: number;
+  target: number;
+  error: number;
+  nozzle: number;
+}
+
+const CustomTooltip = ({ active, payload, label }: any) => {
+  if (active && payload && payload.length) {
+    return (
+      <div className="bg-slate-900/95 border border-slate-700 rounded-xl p-3 text-xs font-mono shadow-2xl">
+        <p className="text-slate-400 mb-1">t = {(label / 10).toFixed(1)}s</p>
+        {payload.map((p: any) => (
+          <div key={p.dataKey} className="flex items-center gap-2">
+            <div className="w-2 h-2 rounded-full" style={{ background: p.color }} />
+            <span className="text-slate-300">{p.name}:</span>
+            <span className="text-white font-bold">{p.value?.toFixed(2)}°</span>
+          </div>
+        ))}
+      </div>
+    );
+  }
+  return null;
+};
 
 export default function InteractiveTVCSimulator() {
   const [kp, setKp] = useState(2.8);
@@ -7,105 +36,104 @@ export default function InteractiveTVCSimulator() {
   const [kd, setKd] = useState(1.1);
   const [targetAngle, setTargetAngle] = useState(12);
   const [isRunning, setIsRunning] = useState(true);
-  
+  const [activeTab, setActiveTab] = useState<"response" | "error">("response");
+
   const [currentAngle, setCurrentAngle] = useState(0);
   const [nozzleDeflection, setNozzleDeflection] = useState(0);
-  const [history, setHistory] = useState<number[]>([]);
-  
+  const [chartData, setChartData] = useState<SimPoint[]>([]);
+  const [tick, setTick] = useState(0);
+
   const requestRef = useRef<number>();
-  const stateRef = useRef({
-    angle: 0,
-    velocity: 0,
-    integral: 0,
-    prevError: 0,
-    history: [] as number[]
-  });
+  const stateRef = useRef({ angle: 0, velocity: 0, integral: 0, prevError: 0, t: 0 });
 
   useEffect(() => {
     let lastTime = performance.now();
 
-    const updateSimulation = (time: number) => {
+    const update = (time: number) => {
       const dt = Math.min((time - lastTime) / 1000, 0.05);
       lastTime = time;
 
       if (isRunning) {
-        const error = targetAngle - stateRef.current.angle;
-        stateRef.current.integral += error * dt;
-        stateRef.current.integral = Math.max(-10, Math.min(10, stateRef.current.integral));
+        const s = stateRef.current;
+        const error = targetAngle - s.angle;
+        s.integral = Math.max(-10, Math.min(10, s.integral + error * dt));
+        const derivative = (error - s.prevError) / (dt || 0.01);
+        s.prevError = error;
 
-        const derivative = (error - stateRef.current.prevError) / (dt || 0.01);
-        stateRef.current.prevError = error;
-
-        let u = kp * error + ki * stateRef.current.integral + kd * derivative;
+        let u = kp * error + ki * s.integral + kd * derivative;
         u = Math.max(-15, Math.min(15, u));
 
-        const angularAccel = u * 2.5 - stateRef.current.velocity * 0.4;
-        stateRef.current.velocity += angularAccel * dt;
-        stateRef.current.angle += stateRef.current.velocity * dt;
+        const accel = u * 2.5 - s.velocity * 0.4;
+        s.velocity += accel * dt;
+        s.angle += s.velocity * dt;
+        s.t += dt;
 
         setNozzleDeflection(u);
-        setCurrentAngle(stateRef.current.angle);
+        setCurrentAngle(s.angle);
 
-        stateRef.current.history.push(stateRef.current.angle);
-        if (stateRef.current.history.length > 80) {
-          stateRef.current.history.shift();
-        }
-        setHistory([...stateRef.current.history]);
+        setChartData(prev => {
+          const newPoint: SimPoint = {
+            t: Math.round(s.t * 10),
+            angle: parseFloat(s.angle.toFixed(2)),
+            target: targetAngle,
+            error: parseFloat((targetAngle - s.angle).toFixed(2)),
+            nozzle: parseFloat(u.toFixed(2)),
+          };
+          const updated = [...prev, newPoint];
+          return updated.length > 120 ? updated.slice(updated.length - 120) : updated;
+        });
       }
 
-      requestRef.current = requestAnimationFrame(updateSimulation);
+      requestRef.current = requestAnimationFrame(update);
     };
 
-    requestRef.current = requestAnimationFrame(updateSimulation);
-    return () => {
-      if (requestRef.current) cancelAnimationFrame(requestRef.current);
-    };
+    requestRef.current = requestAnimationFrame(update);
+    return () => { if (requestRef.current) cancelAnimationFrame(requestRef.current); };
   }, [kp, ki, kd, targetAngle, isRunning]);
 
   const handleReset = () => {
-    stateRef.current = { angle: 0, velocity: 0, integral: 0, prevError: 0, history: [] };
+    stateRef.current = { angle: 0, velocity: 0, integral: 0, prevError: 0, t: 0 };
     setCurrentAngle(0);
     setNozzleDeflection(0);
-    setHistory([]);
+    setChartData([]);
   };
 
-  return (
-    <div className="glass-panel p-6 md:p-8 bg-white/85 border border-slate-200/80 shadow-2xl relative overflow-hidden">
-      <div className="absolute -right-20 -top-20 w-60 h-60 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
-      
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 mb-6 border-b border-slate-200/80">
-        <div>
-          <div className="flex items-center gap-2 mb-1">
-            <span className="flex h-2.5 w-2.5 rounded-full bg-emerald-500 animate-pulse" />
-            <span className="text-xs font-bold uppercase tracking-wider text-amber-700 bg-amber-100/80 px-2.5 py-0.5 rounded-md">
-              Interactive Digital Twin Simulator
-            </span>
-          </div>
-          <h3 className="text-2xl font-black text-slate-900 flex items-center gap-2">
-            <Cpu className="w-6 h-6 text-amber-600" />
-            Thrust Vector Control (TVC) PID Flight Controller
-          </h3>
-          <p className="text-sm text-slate-600 mt-0.5">
-            Based on Lian's B.Sc. EEE Thesis: <em>"Design, Simulation & Implementation of TVC & Telemetry System using PID"</em>
-          </p>
-        </div>
+  const steadyStateError = Math.abs(targetAngle - currentAngle).toFixed(2);
+  const isSettled = Math.abs(targetAngle - currentAngle) < 0.5;
 
+  return (
+    <div id="tvc-simulator" className="rounded-3xl overflow-hidden border border-slate-200 shadow-2xl bg-white">
+      {/* Header bar */}
+      <div className="bg-gradient-to-r from-slate-900 to-slate-800 px-6 py-4 flex items-center justify-between flex-wrap gap-3">
+        <div className="flex items-center gap-3">
+          <div className="w-9 h-9 rounded-xl bg-amber-500/20 border border-amber-500/40 flex items-center justify-center">
+            <Cpu className="w-5 h-5 text-amber-400" />
+          </div>
+          <div>
+            <div className="flex items-center gap-2">
+              <span className="live-dot" />
+              <span className="text-xs font-mono text-emerald-400 uppercase tracking-widest font-bold">LIVE SIMULATION</span>
+            </div>
+            <h3 className="text-white font-black text-lg leading-tight">
+              TVC PID Flight Controller — Digital Twin
+            </h3>
+          </div>
+        </div>
         <div className="flex items-center gap-2">
           <button
             onClick={() => setIsRunning(!isRunning)}
-            className={`px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-all shadow-md ${
-              isRunning 
-                ? "bg-slate-900 text-white hover:bg-slate-800" 
-                : "bg-amber-600 text-white hover:bg-amber-700"
+            className={`px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 transition-all ${
+              isRunning
+                ? "bg-red-500/20 border border-red-500/40 text-red-300 hover:bg-red-500/30"
+                : "bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 hover:bg-emerald-500/30"
             }`}
           >
             {isRunning ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
-            {isRunning ? "Pause Simulation" : "Resume"}
+            {isRunning ? "Pause" : "Resume"}
           </button>
-
           <button
             onClick={handleReset}
-            className="px-3 py-2 rounded-xl text-xs font-bold bg-slate-100 text-slate-700 hover:bg-slate-200 border border-slate-300/60 flex items-center gap-1 transition-colors"
+            className="px-3 py-2 rounded-xl text-xs font-bold bg-white/10 border border-white/20 text-slate-300 hover:bg-white/20 flex items-center gap-1.5 transition-all"
           >
             <RotateCcw className="w-4 h-4" />
             Reset
@@ -113,157 +141,203 @@ export default function InteractiveTVCSimulator() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-        <div className="lg:col-span-5 bg-slate-950/90 rounded-2xl p-6 relative flex flex-col items-center justify-center min-h-[320px] shadow-inner overflow-hidden text-white border border-slate-800">
-          <div className="absolute top-3 left-4 text-[10px] font-mono text-emerald-400 flex items-center gap-1.5">
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
-            SIMULINK_REALTIME_GIMBAL_FEED
-          </div>
-
-          <div className="absolute top-3 right-4 text-right">
-            <span className="text-[10px] font-mono text-slate-400 block">SETPOINT vs ACTUAL</span>
-            <span className="text-xs font-mono text-amber-400 font-bold">
-              {targetAngle}° / {currentAngle.toFixed(1)}°
-            </span>
-          </div>
-
-          <div 
-            className="relative transition-transform duration-75 flex flex-col items-center my-8"
-            style={{ transform: `rotate(${currentAngle}deg)` }}
-          >
-            <div className="w-0 h-0 border-l-[14px] border-l-transparent border-r-[14px] border-r-transparent border-b-[28px] border-b-amber-600" />
-            <div className="w-7 h-28 bg-gradient-to-b from-slate-200 to-slate-400 border border-slate-300 rounded-sm flex items-center justify-center text-[9px] font-bold text-slate-800 font-mono tracking-tighter">
-              NEAL-1.2
-            </div>
-            <div className="relative w-12 h-4 -mt-2">
-              <div className="absolute left-0 top-0 w-3 h-4 bg-slate-600 rounded-bl-lg" />
-              <div className="absolute right-0 top-0 w-3 h-4 bg-slate-600 rounded-br-lg" />
-            </div>
-
-            <div 
-              className="relative w-4 h-6 bg-slate-700 border border-slate-500 rounded-b-md transition-transform duration-75 origin-top mt-0.5"
-              style={{ transform: `rotate(${nozzleDeflection}deg)` }}
-            >
-              {isRunning && (
-                <div className="absolute left-1/2 -translate-x-1/2 top-full w-3 h-10 bg-gradient-to-b from-amber-400 via-orange-500 to-transparent blur-[1px] animate-pulse rounded-b-full" />
-              )}
-            </div>
-          </div>
-
-          <div className="w-full grid grid-cols-3 gap-2 mt-4 pt-3 border-t border-slate-800 text-center font-mono text-[11px]">
-            <div>
-              <span className="text-slate-400 block text-[9px]">GIMBAL NOZZLE</span>
-              <span className={nozzleDeflection >= 0 ? "text-emerald-400" : "text-amber-400"}>
-                {nozzleDeflection.toFixed(1)}°
-              </span>
-            </div>
-            <div>
-              <span className="text-slate-400 block text-[9px]">ATTITUDE ANGLE</span>
-              <span className="text-sky-400">{currentAngle.toFixed(1)}°</span>
-            </div>
-            <div>
-              <span className="text-slate-400 block text-[9px]">SYSTEM ERROR</span>
-              <span className="text-orange-400">{(targetAngle - currentAngle).toFixed(1)}°</span>
-            </div>
-          </div>
+      <div className="p-6">
+        {/* Thesis reference */}
+        <div className="mb-5 p-3 bg-amber-50 border border-amber-200/80 rounded-xl flex items-start gap-2.5">
+          <Info className="w-4 h-4 text-amber-600 mt-0.5 flex-shrink-0" />
+          <p className="text-xs text-amber-800">
+            <strong>B.Sc. EEE Thesis:</strong> "Design, Simulation & Implementation of Thrust Vector Control & Telemetry System for a Small-Scale Rocket using PID" — <em>Lian Mollick Nehal, Mymensingh Engineering College (University of Dhaka)</em>
+          </p>
         </div>
 
-        <div className="lg:col-span-7 space-y-6">
-          <div className="bg-slate-900 rounded-2xl p-4 border border-slate-800 shadow-md">
-            <div className="flex items-center justify-between text-xs font-mono text-slate-400 mb-2">
-              <span className="flex items-center gap-1.5">
-                <Activity className="w-4 h-4 text-amber-500" />
-                ORIENTATION RESPONSE CURVE (deg vs time)
-              </span>
-              <span className="text-[10px] text-amber-400">Target Line: {targetAngle}°</span>
-            </div>
+        <div className="grid grid-cols-1 xl:grid-cols-12 gap-6">
+          {/* 3D Gimbal Rocket Visual */}
+          <div className="xl:col-span-4">
+            <div className="bg-slate-950 rounded-2xl p-5 flex flex-col items-center justify-between min-h-[340px] border border-slate-800 relative overflow-hidden">
+              {/* Grid overlay */}
+              <div className="absolute inset-0 opacity-10"
+                style={{ backgroundImage: 'linear-gradient(rgba(92,151,171,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(92,151,171,0.5) 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
 
-            <div className="h-32 w-full bg-slate-950 rounded-xl relative p-2 overflow-hidden border border-slate-800 flex items-end">
-              <div 
-                className="absolute left-0 right-0 border-b border-dashed border-amber-500/60 z-10"
-                style={{ bottom: `${Math.min(90, Math.max(10, (targetAngle / 30) * 100))}%` }}
-              />
+              {/* Telemetry readouts */}
+              <div className="w-full flex justify-between items-start relative z-10">
+                <div className="text-left">
+                  <div className="text-[9px] font-mono text-slate-500 uppercase">Setpoint</div>
+                  <div className="text-amber-400 font-mono font-bold text-sm">{targetAngle}°</div>
+                </div>
+                <div className="text-center">
+                  <div className="flex items-center gap-1.5 justify-center">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
+                    <span className="text-[9px] font-mono text-emerald-400 uppercase">SIMULINK FEED</span>
+                  </div>
+                </div>
+                <div className="text-right">
+                  <div className="text-[9px] font-mono text-slate-500 uppercase">Actual</div>
+                  <div className="text-sky-400 font-mono font-bold text-sm">{currentAngle.toFixed(1)}°</div>
+                </div>
+              </div>
 
-              <svg className="w-full h-full overflow-visible">
-                <polyline
-                  fill="none"
-                  stroke="#38bdf8"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  points={history.map((val, idx) => {
-                    const x = (idx / (history.length || 1)) * 300;
-                    const y = 120 - Math.min(110, Math.max(10, (val / 30) * 100));
-                    return `${x},${y}`;
-                  }).join(" ")}
-                />
-              </svg>
+              {/* Rocket SVG animation */}
+              <div className="flex-1 flex items-center justify-center relative z-10 my-4">
+                <div
+                  className="relative transition-transform duration-75"
+                  style={{ transform: `rotate(${currentAngle}deg)` }}
+                >
+                  {/* Rocket body SVG */}
+                  <svg width="60" height="160" viewBox="0 0 60 160">
+                    {/* Nose cone */}
+                    <polygon points="30,2 14,40 46,40" fill="#CBD5E1" stroke="#94A3B8" strokeWidth="1" />
+                    {/* Body */}
+                    <rect x="14" y="38" width="32" height="80" rx="4" fill="#94A3B8" stroke="#64748B" strokeWidth="1" />
+                    {/* NEAL label */}
+                    <text x="30" y="84" textAnchor="middle" fontSize="8" fill="#1E293B" fontFamily="monospace" fontWeight="bold">NEAL</text>
+                    <text x="30" y="95" textAnchor="middle" fontSize="6" fill="#334155" fontFamily="monospace">1.2</text>
+                    {/* Fin left */}
+                    <polygon points="14,90 2,128 14,118" fill="#64748B" />
+                    {/* Fin right */}
+                    <polygon points="46,90 58,128 46,118" fill="#64748B" />
+                    {/* Nozzle housing */}
+                    <rect x="18" y="118" width="24" height="12" rx="2" fill="#475569" />
+                    {/* Nozzle (gimbal) - rotates */}
+                    <g transform={`translate(30, 130) rotate(${nozzleDeflection}) translate(-30, -130)`}>
+                      <rect x="23" y="130" width="14" height="18" rx="3" fill="#334155" />
+                      {/* Exhaust flame */}
+                      {isRunning && (
+                        <>
+                          <ellipse cx="30" cy="154" rx="5" ry="10" fill="rgba(251,191,36,0.8)" />
+                          <ellipse cx="30" cy="158" rx="3" ry="7" fill="rgba(251,146,60,0.6)" />
+                          <ellipse cx="30" cy="162" rx="1.5" ry="5" fill="rgba(248,250,252,0.4)" />
+                        </>
+                      )}
+                    </g>
+                    {/* Port holes */}
+                    <circle cx="30" cy="60" r="5" fill="#1E293B" stroke="#475569" strokeWidth="1" />
+                    <circle cx="30" cy="60" r="3" fill="#38BDF8" opacity="0.5" />
+                  </svg>
+                </div>
+              </div>
+
+              {/* Bottom telemetry grid */}
+              <div className="w-full grid grid-cols-3 gap-2 border-t border-slate-800 pt-3 relative z-10">
+                <div className="text-center">
+                  <div className="text-[9px] font-mono text-slate-500 uppercase mb-0.5">Nozzle δ</div>
+                  <div className={`text-sm font-mono font-bold ${nozzleDeflection >= 0 ? 'text-emerald-400' : 'text-orange-400'}`}>
+                    {nozzleDeflection.toFixed(1)}°
+                  </div>
+                </div>
+                <div className="text-center">
+                  <div className="text-[9px] font-mono text-slate-500 uppercase mb-0.5">Error</div>
+                  <div className={`text-sm font-mono font-bold ${isSettled ? 'text-emerald-400' : 'text-red-400'}`}>
+                    {steadyStateError}°
+                  </div>
+                </div>
+                <div className="text-center">
+                  <div className="text-[9px] font-mono text-slate-500 uppercase mb-0.5">Status</div>
+                  <div className={`text-xs font-mono font-bold ${isSettled ? 'text-emerald-400' : 'text-yellow-400'}`}>
+                    {isSettled ? '✓ STABLE' : '~ CTRL'}
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div className="bg-slate-50 p-3.5 rounded-xl border border-slate-200">
-              <div className="flex justify-between items-center text-xs font-bold text-slate-800 mb-1.5">
-                <span className="text-amber-700 font-mono">Kp (Proportional Gain)</span>
-                <span className="font-mono bg-white px-2 py-0.5 rounded border text-slate-700">{kp}</span>
+          {/* Charts & Controls */}
+          <div className="xl:col-span-8 flex flex-col gap-4">
+            {/* Chart tab selector */}
+            <div className="flex items-center gap-2">
+              <button
+                onClick={() => setActiveTab("response")}
+                className={`px-4 py-1.5 rounded-lg text-xs font-bold transition-all ${activeTab === "response" ? "tab-active" : "tab-inactive"}`}
+              >
+                Orientation Response
+              </button>
+              <button
+                onClick={() => setActiveTab("error")}
+                className={`px-4 py-1.5 rounded-lg text-xs font-bold transition-all ${activeTab === "error" ? "tab-active" : "tab-inactive"}`}
+              >
+                Error & Nozzle Output
+              </button>
+              <div className="ml-auto flex items-center gap-1.5 text-xs text-slate-400 font-mono">
+                <TrendingUp className="w-3.5 h-3.5" />
+                {chartData.length} samples
               </div>
-              <input
-                type="range"
-                min="0.1"
-                max="8.0"
-                step="0.1"
-                value={kp}
-                onChange={(e) => setKp(parseFloat(e.target.value))}
-                className="w-full accent-amber-600 h-1.5 bg-slate-200 rounded-lg cursor-pointer"
-              />
             </div>
 
-            <div className="bg-slate-50 p-3.5 rounded-xl border border-slate-200">
-              <div className="flex justify-between items-center text-xs font-bold text-slate-800 mb-1.5">
-                <span className="text-sky-700 font-mono">Ki (Integral Gain)</span>
-                <span className="font-mono bg-white px-2 py-0.5 rounded border text-slate-700">{ki}</span>
+            {/* Response chart */}
+            {activeTab === "response" && (
+              <div className="bg-slate-950 rounded-2xl p-4 border border-slate-800">
+                <p className="text-[10px] font-mono text-slate-400 mb-3 uppercase tracking-wider flex items-center gap-2">
+                  <Activity className="w-3.5 h-3.5 text-sky-400" />
+                  Attitude Angle θ vs Time (deg) — PID Setpoint Tracking
+                </p>
+                <ResponsiveContainer width="100%" height={200}>
+                  <AreaChart data={chartData} margin={{ top: 5, right: 10, left: -20, bottom: 0 }}>
+                    <defs>
+                      <linearGradient id="angleGrad" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="5%" stopColor="#38bdf8" stopOpacity={0.3} />
+                        <stop offset="95%" stopColor="#38bdf8" stopOpacity={0} />
+                      </linearGradient>
+                    </defs>
+                    <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.04)" />
+                    <XAxis dataKey="t" tick={{ fontSize: 10, fill: '#64748b', fontFamily: 'JetBrains Mono' }} tickFormatter={v => `${(v/10).toFixed(0)}s`} />
+                    <YAxis tick={{ fontSize: 10, fill: '#64748b', fontFamily: 'JetBrains Mono' }} />
+                    <Tooltip content={<CustomTooltip />} />
+                    <ReferenceLine y={targetAngle} stroke="#fbbf24" strokeDasharray="6 3" strokeWidth={1.5} label={{ value: `Target ${targetAngle}°`, fill: '#fbbf24', fontSize: 10 }} />
+                    <Area type="monotone" dataKey="angle" stroke="#38bdf8" strokeWidth={2} fill="url(#angleGrad)" name="Angle θ" dot={false} isAnimationActive={false} />
+                  </AreaChart>
+                </ResponsiveContainer>
               </div>
-              <input
-                type="range"
-                min="0.0"
-                max="3.0"
-                step="0.05"
-                value={ki}
-                onChange={(e) => setKi(parseFloat(e.target.value))}
-                className="w-full accent-sky-600 h-1.5 bg-slate-200 rounded-lg cursor-pointer"
-              />
-            </div>
+            )}
 
-            <div className="bg-slate-50 p-3.5 rounded-xl border border-slate-200">
-              <div className="flex justify-between items-center text-xs font-bold text-slate-800 mb-1.5">
-                <span className="text-emerald-700 font-mono">Kd (Derivative Gain)</span>
-                <span className="font-mono bg-white px-2 py-0.5 rounded border text-slate-700">{kd}</span>
+            {/* Error & Nozzle chart */}
+            {activeTab === "error" && (
+              <div className="bg-slate-950 rounded-2xl p-4 border border-slate-800">
+                <p className="text-[10px] font-mono text-slate-400 mb-3 uppercase tracking-wider flex items-center gap-2">
+                  <Activity className="w-3.5 h-3.5 text-rose-400" />
+                  Control Error & Nozzle Deflection δ vs Time
+                </p>
+                <ResponsiveContainer width="100%" height={200}>
+                  <LineChart data={chartData} margin={{ top: 5, right: 10, left: -20, bottom: 0 }}>
+                    <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.04)" />
+                    <XAxis dataKey="t" tick={{ fontSize: 10, fill: '#64748b', fontFamily: 'JetBrains Mono' }} tickFormatter={v => `${(v/10).toFixed(0)}s`} />
+                    <YAxis tick={{ fontSize: 10, fill: '#64748b', fontFamily: 'JetBrains Mono' }} />
+                    <Tooltip content={<CustomTooltip />} />
+                    <ReferenceLine y={0} stroke="rgba(255,255,255,0.1)" strokeWidth={1} />
+                    <Line type="monotone" dataKey="error" stroke="#f87171" strokeWidth={2} name="Error" dot={false} isAnimationActive={false} />
+                    <Line type="monotone" dataKey="nozzle" stroke="#a78bfa" strokeWidth={2} name="Nozzle δ" dot={false} isAnimationActive={false} />
+                  </LineChart>
+                </ResponsiveContainer>
               </div>
-              <input
-                type="range"
-                min="0.0"
-                max="4.0"
-                step="0.1"
-                value={kd}
-                onChange={(e) => setKd(parseFloat(e.target.value))}
-                className="w-full accent-emerald-600 h-1.5 bg-slate-200 rounded-lg cursor-pointer"
-              />
-            </div>
+            )}
 
-            <div className="bg-slate-50 p-3.5 rounded-xl border border-slate-200">
-              <div className="flex justify-between items-center text-xs font-bold text-slate-800 mb-1.5">
-                <span className="text-purple-700 font-mono">Target Setpoint Angle</span>
-                <span className="font-mono bg-white px-2 py-0.5 rounded border text-slate-700">{targetAngle}°</span>
-              </div>
-              <input
-                type="range"
-                min="-20"
-                max="20"
-                step="1"
-                value={targetAngle}
-                onChange={(e) => setTargetAngle(parseInt(e.target.value))}
-                className="w-full accent-purple-600 h-1.5 bg-slate-200 rounded-lg cursor-pointer"
-              />
+            {/* PID Gain sliders */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+              {[
+                { key: 'kp', label: 'Kp', subtitle: 'Proportional', color: 'text-amber-600 accent-amber-500', val: kp, set: setKp, min: 0.1, max: 8, step: 0.1 },
+                { key: 'ki', label: 'Ki', subtitle: 'Integral', color: 'text-sky-600 accent-sky-500', val: ki, set: setKi, min: 0, max: 3, step: 0.05 },
+                { key: 'kd', label: 'Kd', subtitle: 'Derivative', color: 'text-emerald-600 accent-emerald-500', val: kd, set: setKd, min: 0, max: 4, step: 0.1 },
+                { key: 'sp', label: 'θ_sp', subtitle: 'Setpoint °', color: 'text-purple-600 accent-purple-500', val: targetAngle, set: setTargetAngle, min: -20, max: 20, step: 1 },
+              ].map(s => (
+                <div key={s.key} className="bg-slate-50 border border-slate-200 rounded-xl p-3">
+                  <div className="flex justify-between items-center mb-2">
+                    <div>
+                      <span className={`text-xs font-mono font-bold ${s.color.split(' ')[0]}`}>{s.label}</span>
+                      <div className="text-[9px] text-slate-500 uppercase tracking-wider">{s.subtitle}</div>
+                    </div>
+                    <span className="font-mono text-xs bg-white border border-slate-200 px-2 py-0.5 rounded-lg text-slate-700 font-bold">
+                      {s.val}
+                    </span>
+                  </div>
+                  <input
+                    type="range"
+                    min={s.min} max={s.max} step={s.step} value={s.val}
+                    onChange={e => s.set(parseFloat(e.target.value) as any)}
+                    className={`w-full h-1.5 rounded-lg ${s.color.split(' ')[1]} bg-slate-200 cursor-pointer`}
+                  />
+                  <div className="flex justify-between text-[9px] text-slate-400 mt-1 font-mono">
+                    <span>{s.min}</span><span>{s.max}</span>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>

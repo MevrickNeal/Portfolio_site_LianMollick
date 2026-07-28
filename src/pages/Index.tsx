@@ -24,7 +24,13 @@ const Index = () => {
       <Skills />
       <Experience />
       <Projects />
-      <section className="py-12 px-4 md:px-8 max-w-7xl mx-auto">
+      <section className="py-16 px-4 md:px-8 max-w-7xl mx-auto">
+        <span className="section-subtitle">B.Sc. Thesis — Digital Twin</span>
+        <h2 className="section-title mb-2">TVC Digital Twin Simulator</h2>
+        <p className="text-slate-500 mb-8 max-w-2xl">
+          Live PID flight controller simulation for Project NEAL's Thrust Vector Control system.
+          Tune Kp, Ki, Kd gains and setpoint in real-time and observe the attitude stabilization response.
+        </p>
         <InteractiveTVCSimulator />
       </section>
       <Awards />
