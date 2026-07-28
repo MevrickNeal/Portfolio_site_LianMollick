@@ -5,7 +5,7 @@ import LightboxModal from "./LightboxModal";
 interface Project {
   id: string;
   tag: string;
-  tagColor: string;
+  tagBadge: string;
   title: string;
   subtitle?: string;
   description: string;
@@ -23,7 +23,7 @@ const projects: Project[] = [
   {
     id: "neal-tvc-digital-twin",
     tag: "Open-Source Research",
-    tagColor: "bg-cyan-950 text-cyan-400 border-cyan-500/40",
+    tagBadge: "badge-orange",
     title: "TVC Digital Twin — 6-DOF Benchmark Framework",
     subtitle: "Project NEAL · github.com/MevrickNeal/TVC-DigitalTwin-Simulation",
     description:
@@ -59,7 +59,7 @@ const projects: Project[] = [
   {
     id: "neal-tvc",
     tag: "B.Sc. Thesis",
-    tagColor: "bg-amber-950 text-amber-400 border-amber-500/40",
+    tagBadge: "badge-red",
     title: "Project NEAL — TVC Rocket Hardware",
     subtitle: "Design, Simulation & Implementation · STM32 + 3D-Printed Gimbal",
     description:
@@ -82,7 +82,7 @@ const projects: Project[] = [
   {
     id: "ugl-iot",
     tag: "IoT · Embedded · Web Dashboard",
-    tagColor: "bg-orange-950 text-orange-400 border-orange-500/40",
+    tagBadge: "badge-orange",
     title: "UrbanGaz (UGL) — Smart LPG IoT Dashboard",
     subtitle: "Real-Time Gas Distribution Management System",
     description:
@@ -98,7 +98,7 @@ const projects: Project[] = [
   {
     id: "quantum-oncology",
     tag: "Quantum ML · AI Research",
-    tagColor: "bg-violet-950 text-violet-400 border-violet-500/40",
+    tagBadge: "badge-black",
     title: "Quantum Multimodal Leukemia Classification",
     subtitle: "Hybrid QML Framework — PennyLane · Qiskit · PyTorch",
     description:
@@ -111,7 +111,7 @@ const projects: Project[] = [
   {
     id: "dets",
     tag: "Ground Control System",
-    tagColor: "bg-sky-950 text-sky-400 border-sky-500/40",
+    tagBadge: "badge-grey",
     title: "DETS — Engine Telemetry System",
     subtitle: "DhumketuX Propulsion Research Program",
     description:
@@ -127,7 +127,7 @@ const projects: Project[] = [
   {
     id: "putimach",
     tag: "Sounding Rocket",
-    tagColor: "bg-orange-950 text-orange-400 border-orange-500/40",
+    tagBadge: "badge-orange",
     title: "PUTIMACH Sounding Rocket",
     subtitle: "Bangladesh's First Sounding Rocket",
     description:
@@ -142,26 +142,11 @@ const projects: Project[] = [
     badges: ["Avionics", "Recovery System", "Data Logger", "Payload Integration"],
   },
 
-  // ─── GROUND STATION ──────────────────────────────────────────────────────────
-  {
-    id: "ground-station",
-    tag: "Telemetry & GCS",
-    tagColor: "bg-indigo-950 text-indigo-400 border-indigo-500/40",
-    title: "Rocket Ground Control Station",
-    subtitle: "LoRa-based Real-time GCS",
-    description:
-      "Custom ground station with LoRa communication module and WebApp showing live altitude, velocity, acceleration, GPS tracking, and 3D trajectory visualization for small-scale rocket flights.",
-    images: [
-      { src: "/lovable-uploads/8fe81e8c-3d39-45f9-8ea2-3707ad4088e2.png", caption: "Ground station WebGUI — real-time altitude, velocity & GPS tracking" },
-    ],
-    badges: ["LoRa", "GPS Tracking", "3D Trajectory", "WebApp"],
-  },
-
   // ─── COMBAT ROBOT ────────────────────────────────────────────────────────────
   {
     id: "combat-robot",
     tag: "Robotics",
-    tagColor: "bg-red-950 text-red-400 border-red-500/40",
+    tagBadge: "badge-red",
     title: "15kg Combat Robot (Battle Bot)",
     subtitle: "Technoxian WRC 2024 — National Finalist",
     description:
@@ -197,22 +182,20 @@ export default function Projects() {
       <section id="projects" className="section-container">
         <span className="section-subtitle">ENGINEERING PORTFOLIO</span>
         <h2 className="section-title mb-3">Projects & Research</h2>
-        <p className="text-slate-400 mb-10 max-w-2xl text-sm sm:text-base leading-relaxed">
+        <p className="text-slate-600 mb-10 max-w-2xl text-sm sm:text-base leading-relaxed">
           6-DOF rocket control digital twins, industrial IoT dashboards, and quantum ML algorithms — built end-to-end with high precision.
         </p>
 
-        <div className="space-y-5">
+        <div className="space-y-6">
           {projects.map((project) => {
             const isExpanded = expanded === project.id;
             return (
               <div
                 key={project.id}
-                className={`tech-card ${
+                className={`aero-card ${
                   project.nealProject
-                    ? "border-amber-500/40 shadow-amber-500/5"
-                    : project.id === "ugl-iot"
-                    ? "border-orange-500/40"
-                    : "border-slate-800"
+                    ? "border-orange-300/80 shadow-orange-500/10"
+                    : "border-slate-200/80"
                 }`}
               >
                 {/* Header Toggle */}
@@ -222,47 +205,47 @@ export default function Projects() {
                 >
                   <div className="flex items-start sm:items-center gap-4 flex-1 min-w-0">
                     
-                    {/* Logo / Icon Badge Container — White backdrop for official logos so black text is 100% sharp */}
+                    {/* PNG Logos floating seamlessly directly on white backdrop */}
                     {project.logo ? (
-                      <div className="bg-white border border-slate-200 rounded-xl p-2 h-11 min-w-[3.5rem] flex items-center justify-center shadow-md flex-shrink-0">
-                        <img src={project.logo} alt={project.title} className="h-6 w-auto object-contain" />
+                      <div className="h-10 w-auto flex items-center justify-center flex-shrink-0">
+                        <img src={project.logo} alt={project.title} className="h-7 w-auto object-contain" />
                       </div>
                     ) : (
-                      <div className="w-11 h-11 rounded-xl bg-slate-800 border border-slate-700 flex items-center justify-center flex-shrink-0 text-cyan-400">
-                        {project.id === "quantum-oncology" ? <Atom className="w-5 h-5" /> : <Rocket className="w-5 h-5" />}
+                      <div className="w-10 h-10 rounded-xl bg-orange-50 border border-orange-200 flex items-center justify-center flex-shrink-0 text-orange-600">
+                        {project.id === "quantum-oncology" ? <Atom className="w-5 h-5 text-slate-950" /> : <Rocket className="w-5 h-5" />}
                       </div>
                     )}
 
                     <div className="flex-1 min-w-0">
                       <div className="flex flex-wrap items-center gap-2 mb-1">
-                        <span className={`badge-pill border ${project.tagColor}`}>{project.tag}</span>
+                        <span className={project.tagBadge}>{project.tag}</span>
                         {project.nealProject && (
-                          <span className="badge-pill bg-amber-500 text-slate-950 font-black text-[10px]">⭐ THESIS</span>
+                          <span className="badge-red text-[10px]">⭐ THESIS</span>
                         )}
                       </div>
-                      <h3 className="text-base sm:text-lg font-extrabold text-white tracking-tight">{project.title}</h3>
+                      <h3 className="text-base sm:text-lg font-black text-slate-950 tracking-tight">{project.title}</h3>
                       {project.subtitle && (
-                        <p className="text-xs text-slate-400 font-mono mt-0.5">{project.subtitle}</p>
+                        <p className="text-xs text-slate-500 font-mono mt-0.5">{project.subtitle}</p>
                       )}
                     </div>
                   </div>
 
                   <ChevronRight
-                    className={`w-5 h-5 text-slate-400 flex-shrink-0 transition-transform duration-300 ${isExpanded ? "rotate-90 text-cyan-400" : ""}`}
+                    className={`w-5 h-5 text-slate-400 flex-shrink-0 transition-transform duration-300 ${isExpanded ? "rotate-90 text-orange-600" : ""}`}
                   />
                 </button>
 
                 {/* Expanded Details */}
                 {isExpanded && (
-                  <div className="mt-6 pt-5 border-t border-slate-800/80 animate-fade-in space-y-6">
-                    <p className="text-slate-300 text-sm leading-relaxed">{project.description}</p>
+                  <div className="mt-6 pt-5 border-t border-slate-100 animate-fade-in space-y-6">
+                    <p className="text-slate-700 text-sm leading-relaxed">{project.description}</p>
 
                     {/* Benchmark Table (TVC Digital Twin) */}
                     {project.benchmarkTable && (
-                      <div className="bg-slate-950/80 border border-slate-800 rounded-xl p-4 overflow-x-auto">
+                      <div className="bg-slate-900 text-white rounded-2xl p-5 overflow-x-auto shadow-xl">
                         <div className="flex items-center gap-2 mb-3">
-                          <BarChart2 className="w-4 h-4 text-cyan-400" />
-                          <span className="text-xs font-mono font-bold uppercase tracking-wider text-cyan-400">
+                          <BarChart2 className="w-4 h-4 text-orange-500" />
+                          <span className="text-xs font-mono font-bold uppercase tracking-wider text-orange-400">
                             IEEE Benchmark Performance (+5° Step Response, N=200 Monte Carlo)
                           </span>
                         </div>
@@ -278,10 +261,10 @@ export default function Projects() {
                             {project.benchmarkTable.rows.map((row, i) => (
                               <tr
                                 key={i}
-                                className={`border-b border-slate-800/50 ${row[0].includes("★") ? "text-cyan-300 font-bold bg-cyan-950/30" : "text-slate-300"}`}
+                                className={`border-b border-slate-800/60 ${row[0].includes("★") ? "text-orange-400 font-bold bg-orange-950/40" : "text-slate-300"}`}
                               >
                                 {row.map((cell, j) => (
-                                  <td key={j} className="py-2 px-3">{cell}</td>
+                                  <td key={j} className="py-2.5 px-3">{cell}</td>
                                 ))}
                               </tr>
                             ))}
@@ -299,7 +282,7 @@ export default function Projects() {
                         {project.images.map((img, idx) => (
                           <div
                             key={idx}
-                            className="group relative rounded-xl overflow-hidden border border-slate-800 bg-slate-950 cursor-zoom-in"
+                            className="group relative rounded-xl overflow-hidden border border-slate-200 bg-slate-50 cursor-zoom-in shadow-sm hover:shadow-md"
                             onClick={() => openLightbox(img.src, project.title, img.caption)}
                           >
                             <img
@@ -307,10 +290,10 @@ export default function Projects() {
                               alt={img.caption}
                               className="w-full h-44 object-cover group-hover:scale-105 transition-transform duration-500"
                             />
-                            <div className="absolute inset-0 bg-slate-950/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                              <ZoomIn className="w-6 h-6 text-cyan-400" />
+                            <div className="absolute inset-0 bg-slate-950/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                              <ZoomIn className="w-6 h-6 text-white" />
                             </div>
-                            <div className="absolute bottom-0 inset-x-0 bg-slate-950/90 border-t border-slate-800 p-2 text-[11px] font-mono text-slate-300">
+                            <div className="absolute bottom-0 inset-x-0 bg-white/95 border-t border-slate-200 p-2 text-[11px] font-mono text-slate-800 font-bold">
                               {img.caption}
                             </div>
                           </div>
@@ -321,7 +304,7 @@ export default function Projects() {
                     {/* Tech Badges */}
                     <div className="flex flex-wrap gap-1.5 pt-2">
                       {project.badges.map(b => (
-                        <span key={b} className="badge-pill bg-slate-800/80 text-slate-300 border border-slate-700 text-[10px]">
+                        <span key={b} className="badge-grey text-[10px]">
                           {b}
                         </span>
                       ))}
@@ -332,7 +315,7 @@ export default function Projects() {
                       <div className="flex flex-wrap gap-4 pt-2">
                         {project.links.map(l => (
                           <a key={l.href} href={l.href} target="_blank" rel="noreferrer"
-                            className="flex items-center gap-1.5 text-xs font-mono font-bold text-cyan-400 hover:text-cyan-300 transition-colors">
+                            className="flex items-center gap-1.5 text-xs font-mono font-bold text-orange-600 hover:text-red-600 transition-colors">
                             {l.icon}
                             {l.label}
                           </a>

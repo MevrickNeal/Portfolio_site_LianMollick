@@ -1,5 +1,5 @@
 import React from "react";
-import { Calendar, Globe, Mail, MapPin, Phone, User, Rocket, BookOpen, ShieldCheck } from "lucide-react";
+import { Calendar, Globe, Mail, MapPin, Phone, User, Rocket, BookOpen, Cpu, ShieldCheck } from "lucide-react";
 
 const skills = [
   { label: "Embedded Systems & Avionics", pct: 92 },
@@ -17,38 +17,41 @@ export default function About() {
     <section id="about" className="section-container">
       <span className="section-subtitle">BACKGROUND & OBJECTIVE</span>
       <h2 className="section-title mb-3">About Me</h2>
-      <p className="text-slate-400 mb-12 max-w-2xl text-sm sm:text-base leading-relaxed">
-        Electrical & Electronic Engineering graduate with a focus on embedded rocket avionics, guidance systems, and flight stabilization control loops.
+      <p className="text-slate-600 mb-12 max-w-2xl text-sm sm:text-base leading-relaxed">
+        Electrical & Electronic Engineering graduate specializing in embedded rocket avionics, guidance systems, and attitude control loops.
       </p>
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-10">
         
         {/* Left: Bio + Skill Bars */}
         <div className="lg:col-span-7 space-y-6">
-          <div className="tech-card space-y-4">
-            <h3 className="text-xl font-bold text-white flex items-center gap-2">
-              <Rocket className="w-5 h-5 text-cyan-400" />
-              Engineering Mission
-            </h3>
-            <p className="text-slate-300 text-sm leading-relaxed">
+          <div className="aero-card space-y-4">
+            <div className="flex items-center gap-2.5">
+              <div className="w-9 h-9 rounded-xl bg-orange-50 border border-orange-200 flex items-center justify-center text-orange-600">
+                <Rocket className="w-5 h-5" />
+              </div>
+              <h3 className="text-xl font-black text-slate-950">Engineering Mission</h3>
+            </div>
+            
+            <p className="text-slate-700 text-sm leading-relaxed">
               I am a B.Sc. EEE candidate at <strong>Mymensingh Engineering College (University of Dhaka)</strong>, specializing in rocket avionics, embedded GNC systems, and attitude stabilization. At DhumketuX, I design PCBs, assemble avionics bays, and build telemetry systems for active propulsion research programs.
             </p>
-            <p className="text-slate-400 text-sm leading-relaxed">
+            <p className="text-slate-600 text-sm leading-relaxed">
               My thesis — <em>"Design, Simulation & Implementation of TVC and Engine Telemetry for a Small-Scale Rocket Using PID"</em> — covers OpenRocket aerodynamic modeling, MATLAB/Simulink control system design, STM32-based hardware, and bi-directional LoRa telemetry links.
             </p>
           </div>
 
           {/* Skill Bars */}
-          <div className="tech-card space-y-4">
-            <h3 className="text-xs font-mono font-bold text-cyan-400 uppercase tracking-widest mb-4">
+          <div className="aero-card space-y-4">
+            <h3 className="text-xs font-mono font-extrabold text-orange-600 uppercase tracking-widest mb-4">
               TECHNICAL PROFICIENCY METRICS
             </h3>
-            <div className="space-y-3.5">
+            <div className="space-y-4">
               {skills.map((s, i) => (
                 <div key={i}>
-                  <div className="flex justify-between text-xs font-mono mb-1">
-                    <span className="font-semibold text-slate-200">{s.label}</span>
-                    <span className="text-cyan-400 font-bold">{s.pct}%</span>
+                  <div className="flex justify-between text-xs font-mono mb-1.5">
+                    <span className="font-bold text-slate-900">{s.label}</span>
+                    <span className="text-orange-600 font-extrabold">{s.pct}%</span>
                   </div>
                   <div className="skill-bar-track">
                     <div
@@ -62,12 +65,12 @@ export default function About() {
           </div>
         </div>
 
-        {/* Right: Personal Info Card + Project NEAL Logo in Crisp White Container */}
+        {/* Right: Personal Dossier + Floating Transparent Logo */}
         <div className="lg:col-span-5 space-y-6">
           
-          {/* Info Card */}
-          <div className="tech-card">
-            <h3 className="text-xs font-mono font-bold text-cyan-400 uppercase tracking-widest mb-5">
+          {/* Dossier Card */}
+          <div className="aero-card">
+            <h3 className="text-xs font-mono font-extrabold text-orange-600 uppercase tracking-widest mb-5">
               PERSONAL DOSSIER
             </h3>
             <div className="space-y-4">
@@ -82,12 +85,12 @@ export default function About() {
                 const Icon = row.icon;
                 return (
                   <div key={i} className="flex items-start gap-3">
-                    <div className="w-8 h-8 rounded-lg bg-slate-800 border border-slate-700 flex items-center justify-center flex-shrink-0 mt-0.5">
-                      <Icon className="w-4 h-4 text-cyan-400" />
+                    <div className="w-8 h-8 rounded-xl bg-slate-100 border border-slate-200 flex items-center justify-center flex-shrink-0 mt-0.5 text-orange-600">
+                      <Icon className="w-4 h-4" />
                     </div>
                     <div>
                       <p className="text-[10px] font-mono font-bold uppercase tracking-wider text-slate-400">{row.label}</p>
-                      <p className="text-xs text-slate-200 font-semibold mt-0.5">{row.value}</p>
+                      <p className="text-xs text-slate-900 font-extrabold mt-0.5">{row.value}</p>
                     </div>
                   </div>
                 );
@@ -95,17 +98,17 @@ export default function About() {
             </div>
           </div>
 
-          {/* Project NEAL Logo Backdrop Card — Crisp White Card so Black Logo Text "PROJECT NEAL TVC & GUIDANCE" is 100% Sharp & Visible */}
-          <div className="tech-card border border-cyan-500/30">
+          {/* Project NEAL Official Branding — Seamless floating logo directly on whitish card */}
+          <div className="aero-card border-orange-200">
             <div className="flex items-center gap-2 mb-4">
-              <Rocket className="w-4 h-4 text-orange-400" />
-              <span className="text-xs font-mono font-bold text-orange-400 uppercase tracking-widest">
+              <Rocket className="w-4 h-4 text-orange-600" />
+              <span className="text-xs font-mono font-bold text-orange-600 uppercase tracking-widest">
                 OFFICIAL THESIS BRANDING
               </span>
             </div>
 
-            {/* WHITE CARD BACKDROP FOR LOGO — Solves blending issue completely */}
-            <div className="bg-white rounded-xl p-5 border border-slate-200 shadow-xl flex items-center justify-center">
+            {/* Seamless PNG Logo floating with ZERO dark box */}
+            <div className="p-4 flex items-center justify-center">
               <img
                 src="/lovable-uploads/project-neal-logo.png"
                 alt="Project NEAL TVC & Guidance Official Logo"
@@ -113,9 +116,9 @@ export default function About() {
               />
             </div>
 
-            <div className="mt-4 text-center">
-              <p className="text-white font-extrabold text-sm">Project NEAL-1.2</p>
-              <p className="text-slate-400 text-xs font-mono mt-0.5">Thrust Vector Control · Guidance & Telemetry</p>
+            <div className="mt-4 text-center border-t border-slate-100 pt-3">
+              <p className="text-slate-950 font-black text-sm">Project NEAL-1.2</p>
+              <p className="text-slate-500 text-xs font-mono mt-0.5">Thrust Vector Control · Guidance & Telemetry</p>
             </div>
           </div>
 

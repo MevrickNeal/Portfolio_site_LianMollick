@@ -5,10 +5,9 @@ import LightboxModal from "./LightboxModal";
 const honors = [
   {
     rank: "1st Place",
-    rankBadge: "bg-amber-500 text-slate-950 font-black",
-    borderColor: "border-amber-500/40",
+    rankBadge: "badge-orange",
     icon: Trophy,
-    iconColor: "text-amber-400",
+    iconColor: "text-orange-600",
     title: "Rocketry Innovation Challenge 2022",
     org: "a2i & Bangabandhu Aviation & Aerospace University",
     desc: "1st place winner in Bangladesh's premier rocketry innovation competition for outstanding rocket design and engineering.",
@@ -17,10 +16,9 @@ const honors = [
   },
   {
     rank: "1st Runner-Up",
-    rankBadge: "bg-cyan-500 text-slate-950 font-black",
-    borderColor: "border-cyan-500/40",
+    rankBadge: "badge-red",
     icon: Award,
-    iconColor: "text-cyan-400",
+    iconColor: "text-red-600",
     title: "NASA Space Apps Challenge 2023",
     org: "Team SolarSentinel — Mymensingh",
     desc: "1st Runner-Up at NASA Space Apps Challenge Bangladesh 2023 for DSCOVR satellite space weather AI system.",
@@ -28,10 +26,9 @@ const honors = [
   },
   {
     rank: "1st Runner-Up",
-    rankBadge: "bg-slate-700 text-white font-bold",
-    borderColor: "border-slate-800",
+    rankBadge: "badge-grey",
     icon: Medal,
-    iconColor: "text-slate-300",
+    iconColor: "text-slate-700",
     title: "3rd National Science Fest",
     org: "Project: Wireless Energy Transmission",
     desc: "1st Runner-Up at 3rd National Science Fest for wireless energy transmission innovation.",
@@ -39,10 +36,9 @@ const honors = [
   },
   {
     rank: "National Finalist",
-    rankBadge: "bg-blue-600 text-white font-bold",
-    borderColor: "border-blue-500/40",
+    rankBadge: "badge-black",
     icon: Trophy,
-    iconColor: "text-blue-400",
+    iconColor: "text-slate-950",
     title: "Technoxian WRC 2024",
     org: "World Robotics Championship — 15kg Battle Bot",
     desc: "National Finalist at Technoxian World Robotics Championship 2024 with custom 15kg combat battle robot.",
@@ -50,10 +46,9 @@ const honors = [
   },
   {
     rank: "Finalist",
-    rankBadge: "bg-indigo-600 text-white font-bold",
-    borderColor: "border-indigo-500/40",
+    rankBadge: "badge-orange",
     icon: Star,
-    iconColor: "text-indigo-400",
+    iconColor: "text-orange-600",
     title: "National STEAM Olympiad",
     org: "iTesseract & Ministry of Education",
     desc: "Top team finalist at National STEAM Olympiad organized by Ministry of Education.",
@@ -61,10 +56,9 @@ const honors = [
   },
   {
     rank: "Participant",
-    rankBadge: "bg-emerald-600 text-white font-bold",
-    borderColor: "border-emerald-500/40",
+    rankBadge: "badge-grey",
     icon: Award,
-    iconColor: "text-emerald-400",
+    iconColor: "text-slate-600",
     title: "IIT Techfest Combat Robotics",
     org: "IUBAT — 15kg Battle Bot",
     desc: "Participated in IIT Techfest combat robotics division with Alpha Science Lab team's 15kg battle bot.",
@@ -89,7 +83,7 @@ export default function Awards() {
       <section id="awards" className="section-container">
         <span className="section-subtitle">HONORS & COMPETITIONS</span>
         <h2 className="section-title mb-3">Awards & Recognition</h2>
-        <p className="text-slate-400 mb-10">Winning across rocketry, robotics, AI, and science innovation.</p>
+        <p className="text-slate-600 mb-10">Winning across rocketry, robotics, AI, and science innovation.</p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {honors.map((h, i) => {
@@ -97,26 +91,26 @@ export default function Awards() {
             return (
               <div
                 key={i}
-                className={`tech-card border ${h.borderColor} flex flex-col justify-between`}
+                className="aero-card flex flex-col justify-between"
               >
                 <div>
                   <div className="flex items-center justify-between gap-2 mb-4">
-                    <div className="w-10 h-10 rounded-xl bg-slate-800 border border-slate-700 flex items-center justify-center">
+                    <div className="w-10 h-10 rounded-xl bg-slate-100 border border-slate-200 flex items-center justify-center">
                       <Icon className={`w-5 h-5 ${h.iconColor}`} />
                     </div>
-                    <span className={`badge-pill ${h.rankBadge}`}>
+                    <span className={h.rankBadge}>
                       {h.rank}
                     </span>
                   </div>
 
-                  <h3 className="font-extrabold text-white text-base mb-1">{h.title}</h3>
-                  <p className="text-xs font-mono text-cyan-400 mb-3">{h.org}</p>
-                  <p className="text-xs text-slate-300 leading-relaxed mb-4">{h.desc}</p>
+                  <h3 className="font-extrabold text-slate-950 text-base mb-1">{h.title}</h3>
+                  <p className="text-xs font-mono font-bold text-orange-600 mb-3">{h.org}</p>
+                  <p className="text-xs text-slate-600 leading-relaxed mb-4">{h.desc}</p>
                 </div>
 
                 <div>
                   <div
-                    className="relative rounded-xl overflow-hidden cursor-zoom-in group border border-slate-800 mb-3"
+                    className="relative rounded-xl overflow-hidden cursor-zoom-in group border border-slate-200 shadow-sm mb-3"
                     onClick={() => setLightbox({ isOpen: true, src: h.img, title: h.title })}
                   >
                     <img
@@ -124,14 +118,14 @@ export default function Awards() {
                       alt={h.title}
                       className="w-full h-36 object-cover group-hover:scale-105 transition-transform duration-500"
                     />
-                    <div className="absolute inset-0 bg-slate-950/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                      <ZoomIn className="w-6 h-6 text-cyan-400" />
+                    <div className="absolute inset-0 bg-slate-950/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                      <ZoomIn className="w-6 h-6 text-white" />
                     </div>
                   </div>
 
                   {h.link && (
                     <a href={h.link} target="_blank" rel="noreferrer"
-                      className="flex items-center gap-1.5 text-xs font-mono font-bold text-cyan-400 hover:text-cyan-300 transition-colors">
+                      className="flex items-center gap-1.5 text-xs font-mono font-bold text-orange-600 hover:text-red-600 transition-colors">
                       <ExternalLink className="w-3.5 h-3.5" />
                       VIEW CERTIFICATE
                     </a>

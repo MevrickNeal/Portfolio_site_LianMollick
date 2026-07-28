@@ -14,7 +14,7 @@ import Footer from "@/components/Footer";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-[#080C14] text-slate-100 font-sans selection:bg-cyan-500 selection:text-slate-950">
+    <div className="min-h-screen bg-[#FAFAFC] text-slate-950 font-sans selection:bg-orange-500 selection:text-white">
       <Header />
       <Hero />
       <About />
@@ -25,7 +25,7 @@ const Index = () => {
       <section id="tvc-simulator" className="section-container">
         <span className="section-subtitle">B.SC. THESIS — DIGITAL TWIN SIMULATION</span>
         <h2 className="section-title mb-2">TVC Digital Twin Simulator</h2>
-        <p className="text-slate-300 mb-8 max-w-2xl text-sm sm:text-base leading-relaxed">
+        <p className="text-slate-600 mb-8 max-w-2xl text-sm sm:text-base leading-relaxed">
           Live PID flight controller simulation for Project NEAL's Thrust Vector Control system.
           Tune Kp, Ki, Kd gains and setpoint in real-time and observe the pitch attitude stabilization response.
         </p>

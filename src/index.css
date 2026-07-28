@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700;800&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,40 +6,42 @@
 
 @layer base {
   :root {
-    --background: 222 47% 6%;
-    --foreground: 210 40% 98%;
-    --card: 222 47% 8%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222 47% 8%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 191 100% 50%;
-    --primary-foreground: 222 47% 6%;
-    --secondary: 217 33% 17%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217 33% 17%;
-    --muted-foreground: 215 20.2% 65.1%;
-    --accent: 18 100% 50%;
-    --accent-foreground: 210 40% 98%;
-    --border: 217 33% 17%;
-    --input: 217 33% 17%;
-    --ring: 191 100% 50%;
-    --radius: 0.75rem;
+    --background: 0 0% 99%;
+    --foreground: 222 47% 11%;
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+    --primary: 14 100% 50%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 215 16% 47%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 210 20% 96%;
+    --muted-foreground: 215 16% 47%;
+    --accent: 354 78% 56%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 14 100% 50%;
+    --radius: 1rem;
   }
 }
 
 @layer base {
   * {
-    border-color: rgba(255, 255, 255, 0.1);
+    border-color: rgba(15, 23, 42, 0.08);
   }
 
   html {
     scroll-behavior: smooth;
-    color-scheme: dark;
+    color-scheme: light;
   }
 
   body {
-    background-color: #080C14;
-    color: #E2E8F0;
+    background-color: #FAFAFC;
+    color: #0F172A;
     font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -49,7 +51,7 @@
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Inter', sans-serif;
     font-weight: 800;
-    letter-spacing: -0.025em;
+    letter-spacing: -0.03em;
   }
 
   code, pre, .font-mono {
@@ -58,44 +60,47 @@
 }
 
 @layer components {
-  /* Aerospace Tech Card */
-  .tech-card {
-    @apply relative bg-slate-900/80 backdrop-blur-xl border border-slate-800/80 rounded-2xl p-6 transition-all duration-300 shadow-xl;
+  /* Aerospace Modern White Floating Card */
+  .aero-card {
+    @apply relative bg-white/90 backdrop-blur-xl border border-slate-200/80 rounded-2xl p-6 sm:p-8 transition-all duration-300 shadow-lg shadow-slate-200/50 hover:shadow-2xl hover:shadow-orange-500/10 hover:border-orange-500/40 hover:-translate-y-1;
   }
 
-  .tech-card:hover {
-    @apply border-cyan-500/40 -translate-y-1 shadow-cyan-500/10 shadow-2xl;
-  }
-
-  /* Logo Backdrop Card — ALWAYS white/light to ensure black text and brand graphics pop 100% */
-  .logo-container {
-    @apply bg-white border border-slate-200 rounded-xl p-3 shadow-md inline-flex items-center justify-center transition-transform hover:scale-105;
-  }
-
-  /* Section Titles */
+  /* Aerospace Section Titles */
   .section-title {
-    @apply text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight mb-3;
+    @apply text-3xl sm:text-4xl md:text-5xl font-black text-slate-950 tracking-tight mb-3;
   }
 
   .section-subtitle {
-    @apply text-xs font-mono font-bold uppercase tracking-[0.25em] text-cyan-400 mb-2 block;
+    @apply text-xs font-mono font-extrabold uppercase tracking-[0.25em] text-orange-600 mb-2 block;
   }
 
-  /* Pill badge */
-  .badge-pill {
-    @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-semibold tracking-wide;
+  /* Accent Badges */
+  .badge-orange {
+    @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-bold bg-orange-50 text-orange-600 border border-orange-200/80;
+  }
+
+  .badge-red {
+    @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-bold bg-red-50 text-red-600 border border-red-200/80;
+  }
+
+  .badge-black {
+    @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-bold bg-slate-900 text-white border border-slate-800;
+  }
+
+  .badge-grey {
+    @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-medium bg-slate-100 text-slate-700 border border-slate-200;
   }
 
   /* Gradient Text */
-  .gradient-text-cyan {
-    background: linear-gradient(135deg, #00F0FF 0%, #38BDF8 100%);
+  .gradient-text-orange {
+    background: linear-gradient(135deg, #FF4500 0%, #E63946 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
-  .gradient-text-orange {
-    background: linear-gradient(135deg, #FF5500 0%, #F59E0B 100%);
+  .gradient-text-black {
+    background: linear-gradient(135deg, #0F172A 0%, #334155 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -103,17 +108,17 @@
 
   /* Section Container */
   .section-container {
-    @apply py-20 px-4 md:px-8 max-w-7xl mx-auto;
+    @apply py-20 px-4 md:px-8 max-w-7xl mx-auto relative;
   }
 
-  /* Nav Links */
+  /* Floating Nav Links */
   .nav-link {
-    @apply relative text-slate-300 hover:text-cyan-400 font-mono text-xs uppercase tracking-wider font-semibold transition-colors duration-200;
+    @apply relative text-slate-600 hover:text-slate-950 font-mono text-xs uppercase tracking-wider font-bold transition-colors duration-200;
   }
 
   .nav-link::after {
     content: '';
-    @apply absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-400 rounded-full transition-all duration-300;
+    @apply absolute -bottom-1 left-0 w-0 h-0.5 bg-orange-600 rounded-full transition-all duration-300;
   }
 
   .nav-link:hover::after {
@@ -122,19 +127,27 @@
 
   /* Skill Bar Track */
   .skill-bar-track {
-    @apply h-2 bg-slate-800 rounded-full overflow-hidden border border-slate-700/50;
+    @apply h-2.5 bg-slate-100 rounded-full overflow-hidden border border-slate-200/80 p-0.5;
   }
 
   .skill-bar-fill {
     @apply h-full rounded-full transition-all duration-700 ease-out;
-    background: linear-gradient(90deg, #00F0FF, #FF5500);
+    background: linear-gradient(90deg, #FF4500, #E63946);
   }
 
-  /* Live dot */
+  /* Live Pulse Indicator */
   .live-dot {
-    @apply w-2 h-2 rounded-full bg-emerald-400;
+    @apply w-2.5 h-2.5 rounded-full bg-emerald-500;
     animation: livePulse 1.5s ease-in-out infinite;
   }
+}
+
+/* Aerospace CAD & Schematic Background Overlay */
+.aerospace-grid-bg {
+  background-image: 
+    linear-gradient(to right, rgba(15, 23, 42, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(15, 23, 42, 0.04) 1px, transparent 1px);
+  background-size: 32px 32px;
 }
 
 /* Keyframes */
@@ -144,65 +157,48 @@
 }
 
 @keyframes livePulse {
-  0%, 100% { opacity: 1; transform: scale(1); box-shadow: 0 0 0 0 rgba(52,211,153,0.6); }
-  50% { opacity: 0.85; transform: scale(1.2); box-shadow: 0 0 0 8px rgba(52,211,153,0); }
+  0%, 100% { opacity: 1; transform: scale(1); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.5); }
+  50% { opacity: 0.85; transform: scale(1.2); box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
 }
 
-@keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-8px); }
+@keyframes floatSlow {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(1deg); }
 }
 
-@keyframes rocketFly {
+@keyframes rocketFlight {
   0% { transform: translateY(0) rotate(-4deg); }
-  50% { transform: translateY(-10px) rotate(4deg); }
+  50% { transform: translateY(-12px) rotate(4deg); }
   100% { transform: translateY(0) rotate(-4deg); }
 }
 
-@keyframes borderGlow {
-  0%, 100% { border-color: rgba(0,240,255,0.3); box-shadow: 0 0 15px rgba(0,240,255,0.1); }
-  50% { border-color: rgba(0,240,255,0.8); box-shadow: 0 0 25px rgba(0,240,255,0.25); }
+@keyframes radarSweep {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
 .animate-fade-in { animation: fadeIn 0.6s ease-out both; }
-.animate-float { animation: float 4s ease-in-out infinite; }
-.animate-rocket { animation: rocketFly 3s ease-in-out infinite; }
-.animate-border-glow { animation: borderGlow 3.5s ease-in-out infinite; }
+.animate-float { animation: floatSlow 5s ease-in-out infinite; }
+.animate-rocket { animation: rocketFlight 3.5s ease-in-out infinite; }
+.animate-radar { animation: radarSweep 10s linear infinite; }
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #080C14;
+  background: #FAFAFC;
 }
 ::-webkit-scrollbar-thumb {
-  background: #1E293B;
+  background: #CBD5E1;
   border-radius: 4px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #334155;
+  background: #94A3B8;
 }
 
-/* Recharts Tooltip */
-.recharts-tooltip-wrapper .recharts-default-tooltip {
-  background: rgba(15, 23, 42, 0.95) !important;
-  border: 1px solid rgba(0, 240, 255, 0.3) !important;
-  border-radius: 12px !important;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 12px;
-  color: #F8FAFC !important;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5) !important;
-}
-
-.recharts-cartesian-axis-tick-value {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 11px;
-  fill: #64748B;
-}
-
+/* Lightbox Modal */
 .lightbox-backdrop {
-  @apply fixed inset-0 bg-black/90 backdrop-blur-md z-50 flex items-center justify-center p-4;
+  @apply fixed inset-0 bg-slate-950/90 backdrop-blur-md z-50 flex items-center justify-center p-4;
   animation: fadeIn 0.2s ease-out;
 }

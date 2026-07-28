@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Mail, Linkedin, Github, Menu, X, Rocket, Terminal } from "lucide-react";
+import { Mail, Linkedin, Github, Menu, X, Rocket, ArrowUpRight } from "lucide-react";
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -11,32 +11,27 @@ export default function Header() {
     { href: "#experience", label: "Experience" },
     { href: "#skills", label: "Skills" },
     { href: "#awards", label: "Awards" },
-    { href: "#certifications", label: "Certs" },
     { href: "#personal", label: "Growth" },
-    { href: "#contact", label: "Contact" },
   ];
 
   return (
-    <header className="sticky top-0 z-50 bg-slate-950/90 backdrop-blur-xl border-b border-slate-800/80 shadow-2xl">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+    <div className="sticky top-4 z-50 px-4 max-w-6xl mx-auto">
+      <header className="bg-white/90 backdrop-blur-xl border border-slate-200/90 shadow-xl shadow-slate-200/50 rounded-full px-5 py-2.5 transition-all">
+        <div className="flex items-center justify-between">
           
-          {/* Official Project NEAL Logo + Branding */}
+          {/* Official Project NEAL PNG Logo - Floating seamlessly on whitish background */}
           <a href="#home" className="flex items-center gap-3 group">
-            {/* White card wrapper for logo so black text & red fins pop sharply */}
-            <div className="bg-white rounded-lg px-2.5 py-1 border border-slate-200 shadow-md group-hover:border-cyan-400 transition-colors flex items-center justify-center h-9">
-              <img
-                src="/lovable-uploads/5e9aa584-e39f-426c-b9fe-dc65ce0f79da.png"
-                alt="Project NEAL TVC Logo"
-                className="h-5 w-auto object-contain"
-              />
-            </div>
-            <div>
-              <span className="font-extrabold text-white text-sm tracking-tight block leading-none group-hover:text-cyan-400 transition-colors">
+            <img
+              src="/lovable-uploads/5e9aa584-e39f-426c-b9fe-dc65ce0f79da.png"
+              alt="Project NEAL TVC & Guidance"
+              className="h-6 sm:h-7 w-auto object-contain transition-transform group-hover:scale-105"
+            />
+            <div className="hidden sm:block border-l border-slate-200 pl-3">
+              <span className="font-black text-slate-950 text-sm tracking-tight block leading-none">
                 Lian Mollick Nehal
               </span>
-              <span className="text-[10px] font-mono font-bold text-cyan-400 tracking-widest uppercase mt-0.5 block">
-                EEE · TVC · GNC ENGINEER
+              <span className="text-[9px] font-mono font-extrabold text-orange-600 tracking-widest uppercase block mt-0.5">
+                EEE · TVC · GNC
               </span>
             </div>
           </a>
@@ -50,48 +45,48 @@ export default function Header() {
             ))}
           </nav>
 
-          {/* Social & Contact */}
+          {/* Actions */}
           <div className="hidden sm:flex items-center gap-3">
             <a href="https://linkedin.com/in/lianmollick" target="_blank" rel="noreferrer"
-              className="text-slate-400 hover:text-cyan-400 transition-colors p-1.5 rounded-lg hover:bg-slate-900">
+              className="text-slate-500 hover:text-orange-600 transition-colors p-1.5 rounded-full hover:bg-slate-100">
               <Linkedin className="w-4 h-4" />
             </a>
             <a href="https://github.com/MevrickNeal" target="_blank" rel="noreferrer"
-              className="text-slate-400 hover:text-white transition-colors p-1.5 rounded-lg hover:bg-slate-900">
+              className="text-slate-500 hover:text-slate-950 transition-colors p-1.5 rounded-full hover:bg-slate-100">
               <Github className="w-4 h-4" />
             </a>
-            <a href="mailto:lianmollik@gmail.com"
-              className="flex items-center gap-1.5 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-slate-950 font-mono text-xs font-bold px-3.5 py-1.5 rounded-lg transition-all shadow-lg shadow-cyan-500/20">
-              <Mail className="w-3.5 h-3.5" />
-              CONTACT
+            <a href="#contact"
+              className="flex items-center gap-1.5 bg-slate-950 hover:bg-orange-600 text-white font-mono text-xs font-bold px-4 py-2 rounded-full transition-all shadow-md hover:shadow-orange-500/20">
+              <span>GET IN TOUCH</span>
+              <ArrowUpRight className="w-3.5 h-3.5" />
             </a>
           </div>
 
-          {/* Mobile menu toggle */}
-          <button onClick={() => setMenuOpen(!menuOpen)} className="lg:hidden p-2 rounded-lg text-slate-300 hover:bg-slate-900 border border-slate-800">
+          {/* Mobile Toggle */}
+          <button onClick={() => setMenuOpen(!menuOpen)} className="lg:hidden p-2 rounded-full text-slate-700 hover:bg-slate-100">
             {menuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
         </div>
-      </div>
+      </header>
 
-      {/* Mobile menu */}
+      {/* Mobile Menu */}
       {menuOpen && (
-        <div className="lg:hidden border-t border-slate-800 bg-slate-950 p-4">
+        <div className="lg:hidden mt-2 bg-white/95 backdrop-blur-xl border border-slate-200 rounded-3xl p-5 shadow-2xl animate-fade-in">
           <div className="flex flex-col gap-3">
             {links.map(l => (
               <a key={l.href} href={l.href} onClick={() => setMenuOpen(false)}
-                className="text-slate-300 hover:text-cyan-400 font-mono text-xs uppercase tracking-wider py-2 px-3 rounded-lg hover:bg-slate-900">
+                className="text-slate-700 hover:text-orange-600 font-mono text-xs uppercase tracking-wider py-2 px-3 rounded-xl hover:bg-slate-50 font-bold">
                 {l.label}
               </a>
             ))}
-            <a href="mailto:lianmollik@gmail.com"
-              className="mt-2 flex items-center justify-center gap-2 bg-gradient-to-r from-cyan-500 to-blue-600 text-slate-950 font-mono text-xs font-bold py-2.5 px-4 rounded-lg">
+            <a href="#contact" onClick={() => setMenuOpen(false)}
+              className="mt-2 flex items-center justify-center gap-2 bg-orange-600 text-white font-mono text-xs font-bold py-3 px-4 rounded-full">
               <Mail className="w-4 h-4" />
               GET IN TOUCH
             </a>
           </div>
         </div>
       )}
-    </header>
+    </div>
   );
 }

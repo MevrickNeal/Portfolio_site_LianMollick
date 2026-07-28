@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Play, Pause, RotateCcw, Activity, Cpu, Info, TrendingUp } from "lucide-react";
+import { Play, Pause, RotateCcw, Activity, Cpu, Info, TrendingUp, Radio } from "lucide-react";
 import {
   LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine, Legend, AreaChart, Area
 } from "recharts";
@@ -15,7 +15,7 @@ interface SimPoint {
 const CustomTooltip = ({ active, payload, label }: any) => {
   if (active && payload && payload.length) {
     return (
-      <div className="bg-slate-900/95 border border-slate-700 rounded-xl p-3 text-xs font-mono shadow-2xl">
+      <div className="bg-slate-950 border border-slate-800 rounded-xl p-3 text-xs font-mono shadow-2xl text-white">
         <p className="text-slate-400 mb-1">t = {(label / 10).toFixed(1)}s</p>
         {payload.map((p: any) => (
           <div key={p.dataKey} className="flex items-center gap-2">
@@ -60,36 +60,44 @@ export default function InteractiveTVCSimulator() {
         const derivative = (error - s.prevError) / (dt || 0.01);
         s.prevError = error;
 
-        let u = kp * error + ki * s.integral + kd * derivative;
-        u = Math.max(-15, Math.min(15, u));
+        const nozzle = Math.max(-15, Math.min(15, kp * error + ki * s.integral + kd * derivative));
+        const torque = nozzle * 4.5 - s.velocity * 0.8 - s.angle * 0.2;
+        const accel = torque / 1.2;
 
-        const accel = u * 2.5 - s.velocity * 0.4;
         s.velocity += accel * dt;
         s.angle += s.velocity * dt;
-        s.t += dt;
+        s.t += 1;
 
-        setNozzleDeflection(u);
         setCurrentAngle(s.angle);
+        setNozzleDeflection(nozzle);
 
-        setChartData(prev => {
-          const newPoint: SimPoint = {
-            t: Math.round(s.t * 10),
-            angle: parseFloat(s.angle.toFixed(2)),
-            target: targetAngle,
-            error: parseFloat((targetAngle - s.angle).toFixed(2)),
-            nozzle: parseFloat(u.toFixed(2)),
-          };
-          const updated = [...prev, newPoint];
-          return updated.length > 120 ? updated.slice(updated.length - 120) : updated;
-        });
+        if (s.t % 2 === 0) {
+          setChartData((prev) => {
+            const next = [
+              ...prev,
+              {
+                t: s.t,
+                angle: parseFloat(s.angle.toFixed(2)),
+                target: targetAngle,
+                error: parseFloat(error.toFixed(2)),
+                nozzle: parseFloat(nozzle.toFixed(2)),
+              },
+            ];
+            return next.slice(-60);
+          });
+        }
+
+        setTick((t) => t + 1);
       }
 
       requestRef.current = requestAnimationFrame(update);
     };
 
     requestRef.current = requestAnimationFrame(update);
-    return () => { if (requestRef.current) cancelAnimationFrame(requestRef.current); };
-  }, [kp, ki, kd, targetAngle, isRunning]);
+    return () => {
+      if (requestRef.current) cancelAnimationFrame(requestRef.current);
+    };
+  }, [isRunning, kp, ki, kd, targetAngle]);
 
   const handleReset = () => {
     stateRef.current = { angle: 0, velocity: 0, integral: 0, prevError: 0, t: 0 };
@@ -98,248 +106,216 @@ export default function InteractiveTVCSimulator() {
     setChartData([]);
   };
 
-  const steadyStateError = Math.abs(targetAngle - currentAngle).toFixed(2);
-  const isSettled = Math.abs(targetAngle - currentAngle) < 0.5;
+  const isStable = Math.abs(currentAngle - targetAngle) < 1.5;
 
   return (
-    <div id="tvc-simulator" className="rounded-3xl overflow-hidden border border-slate-200 shadow-2xl bg-white">
+    <div className="aero-card border-orange-200">
       {/* Header bar */}
-      <div className="bg-gradient-to-r from-slate-900 to-slate-800 px-6 py-4 flex items-center justify-between flex-wrap gap-3">
-        <div className="flex items-center gap-3">
-          <div className="w-9 h-9 rounded-xl bg-amber-500/20 border border-amber-500/40 flex items-center justify-center">
-            <Cpu className="w-5 h-5 text-amber-400" />
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-100">
+        <div>
+          <div className="flex items-center gap-2">
+            <span className="live-dot" />
+            <span className="text-xs font-mono font-extrabold text-orange-600 uppercase tracking-widest">
+              HARDWARE-IN-THE-LOOP SIMULATOR
+            </span>
           </div>
-          <div>
-            <div className="flex items-center gap-2">
-              <span className="live-dot" />
-              <span className="text-xs font-mono text-emerald-400 uppercase tracking-widest font-bold">LIVE SIMULATION</span>
-            </div>
-            <h3 className="text-white font-black text-lg leading-tight">
-              TVC PID Flight Controller — Digital Twin
-            </h3>
-          </div>
+          <h3 className="text-xl sm:text-2xl font-black text-slate-950 mt-1">
+            Project NEAL-1.2 TVC Flight Control Twin
+          </h3>
         </div>
+
+        {/* Controls */}
         <div className="flex items-center gap-2">
           <button
             onClick={() => setIsRunning(!isRunning)}
-            className={`px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 transition-all ${
+            className={`flex items-center gap-1.5 px-4 py-2 rounded-full font-mono text-xs font-bold transition-all ${
               isRunning
-                ? "bg-red-500/20 border border-red-500/40 text-red-300 hover:bg-red-500/30"
-                : "bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 hover:bg-emerald-500/30"
+                ? "bg-amber-100 text-amber-800 border border-amber-300"
+                : "bg-orange-600 text-white shadow-md shadow-orange-500/20"
             }`}
           >
-            {isRunning ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
-            {isRunning ? "Pause" : "Resume"}
+            {isRunning ? <Pause className="w-3.5 h-3.5" /> : <Play className="w-3.5 h-3.5" />}
+            {isRunning ? "PAUSE" : "RUN SIM"}
           </button>
+
           <button
             onClick={handleReset}
-            className="px-3 py-2 rounded-xl text-xs font-bold bg-white/10 border border-white/20 text-slate-300 hover:bg-white/20 flex items-center gap-1.5 transition-all"
+            className="flex items-center gap-1.5 px-3 py-2 rounded-full font-mono text-xs font-bold bg-slate-100 text-slate-700 hover:bg-slate-200 border border-slate-200 transition-all"
           >
-            <RotateCcw className="w-4 h-4" />
-            Reset
+            <RotateCcw className="w-3.5 h-3.5" />
+            RESET
           </button>
         </div>
       </div>
 
-      <div className="p-6">
-        {/* Thesis reference */}
-        <div className="mb-5 p-3 bg-amber-50 border border-amber-200/80 rounded-xl flex items-start gap-2.5">
-          <Info className="w-4 h-4 text-amber-600 mt-0.5 flex-shrink-0" />
-          <p className="text-xs text-amber-800">
-            <strong>B.Sc. EEE Thesis:</strong> "Design, Simulation & Implementation of Thrust Vector Control & Telemetry System for a Small-Scale Rocket using PID" — <em>Lian Mollick Nehal, Mymensingh Engineering College (University of Dhaka)</em>
-          </p>
-        </div>
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 pt-6">
+        
+        {/* Left: Rocket & Gimbal Telemetry HUD */}
+        <div className="lg:col-span-5 flex flex-col justify-between space-y-6">
+          
+          {/* Animated Rocket Telemetry Box */}
+          <div className="bg-slate-950 rounded-2xl p-6 border border-slate-800 text-white relative overflow-hidden shadow-xl min-h-[300px] flex flex-col justify-between">
+            
+            {/* HUD Status Header */}
+            <div className="flex items-center justify-between text-xs font-mono border-b border-slate-800 pb-3">
+              <span className="text-slate-400">TELEMETRY_LINK // ACTIVE</span>
+              <span className={`px-2 py-0.5 rounded text-[10px] font-bold ${
+                isStable ? "bg-emerald-950 text-emerald-400 border border-emerald-500/40" : "bg-orange-950 text-orange-400 border border-orange-500/40 animate-pulse"
+              }`}>
+                {isStable ? "STABLE" : "CONTROLLING"}
+              </span>
+            </div>
 
-        <div className="grid grid-cols-1 xl:grid-cols-12 gap-6">
-          {/* 3D Gimbal Rocket Visual */}
-          <div className="xl:col-span-4">
-            <div className="bg-slate-950 rounded-2xl p-5 flex flex-col items-center justify-between min-h-[340px] border border-slate-800 relative overflow-hidden">
-              {/* Grid overlay */}
-              <div className="absolute inset-0 opacity-10"
-                style={{ backgroundImage: 'linear-gradient(rgba(92,151,171,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(92,151,171,0.5) 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
+            {/* SVG Rocket Vehicle with live pitch & nozzle rotation */}
+            <div className="my-6 flex items-center justify-center relative h-48">
+              
+              {/* Setpoint Reference Line */}
+              <div
+                className="absolute w-44 h-0.5 border-t-2 border-dashed border-orange-500/60 pointer-events-none transition-transform duration-200"
+                style={{ transform: `rotate(${-targetAngle}deg)` }}
+              />
 
-              {/* Telemetry readouts */}
-              <div className="w-full flex justify-between items-start relative z-10">
-                <div className="text-left">
-                  <div className="text-[9px] font-mono text-slate-500 uppercase">Setpoint</div>
-                  <div className="text-amber-400 font-mono font-bold text-sm">{targetAngle}°</div>
-                </div>
-                <div className="text-center">
-                  <div className="flex items-center gap-1.5 justify-center">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
-                    <span className="text-[9px] font-mono text-emerald-400 uppercase">SIMULINK FEED</span>
+              {/* Rocket Body SVG */}
+              <div
+                className="relative transition-transform duration-100 ease-out origin-bottom"
+                style={{ transform: `rotate(${-currentAngle}deg)` }}
+              >
+                {/* Rocket Structure */}
+                <div className="relative w-10 h-36 flex flex-col items-center">
+                  {/* Nosecone */}
+                  <div className="w-0 h-0 border-l-[20px] border-l-transparent border-r-[20px] border-r-transparent border-b-[36px] border-b-orange-600" />
+                  {/* Body Tube */}
+                  <div className="w-10 h-24 bg-gradient-to-b from-slate-200 to-slate-400 border-x border-slate-400 relative">
+                    <div className="absolute inset-x-0 top-3 text-[7px] font-mono text-center font-bold text-slate-800">NEAL</div>
+                    <div className="absolute bottom-2 inset-x-0 h-1 bg-red-600" />
                   </div>
-                </div>
-                <div className="text-right">
-                  <div className="text-[9px] font-mono text-slate-500 uppercase">Actual</div>
-                  <div className="text-sky-400 font-mono font-bold text-sm">{currentAngle.toFixed(1)}°</div>
-                </div>
-              </div>
-
-              {/* Rocket SVG animation */}
-              <div className="flex-1 flex items-center justify-center relative z-10 my-4">
-                <div
-                  className="relative transition-transform duration-75"
-                  style={{ transform: `rotate(${currentAngle}deg)` }}
-                >
-                  {/* Rocket body SVG */}
-                  <svg width="60" height="160" viewBox="0 0 60 160">
-                    {/* Nose cone */}
-                    <polygon points="30,2 14,40 46,40" fill="#CBD5E1" stroke="#94A3B8" strokeWidth="1" />
-                    {/* Body */}
-                    <rect x="14" y="38" width="32" height="80" rx="4" fill="#94A3B8" stroke="#64748B" strokeWidth="1" />
-                    {/* NEAL label */}
-                    <text x="30" y="84" textAnchor="middle" fontSize="8" fill="#1E293B" fontFamily="monospace" fontWeight="bold">NEAL</text>
-                    <text x="30" y="95" textAnchor="middle" fontSize="6" fill="#334155" fontFamily="monospace">1.2</text>
-                    {/* Fin left */}
-                    <polygon points="14,90 2,128 14,118" fill="#64748B" />
-                    {/* Fin right */}
-                    <polygon points="46,90 58,128 46,118" fill="#64748B" />
-                    {/* Nozzle housing */}
-                    <rect x="18" y="118" width="24" height="12" rx="2" fill="#475569" />
-                    {/* Nozzle (gimbal) - rotates */}
-                    <g transform={`translate(30, 130) rotate(${nozzleDeflection}) translate(-30, -130)`}>
-                      <rect x="23" y="130" width="14" height="18" rx="3" fill="#334155" />
-                      {/* Exhaust flame */}
-                      {isRunning && (
-                        <>
-                          <ellipse cx="30" cy="154" rx="5" ry="10" fill="rgba(251,191,36,0.8)" />
-                          <ellipse cx="30" cy="158" rx="3" ry="7" fill="rgba(251,146,60,0.6)" />
-                          <ellipse cx="30" cy="162" rx="1.5" ry="5" fill="rgba(248,250,252,0.4)" />
-                        </>
-                      )}
-                    </g>
-                    {/* Port holes */}
-                    <circle cx="30" cy="60" r="5" fill="#1E293B" stroke="#475569" strokeWidth="1" />
-                    <circle cx="30" cy="60" r="3" fill="#38BDF8" opacity="0.5" />
-                  </svg>
-                </div>
-              </div>
-
-              {/* Bottom telemetry grid */}
-              <div className="w-full grid grid-cols-3 gap-2 border-t border-slate-800 pt-3 relative z-10">
-                <div className="text-center">
-                  <div className="text-[9px] font-mono text-slate-500 uppercase mb-0.5">Nozzle δ</div>
-                  <div className={`text-sm font-mono font-bold ${nozzleDeflection >= 0 ? 'text-emerald-400' : 'text-orange-400'}`}>
-                    {nozzleDeflection.toFixed(1)}°
-                  </div>
-                </div>
-                <div className="text-center">
-                  <div className="text-[9px] font-mono text-slate-500 uppercase mb-0.5">Error</div>
-                  <div className={`text-sm font-mono font-bold ${isSettled ? 'text-emerald-400' : 'text-red-400'}`}>
-                    {steadyStateError}°
-                  </div>
-                </div>
-                <div className="text-center">
-                  <div className="text-[9px] font-mono text-slate-500 uppercase mb-0.5">Status</div>
-                  <div className={`text-xs font-mono font-bold ${isSettled ? 'text-emerald-400' : 'text-yellow-400'}`}>
-                    {isSettled ? '✓ STABLE' : '~ CTRL'}
-                  </div>
+                  {/* Fins */}
+                  <div className="absolute bottom-4 -left-4 w-4 h-8 bg-slate-900 border-l border-orange-500 clip-fin-left" />
+                  <div className="absolute bottom-4 -right-4 w-4 h-8 bg-slate-900 border-r border-orange-500 clip-fin-right" />
+                  {/* TVC Gimbal Nozzle */}
+                  <div
+                    className="w-4 h-6 bg-orange-600 rounded-b-md transition-transform duration-75 origin-top mt-0.5 shadow-lg shadow-orange-500/50"
+                    style={{ transform: `rotate(${nozzleDeflection * 1.2}deg)` }}
+                  />
                 </div>
               </div>
             </div>
+
+            {/* Live Readout Values */}
+            <div className="grid grid-cols-3 gap-2 font-mono text-center border-t border-slate-800 pt-3">
+              <div className="bg-slate-900/90 p-2 rounded-xl border border-slate-800">
+                <div className="text-[9px] text-slate-400 uppercase">Pitch θ</div>
+                <div className="text-sm font-bold text-white">{currentAngle.toFixed(1)}°</div>
+              </div>
+              <div className="bg-slate-900/90 p-2 rounded-xl border border-slate-800">
+                <div className="text-[9px] text-slate-400 uppercase">Target θ</div>
+                <div className="text-sm font-bold text-orange-400">{targetAngle.toFixed(1)}°</div>
+              </div>
+              <div className="bg-slate-900/90 p-2 rounded-xl border border-slate-800">
+                <div className="text-[9px] text-slate-400 uppercase">Nozzle δ</div>
+                <div className="text-sm font-bold text-red-400">{nozzleDeflection.toFixed(1)}°</div>
+              </div>
+            </div>
+
           </div>
 
-          {/* Charts & Controls */}
-          <div className="xl:col-span-8 flex flex-col gap-4">
-            {/* Chart tab selector */}
+          <div className="text-xs text-slate-500 font-mono bg-slate-50 border border-slate-200 p-3 rounded-xl">
+            <span className="font-bold text-slate-800">Thesis Citation:</span> Model parameters tuned to OpenRocket mass decay curve ($M_0 = 1.42\text{kg}$, $I_{yy} = 0.048\text{kg}\cdot\text{m}^2$) for Project NEAL-1.2.
+          </div>
+        </div>
+
+        {/* Right: Charts & Sliders */}
+        <div className="lg:col-span-7 space-y-6">
+          
+          {/* Tab Selection */}
+          <div className="flex items-center justify-between border-b border-slate-200 pb-3">
             <div className="flex items-center gap-2">
               <button
                 onClick={() => setActiveTab("response")}
-                className={`px-4 py-1.5 rounded-lg text-xs font-bold transition-all ${activeTab === "response" ? "tab-active" : "tab-inactive"}`}
+                className={`px-3 py-1.5 rounded-lg text-xs font-mono font-bold transition-all ${
+                  activeTab === "response"
+                    ? "bg-slate-950 text-white shadow-md"
+                    : "bg-slate-100 text-slate-600 hover:bg-slate-200"
+                }`}
               >
                 Orientation Response
               </button>
               <button
                 onClick={() => setActiveTab("error")}
-                className={`px-4 py-1.5 rounded-lg text-xs font-bold transition-all ${activeTab === "error" ? "tab-active" : "tab-inactive"}`}
+                className={`px-3 py-1.5 rounded-lg text-xs font-mono font-bold transition-all ${
+                  activeTab === "error"
+                    ? "bg-slate-950 text-white shadow-md"
+                    : "bg-slate-100 text-slate-600 hover:bg-slate-200"
+                }`}
               >
-                Error & Nozzle Output
+                Error & Gimbal Output
               </button>
-              <div className="ml-auto flex items-center gap-1.5 text-xs text-slate-400 font-mono">
-                <TrendingUp className="w-3.5 h-3.5" />
-                {chartData.length} samples
-              </div>
             </div>
-
-            {/* Response chart */}
-            {activeTab === "response" && (
-              <div className="bg-slate-950 rounded-2xl p-4 border border-slate-800">
-                <p className="text-[10px] font-mono text-slate-400 mb-3 uppercase tracking-wider flex items-center gap-2">
-                  <Activity className="w-3.5 h-3.5 text-sky-400" />
-                  Attitude Angle θ vs Time (deg) — PID Setpoint Tracking
-                </p>
-                <ResponsiveContainer width="100%" height={200}>
-                  <AreaChart data={chartData} margin={{ top: 5, right: 10, left: -20, bottom: 0 }}>
-                    <defs>
-                      <linearGradient id="angleGrad" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="5%" stopColor="#38bdf8" stopOpacity={0.3} />
-                        <stop offset="95%" stopColor="#38bdf8" stopOpacity={0} />
-                      </linearGradient>
-                    </defs>
-                    <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.04)" />
-                    <XAxis dataKey="t" tick={{ fontSize: 10, fill: '#64748b', fontFamily: 'JetBrains Mono' }} tickFormatter={v => `${(v/10).toFixed(0)}s`} />
-                    <YAxis tick={{ fontSize: 10, fill: '#64748b', fontFamily: 'JetBrains Mono' }} />
-                    <Tooltip content={<CustomTooltip />} />
-                    <ReferenceLine y={targetAngle} stroke="#fbbf24" strokeDasharray="6 3" strokeWidth={1.5} label={{ value: `Target ${targetAngle}°`, fill: '#fbbf24', fontSize: 10 }} />
-                    <Area type="monotone" dataKey="angle" stroke="#38bdf8" strokeWidth={2} fill="url(#angleGrad)" name="Angle θ" dot={false} isAnimationActive={false} />
-                  </AreaChart>
-                </ResponsiveContainer>
-              </div>
-            )}
-
-            {/* Error & Nozzle chart */}
-            {activeTab === "error" && (
-              <div className="bg-slate-950 rounded-2xl p-4 border border-slate-800">
-                <p className="text-[10px] font-mono text-slate-400 mb-3 uppercase tracking-wider flex items-center gap-2">
-                  <Activity className="w-3.5 h-3.5 text-rose-400" />
-                  Control Error & Nozzle Deflection δ vs Time
-                </p>
-                <ResponsiveContainer width="100%" height={200}>
-                  <LineChart data={chartData} margin={{ top: 5, right: 10, left: -20, bottom: 0 }}>
-                    <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.04)" />
-                    <XAxis dataKey="t" tick={{ fontSize: 10, fill: '#64748b', fontFamily: 'JetBrains Mono' }} tickFormatter={v => `${(v/10).toFixed(0)}s`} />
-                    <YAxis tick={{ fontSize: 10, fill: '#64748b', fontFamily: 'JetBrains Mono' }} />
-                    <Tooltip content={<CustomTooltip />} />
-                    <ReferenceLine y={0} stroke="rgba(255,255,255,0.1)" strokeWidth={1} />
-                    <Line type="monotone" dataKey="error" stroke="#f87171" strokeWidth={2} name="Error" dot={false} isAnimationActive={false} />
-                    <Line type="monotone" dataKey="nozzle" stroke="#a78bfa" strokeWidth={2} name="Nozzle δ" dot={false} isAnimationActive={false} />
-                  </LineChart>
-                </ResponsiveContainer>
-              </div>
-            )}
-
-            {/* PID Gain sliders */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-              {[
-                { key: 'kp', label: 'Kp', subtitle: 'Proportional', color: 'text-amber-600 accent-amber-500', val: kp, set: setKp, min: 0.1, max: 8, step: 0.1 },
-                { key: 'ki', label: 'Ki', subtitle: 'Integral', color: 'text-sky-600 accent-sky-500', val: ki, set: setKi, min: 0, max: 3, step: 0.05 },
-                { key: 'kd', label: 'Kd', subtitle: 'Derivative', color: 'text-emerald-600 accent-emerald-500', val: kd, set: setKd, min: 0, max: 4, step: 0.1 },
-                { key: 'sp', label: 'θ_sp', subtitle: 'Setpoint °', color: 'text-purple-600 accent-purple-500', val: targetAngle, set: setTargetAngle, min: -20, max: 20, step: 1 },
-              ].map(s => (
-                <div key={s.key} className="bg-slate-50 border border-slate-200 rounded-xl p-3">
-                  <div className="flex justify-between items-center mb-2">
-                    <div>
-                      <span className={`text-xs font-mono font-bold ${s.color.split(' ')[0]}`}>{s.label}</span>
-                      <div className="text-[9px] text-slate-500 uppercase tracking-wider">{s.subtitle}</div>
-                    </div>
-                    <span className="font-mono text-xs bg-white border border-slate-200 px-2 py-0.5 rounded-lg text-slate-700 font-bold">
-                      {s.val}
-                    </span>
-                  </div>
-                  <input
-                    type="range"
-                    min={s.min} max={s.max} step={s.step} value={s.val}
-                    onChange={e => s.set(parseFloat(e.target.value) as any)}
-                    className={`w-full h-1.5 rounded-lg ${s.color.split(' ')[1]} bg-slate-200 cursor-pointer`}
-                  />
-                  <div className="flex justify-between text-[9px] text-slate-400 mt-1 font-mono">
-                    <span>{s.min}</span><span>{s.max}</span>
-                  </div>
-                </div>
-              ))}
-            </div>
+            <span className="text-[10px] font-mono text-slate-400">DATA_RATE: 20Hz</span>
           </div>
+
+          {/* Recharts Area / Line Plots */}
+          <div className="bg-slate-950 rounded-2xl p-4 border border-slate-800 shadow-xl">
+            {activeTab === "response" ? (
+              <ResponsiveContainer width="100%" height={230}>
+                <AreaChart data={chartData}>
+                  <defs>
+                    <linearGradient id="colorAngle" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="5%" stopColor="#FF4500" stopOpacity={0.4} />
+                      <stop offset="95%" stopColor="#FF4500" stopOpacity={0.0} />
+                    </linearGradient>
+                  </defs>
+                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" />
+                  <XAxis dataKey="t" tick={{ fontSize: 10, fill: '#64748B' }} tickFormatter={(v) => `${(v / 10).toFixed(0)}s`} />
+                  <YAxis domain={[-5, 25]} tick={{ fontSize: 10, fill: '#64748B' }} />
+                  <Tooltip content={<CustomTooltip />} />
+                  <ReferenceLine y={targetAngle} stroke="#FF4500" strokeDasharray="4 4" strokeWidth={1.5} label={{ value: 'Setpoint', fill: '#FF4500', fontSize: 10 }} />
+                  <Area type="monotone" dataKey="angle" stroke="#FF4500" strokeWidth={2.5} fillOpacity={1} fill="url(#colorAngle)" name="Pitch θ" isAnimationActive={false} />
+                </AreaChart>
+              </ResponsiveContainer>
+            ) : (
+              <ResponsiveContainer width="100%" height={230}>
+                <LineChart data={chartData}>
+                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" />
+                  <XAxis dataKey="t" tick={{ fontSize: 10, fill: '#64748B' }} tickFormatter={(v) => `${(v / 10).toFixed(0)}s`} />
+                  <YAxis tick={{ fontSize: 10, fill: '#64748B' }} />
+                  <Tooltip content={<CustomTooltip />} />
+                  <ReferenceLine y={0} stroke="rgba(255,255,255,0.1)" strokeWidth={1} />
+                  <Line type="monotone" dataKey="error" stroke="#E63946" strokeWidth={2} name="Error" dot={false} isAnimationActive={false} />
+                  <Line type="monotone" dataKey="nozzle" stroke="#FF5500" strokeWidth={2} name="Nozzle δ" dot={false} isAnimationActive={false} />
+                </LineChart>
+              </ResponsiveContainer>
+            )}
+          </div>
+
+          {/* PID Sliders */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+            {[
+              { key: 'kp', label: 'Kp', subtitle: 'Proportional', color: 'text-orange-600', val: kp, set: setKp, min: 0.1, max: 8, step: 0.1 },
+              { key: 'ki', label: 'Ki', subtitle: 'Integral', color: 'text-red-600', val: ki, set: setKi, min: 0, max: 3, step: 0.05 },
+              { key: 'kd', label: 'Kd', subtitle: 'Derivative', color: 'text-slate-900', val: kd, set: setKd, min: 0, max: 4, step: 0.1 },
+              { key: 'sp', label: 'θ_sp', subtitle: 'Setpoint °', color: 'text-orange-600', val: targetAngle, set: setTargetAngle, min: -20, max: 20, step: 1 },
+            ].map((s) => (
+              <div key={s.key} className="bg-white border border-slate-200/90 rounded-xl p-3 shadow-sm">
+                <div className="flex justify-between items-center mb-2">
+                  <div>
+                    <span className={`text-xs font-mono font-extrabold ${s.color}`}>{s.label}</span>
+                    <div className="text-[9px] font-mono text-slate-500 uppercase">{s.subtitle}</div>
+                  </div>
+                  <span className="font-mono text-xs bg-slate-100 border border-slate-200 px-2 py-0.5 rounded-md text-slate-900 font-bold">
+                    {s.val}
+                  </span>
+                </div>
+                <input
+                  type="range"
+                  min={s.min} max={s.max} step={s.step} value={s.val}
+                  onChange={(e) => s.set(parseFloat(e.target.value))}
+                  className="w-full h-1.5 rounded-lg bg-slate-200 accent-orange-600 cursor-pointer"
+                />
+              </div>
+            ))}
+          </div>
+
         </div>
       </div>
     </div>

@@ -86,7 +86,7 @@ export default function Certifications() {
       <section id="certifications" className="section-container">
         <span className="section-subtitle">VERIFIED CREDENTIALS</span>
         <h2 className="section-title mb-3">Certifications</h2>
-        <p className="text-slate-400 mb-6 max-w-xl">
+        <p className="text-slate-600 mb-6 max-w-xl">
           Professional qualifications from NASA, Intel/Purdue, GE Aerospace, and ULKASEMI.
         </p>
 
@@ -96,10 +96,10 @@ export default function Certifications() {
             <button
               key={cat}
               onClick={() => setFilter(cat)}
-              className={`px-3.5 py-1.5 rounded-lg text-xs font-mono font-bold border transition-all ${
+              className={`px-4 py-1.5 rounded-full text-xs font-mono font-bold transition-all ${
                 filter === cat
-                  ? "bg-cyan-500 text-slate-950 border-cyan-400 shadow-md shadow-cyan-500/20"
-                  : "bg-slate-900 text-slate-300 border-slate-800 hover:border-slate-700"
+                  ? "bg-slate-950 text-white shadow-md"
+                  : "bg-white text-slate-700 border border-slate-200 hover:border-orange-500 hover:text-orange-600"
               }`}
             >
               {cat}
@@ -111,10 +111,10 @@ export default function Certifications() {
           {filtered.map((cert, i) => {
             const Icon = cert.icon;
             return (
-              <div key={i} className="tech-card border border-slate-800 flex flex-col justify-between">
+              <div key={i} className="aero-card flex flex-col justify-between">
                 <div>
                   <div
-                    className="relative cursor-zoom-in group rounded-xl overflow-hidden border border-slate-800 mb-4 bg-slate-950"
+                    className="relative cursor-zoom-in group rounded-xl overflow-hidden border border-slate-200 mb-4 bg-slate-50 shadow-sm"
                     onClick={() => setLightbox({ isOpen: true, src: cert.img, title: cert.title })}
                   >
                     <img
@@ -122,26 +122,26 @@ export default function Certifications() {
                       alt={cert.title}
                       className="w-full h-40 object-cover group-hover:scale-105 transition-transform duration-500"
                     />
-                    <div className="absolute inset-0 bg-slate-950/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                      <ZoomIn className="w-6 h-6 text-cyan-400" />
+                    <div className="absolute inset-0 bg-slate-950/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                      <ZoomIn className="w-6 h-6 text-white" />
                     </div>
                   </div>
 
                   <div className="flex items-start gap-3 mb-2">
-                    <div className="w-8 h-8 rounded-lg bg-slate-800 border border-slate-700 flex items-center justify-center flex-shrink-0 text-cyan-400">
+                    <div className="w-8 h-8 rounded-lg bg-slate-100 border border-slate-200 flex items-center justify-center flex-shrink-0 text-orange-600">
                       <Icon className="w-4 h-4" />
                     </div>
                     <div>
-                      <h3 className="font-bold text-white text-sm leading-tight">{cert.title}</h3>
-                      <p className="text-xs font-mono text-cyan-400 mt-0.5">{cert.issuer}</p>
+                      <h3 className="font-bold text-slate-950 text-sm leading-tight">{cert.title}</h3>
+                      <p className="text-xs font-mono font-bold text-orange-600 mt-0.5">{cert.issuer}</p>
                     </div>
                   </div>
                 </div>
 
-                <div className="mt-3 pt-3 border-t border-slate-800/80 flex items-center justify-between">
-                  <span className="text-[11px] font-mono text-slate-400">{cert.sponsor}</span>
+                <div className="mt-3 pt-3 border-t border-slate-100 flex items-center justify-between">
+                  <span className="text-[11px] font-mono text-slate-500">{cert.sponsor}</span>
                   <a href={cert.link} target="_blank" rel="noreferrer"
-                    className="flex items-center gap-1 text-xs font-mono font-bold text-cyan-400 hover:text-cyan-300">
+                    className="flex items-center gap-1 text-xs font-mono font-bold text-orange-600 hover:text-red-600">
                     VERIFY <ExternalLink className="w-3.5 h-3.5" />
                   </a>
                 </div>
@@ -155,9 +155,9 @@ export default function Certifications() {
             href="https://drive.google.com/drive/folders/1cE9iPPTE2vz2R7t6SNu08gT15XpSTB5m"
             target="_blank"
             rel="noreferrer"
-            className="inline-flex items-center gap-2 bg-slate-900 hover:bg-slate-800 text-white border border-slate-700 hover:border-cyan-400 font-mono text-xs font-bold px-6 py-3 rounded-xl transition-all shadow-lg"
+            className="inline-flex items-center gap-2 bg-slate-950 hover:bg-orange-600 text-white font-mono text-xs font-bold px-6 py-3.5 rounded-full transition-all shadow-xl"
           >
-            <ExternalLink className="w-4 h-4 text-cyan-400" />
+            <ExternalLink className="w-4 h-4 text-orange-500" />
             VIEW ALL CREDENTIALS ON GOOGLE DRIVE
           </a>
         </div>
