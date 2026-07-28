@@ -1,160 +1,74 @@
-import { useState } from "react";
-import { Mail, Phone, MapPin, Linkedin, Github, Send } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { toast } from "@/components/ui/use-toast";
+import React from "react";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 
-export default function Contact() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    subject: "",
-    message: ""
-  });
+const Contact = () => {
+  const ref = useScrollReveal();
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    toast({
-      title: "Message Transmitted",
-      description: "Thank you for reaching out. I'll get back to you shortly!",
-    });
-    setFormData({ name: "", email: "", subject: "", message: "" });
-  };
+  const links = [
+    {
+      label: "Email",
+      val: "mevrickneal@gmail.com",
+      href: "mailto:mevrickneal@gmail.com",
+      arrow: "→",
+    },
+    {
+      label: "GitHub",
+      val: "github.com/MevrickNeal",
+      href: "https://github.com/MevrickNeal",
+      arrow: "→",
+    },
+    {
+      label: "LinkedIn",
+      val: "Lian Mollick Nehal",
+      href: "#",
+      arrow: "→",
+    },
+    {
+      label: "Portfolio",
+      val: "mevrickneal.github.io",
+      href: "https://mevrickneal.github.io/Portfolio_site_LianMollick/",
+      arrow: "→",
+    },
+  ];
 
   return (
-    <section id="contact" className="section-container">
-      <span className="section-subtitle">GET IN TOUCH</span>
-      <h2 className="section-title mb-3">Contact & Collaboration</h2>
-      <p className="text-slate-600 mb-10 max-w-xl text-sm">
-        Open for rocket avionics, GNC research, embedded engineering roles, and technical inquiries.
-      </p>
-
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-10">
-        
-        {/* Contact Info */}
-        <div className="lg:col-span-5 space-y-6">
-          <div className="aero-card space-y-5">
-            <h3 className="text-lg font-black text-slate-950 mb-4">Direct Channels</h3>
-            
-            <div className="flex items-start gap-4">
-              <div className="w-10 h-10 rounded-xl bg-orange-50 border border-orange-200 flex items-center justify-center text-orange-600 flex-shrink-0">
-                <Mail className="w-5 h-5" />
-              </div>
-              <div>
-                <h4 className="text-xs font-mono font-bold text-slate-400 uppercase">Email</h4>
-                <a href="mailto:lianmollik@gmail.com" className="text-slate-950 hover:text-orange-600 font-mono text-sm font-bold transition-colors">
-                  lianmollik@gmail.com
-                </a>
-              </div>
+    <section id="contact" className="contact-section" ref={ref}>
+      <div className="section-inner">
+        <div className="contact-grid">
+          <div className="contact-info">
+            <div className="reveal">
+              <div className="section-tag">Get In Touch</div>
+              <h2 className="section-heading">
+                Let's Build<br />
+                <span className="section-heading-light">Something</span>
+              </h2>
             </div>
+            <p className="reveal delay-1">
+              Whether you're looking to collaborate on aerospace research, embedded systems,
+              or need a rigorous engineer who codes, simulates, and ships — I'd love to hear
+              from you.
+            </p>
+          </div>
 
-            <div className="flex items-start gap-4">
-              <div className="w-10 h-10 rounded-xl bg-orange-50 border border-orange-200 flex items-center justify-center text-orange-600 flex-shrink-0">
-                <Phone className="w-5 h-5" />
-              </div>
-              <div>
-                <h4 className="text-xs font-mono font-bold text-slate-400 uppercase">Phone</h4>
-                <a href="tel:+8801518664917" className="text-slate-950 hover:text-orange-600 font-mono text-sm font-bold transition-colors">
-                  +880 1518 664917
-                </a>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-4">
-              <div className="w-10 h-10 rounded-xl bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-700 flex-shrink-0">
-                <MapPin className="w-5 h-5" />
-              </div>
-              <div>
-                <h4 className="text-xs font-mono font-bold text-slate-400 uppercase">Location</h4>
-                <p className="text-slate-800 text-sm font-medium">
-                  Dhaka / Mymensingh, Bangladesh
-                </p>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-4 pt-2">
-              <div className="w-10 h-10 rounded-xl bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-700 flex-shrink-0">
-                <Linkedin className="w-5 h-5" />
-              </div>
-              <div>
-                <h4 className="text-xs font-mono font-bold text-slate-400 uppercase">LinkedIn</h4>
-                <a href="https://linkedin.com/in/lianmollick" target="_blank" rel="noreferrer" className="text-orange-600 hover:text-red-600 font-mono text-xs font-bold">
-                  linkedin.com/in/lianmollick
-                </a>
-              </div>
-            </div>
+          <div className="contact-links reveal-right delay-2">
+            {links.map((l) => (
+              <a
+                key={l.label}
+                href={l.href}
+                target={l.href.startsWith("http") ? "_blank" : undefined}
+                rel="noopener noreferrer"
+                className="contact-link"
+              >
+                <span className="contact-link-label">{l.label}</span>
+                <span className="contact-link-val">{l.val}</span>
+                <span className="contact-link-arrow">{l.arrow}</span>
+              </a>
+            ))}
           </div>
         </div>
-
-        {/* Form */}
-        <div className="lg:col-span-7">
-          <form onSubmit={handleSubmit} className="aero-card space-y-4">
-            <h3 className="text-lg font-black text-slate-950 mb-2">Send Message</h3>
-            
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div>
-                <label className="text-[11px] font-mono font-bold text-slate-500 uppercase block mb-1">Your Name</label>
-                <Input
-                  type="text"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  className="bg-slate-50 border-slate-200 text-slate-950 focus:border-orange-500 focus:ring-orange-500"
-                  required
-                />
-              </div>
-              <div>
-                <label className="text-[11px] font-mono font-bold text-slate-500 uppercase block mb-1">Your Email</label>
-                <Input
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  className="bg-slate-50 border-slate-200 text-slate-950 focus:border-orange-500 focus:ring-orange-500"
-                  required
-                />
-              </div>
-            </div>
-
-            <div>
-              <label className="text-[11px] font-mono font-bold text-slate-500 uppercase block mb-1">Subject</label>
-              <Input
-                type="text"
-                name="subject"
-                value={formData.subject}
-                onChange={handleChange}
-                className="bg-slate-50 border-slate-200 text-slate-950 focus:border-orange-500 focus:ring-orange-500"
-                required
-              />
-            </div>
-
-            <div>
-              <label className="text-[11px] font-mono font-bold text-slate-500 uppercase block mb-1">Message</label>
-              <Textarea
-                name="message"
-                value={formData.message}
-                onChange={handleChange}
-                className="bg-slate-50 border-slate-200 text-slate-950 focus:border-orange-500 focus:ring-orange-500 min-h-[120px]"
-                required
-              />
-            </div>
-
-            <Button
-              type="submit"
-              className="w-full bg-slate-950 hover:bg-orange-600 text-white font-mono font-bold py-3 rounded-full shadow-lg hover:shadow-orange-500/25 transition-all"
-            >
-              TRANSMIT MESSAGE <Send className="ml-2 h-4 w-4" />
-            </Button>
-          </form>
-        </div>
-
       </div>
     </section>
   );
-}
+};
+
+export default Contact;
