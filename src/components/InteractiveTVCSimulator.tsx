@@ -220,7 +220,7 @@ export default function InteractiveTVCSimulator() {
           </div>
 
           <div className="text-xs text-slate-500 font-mono bg-slate-50 border border-slate-200 p-3 rounded-xl">
-            <span className="font-bold text-slate-800">Thesis Citation:</span> Model parameters tuned to OpenRocket mass decay curve ($M_0 = 1.42\text{kg}$, $I_{yy} = 0.048\text{kg}\cdot\text{m}^2$) for Project NEAL-1.2.
+            <span className="font-bold text-slate-800">Thesis Citation:</span> Model parameters tuned to OpenRocket mass decay curve (M₀ = 1.42 kg, Iyy = 0.048 kg·m²) for Project NEAL-1.2.
           </div>
         </div>
 
