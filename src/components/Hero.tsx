@@ -1,15 +1,22 @@
-import React, { useEffect, useState } from "react";
-import { ArrowDownIcon, GithubIcon, LinkedinIcon, MailIcon, Rocket, ChevronRight, Cpu, ShieldCheck, Activity, Radio, Compass, Sparkles } from "lucide-react";
+import React, { useEffect, useState, useRef } from "react";
+import { ArrowDownIcon, GithubIcon, LinkedinIcon, MailIcon, Rocket, ChevronRight, Cpu, ShieldCheck, Activity, Radio } from "lucide-react";
 
 export default function Hero() {
   const [scrollPitch, setScrollPitch] = useState(0);
+  const ticking = useRef(false);
 
-  // Scrollymation — pitch angle rotation and trajectory shift driven by scroll position
+  // Hardware-accelerated rAF scroll listener for 60fps smooth animation
   useEffect(() => {
     const handleScroll = () => {
-      const scrollY = window.scrollY;
-      const pitch = Math.sin(scrollY * 0.005) * 12;
-      setScrollPitch(pitch);
+      if (!ticking.current) {
+        requestAnimationFrame(() => {
+          const scrollY = window.scrollY;
+          const pitch = Math.sin(scrollY * 0.005) * 12;
+          setScrollPitch(pitch);
+          ticking.current = false;
+        });
+        ticking.current = true;
+      }
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
@@ -31,14 +38,14 @@ export default function Hero() {
   return (
     <section id="home" className="relative min-h-[90vh] flex items-center overflow-hidden py-10 md:py-16 aerospace-grid-bg">
       
-      {/* Background Orbital & Radar Vector Graphic */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] border border-slate-200/60 rounded-full pointer-events-none -z-10 animate-float" />
+      {/* Background Vector Graphic */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] border border-slate-200/60 rounded-full pointer-events-none -z-10 animate-float transform-gpu" />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[450px] h-[450px] border border-dashed border-orange-300/40 rounded-full pointer-events-none -z-10" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
 
-          {/* Left Column: Heading, Telemetry Pill & Scrollymation Status */}
+          {/* Left Column */}
           <div className="lg:col-span-7 animate-fade-in">
             
             {/* Live Telemetry Radar Pill */}
@@ -78,14 +85,14 @@ export default function Hero() {
             {/* Actions */}
             <div className="flex flex-wrap items-center gap-4">
               <a href="#tvc-simulator"
-                className="flex items-center gap-2 bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-500 hover:to-red-500 text-white font-mono font-bold text-xs px-6 py-3.5 rounded-full transition-all shadow-xl shadow-orange-500/25 hover:-translate-y-0.5">
+                className="flex items-center gap-2 bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-500 hover:to-red-500 text-white font-mono font-bold text-xs px-6 py-3.5 rounded-full transition-all shadow-xl shadow-orange-500/25 hover:-translate-y-0.5 active:translate-y-0">
                 <Cpu className="w-4 h-4" />
                 LAUNCH TVC SIMULATOR
                 <ChevronRight className="w-4 h-4" />
               </a>
 
               <a href="#projects"
-                className="flex items-center gap-2 bg-white hover:bg-slate-900 text-slate-900 hover:text-white font-mono text-xs font-bold px-6 py-3.5 rounded-full border border-slate-200 shadow-md transition-all hover:-translate-y-0.5">
+                className="flex items-center gap-2 bg-white hover:bg-slate-900 text-slate-900 hover:text-white font-mono text-xs font-bold px-6 py-3.5 rounded-full border border-slate-200 shadow-md transition-all hover:-translate-y-0.5 active:translate-y-0">
                 EXPLORE PROJECTS
                 <ChevronRight className="w-4 h-4" />
               </a>
@@ -115,15 +122,15 @@ export default function Hero() {
 
           </div>
 
-          {/* Right Column: Floating Suit Portrait & Interactive Telemetry Dashboard */}
+          {/* Right Column */}
           <div className="lg:col-span-5 flex flex-col items-center gap-6">
             
-            {/* Suit Portrait inside Floating White Card with Scrollymation Pitch Ring */}
+            {/* Suit Portrait */}
             <div className="relative group">
               
-              {/* Animated Flight Path Ring (Scrollymation) */}
+              {/* Flight Path Ring (Scrollymation) */}
               <div 
-                className="absolute -inset-4 rounded-3xl border-2 border-dashed border-orange-500/40 z-0 transition-transform duration-300 ease-out"
+                className="absolute -inset-4 rounded-3xl border-2 border-dashed border-orange-500/40 z-0 transition-transform duration-150 ease-out transform-gpu"
                 style={{ transform: `rotate(${scrollPitch * 2}deg)` }}
               />
 
@@ -132,7 +139,9 @@ export default function Hero() {
                 <img
                   src="/lovable-uploads/97da3591-aa27-464b-b81c-c8d2f868ba6e.png"
                   alt="Lian Mollick Nehal — Formal Suit Portrait"
-                  className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700"
+                  loading="eager"
+                  decoding="async"
+                  className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
                 />
                 
                 {/* HUD Overlay Bottom Card */}
@@ -155,7 +164,7 @@ export default function Hero() {
               </div>
             </div>
 
-            {/* Stats Grid — Elevated White Floating Cards */}
+            {/* Stats Grid */}
             <div className="grid grid-cols-2 gap-3 w-full">
               {stats.map((s) => (
                 <div key={s.label}
@@ -166,13 +175,15 @@ export default function Hero() {
               ))}
             </div>
 
-            {/* Seamless Floating Logo Card — PNG Logo directly floating on white backdrop */}
+            {/* Seamless Floating Logo Card */}
             <a href="#projects"
               className="w-full flex items-center justify-between bg-white border border-slate-200 hover:border-orange-500/50 rounded-xl p-3.5 transition-all group shadow-md hover:shadow-xl">
               <div className="flex items-center gap-3">
                 <img
                   src="/lovable-uploads/project-neal-logo.png"
                   alt="Project NEAL Logo"
+                  loading="eager"
+                  decoding="async"
                   className="h-6 w-auto object-contain"
                 />
                 <div className="border-l border-slate-200 pl-3">
