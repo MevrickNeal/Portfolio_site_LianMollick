@@ -11,6 +11,7 @@ import WallOfFame from "@/components/WallOfFame";
 import Gallery from "@/components/Gallery";
 import CoolStuffs from "@/components/CoolStuffs";
 import Certifications from "@/components/Certifications";
+import PersonalSection from "@/components/PersonalSection";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 
@@ -38,6 +39,7 @@ const Index = () => {
       <Gallery />
       <CoolStuffs />
       <Certifications />
+      <PersonalSection />
       <Contact />
       <Footer />
     </div>

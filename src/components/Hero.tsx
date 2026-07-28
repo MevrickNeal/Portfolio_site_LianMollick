@@ -109,26 +109,38 @@ export default function Hero() {
 
           {/* Right: Photo + Stats */}
           <div className="lg:col-span-5 flex flex-col items-center gap-6 animate-slide-right">
-            {/* Profile photo */}
+            {/* Profile photo — formal suit portrait */}
             <div className="relative">
-              <div className="w-72 h-72 md:w-80 md:h-80 rounded-3xl overflow-hidden border-4 border-white shadow-2xl animate-border-glow">
+              {/* Engineering grid frame */}
+              <div className="absolute -inset-3 rounded-3xl border border-dashed border-portfolio-teal/30 z-0" />
+              <div className="absolute -inset-6 rounded-3xl border border-portfolio-navy/10 z-0" />
+              {/* Corner accent marks */}
+              <span className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-portfolio-accent rounded-tl-lg z-10" />
+              <span className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-portfolio-accent rounded-tr-lg z-10" />
+              <span className="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-portfolio-accent rounded-bl-lg z-10" />
+              <span className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-portfolio-accent rounded-br-lg z-10" />
+
+              <div className="w-72 h-[340px] md:w-80 md:h-[380px] rounded-2xl overflow-hidden border-2 border-white shadow-2xl animate-border-glow relative z-1">
                 <img
-                  src="/lovable-uploads/Lian-Mollick-3cee.png"
-                  alt="Lian Mollick Nehal"
+                  src="/lovable-uploads/97da3591-aa27-464b-b81c-c8d2f868ba6e.png"
+                  alt="Lian Mollick Nehal — Formal Portrait"
                   className="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-700"
-                  onError={(e) => {
-                    (e.target as HTMLImageElement).src = "/lovable-uploads/97da3591-aa27-464b-b81c-c8d2f868ba6e.png";
-                  }}
                 />
+                {/* Subtle gradient overlay at bottom */}
+                <div className="absolute bottom-0 inset-x-0 h-16 bg-gradient-to-t from-slate-900/40 to-transparent pointer-events-none" />
               </div>
 
               {/* Floating badges on photo */}
-              <div className="absolute -top-3 -right-3 bg-amber-500 text-white text-[10px] font-black px-2.5 py-1.5 rounded-xl shadow-lg rotate-3">
+              <div className="absolute -top-3 -right-4 bg-amber-500 text-white text-[10px] font-black px-2.5 py-1.5 rounded-xl shadow-lg rotate-3 z-20">
                 🏆 1st Place
               </div>
-              <div className="absolute -bottom-3 -left-3 bg-portfolio-navy text-white text-[10px] font-bold px-2.5 py-1.5 rounded-xl shadow-lg -rotate-2 flex items-center gap-1">
+              <div className="absolute -bottom-3 -left-4 bg-portfolio-navy text-white text-[10px] font-bold px-2.5 py-1.5 rounded-xl shadow-lg -rotate-2 flex items-center gap-1 z-20">
                 <Rocket className="w-3 h-3" />
                 NEAL-1.2
+              </div>
+              {/* ID-tag style label */}
+              <div className="absolute top-2 left-2 bg-black/30 backdrop-blur-sm text-white text-[9px] font-mono px-2 py-1 rounded-md z-20 tracking-wider">
+                ID // LMN-2024
               </div>
             </div>
 
