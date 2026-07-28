@@ -7,27 +7,28 @@ const Contact = () => {
   const links = [
     {
       label: "Email",
-      val: "mevrickneal@gmail.com",
-      href: "mailto:mevrickneal@gmail.com",
-      arrow: "→",
+      val: "lianmollik@gmail.com",
+      href: "mailto:lianmollik@gmail.com",
+    },
+    {
+      label: "Phone",
+      val: "+880 1518 664917",
+      href: "tel:+8801518664917",
     },
     {
       label: "GitHub",
       val: "github.com/MevrickNeal",
       href: "https://github.com/MevrickNeal",
-      arrow: "→",
     },
     {
       label: "LinkedIn",
-      val: "Lian Mollick Nehal",
-      href: "#",
-      arrow: "→",
+      val: "linkedin.com/in/lianmollick",
+      href: "https://www.linkedin.com/in/lianmollick",
     },
     {
-      label: "Portfolio",
-      val: "mevrickneal.github.io",
-      href: "https://mevrickneal.github.io/Portfolio_site_LianMollick/",
-      arrow: "→",
+      label: "UrbanGaz Live",
+      val: "mevrickneal.github.io/UrbanGaz-websiteforthem/",
+      href: "https://mevrickneal.github.io/UrbanGaz-websiteforthem/",
     },
   ];
 
@@ -43,14 +44,17 @@ const Contact = () => {
                 <span className="section-heading-light">Something</span>
               </h2>
             </div>
-            <p className="reveal delay-1">
+            <p className="reveal delay-1" style={{ marginTop: 24 }}>
               Whether you're looking to collaborate on aerospace research, embedded systems,
               or need a rigorous engineer who codes, simulates, and ships — I'd love to hear
               from you.
             </p>
+            <p className="reveal delay-2" style={{ marginTop: 0, fontSize: 13, color: "var(--mid-grey)" }}>
+              Based in Dhaka, Bangladesh · Available for remote research collaboration &amp; full-time roles.
+            </p>
           </div>
 
-          <div className="contact-links reveal-right delay-2">
+          <div className="reveal-right delay-2">
             {links.map((l) => (
               <a
                 key={l.label}
@@ -61,7 +65,7 @@ const Contact = () => {
               >
                 <span className="contact-link-label">{l.label}</span>
                 <span className="contact-link-val">{l.val}</span>
-                <span className="contact-link-arrow">{l.arrow}</span>
+                <span className="contact-link-arrow">→</span>
               </a>
             ))}
           </div>

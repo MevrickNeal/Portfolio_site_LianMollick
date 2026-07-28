@@ -3,28 +3,25 @@ import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 const experiences = [
   {
-    date: "2025 – Present",
-    title: "Founder & Lead Engineer",
-    company: "UrbanGaz — Smart LPG Safety Platform",
-    desc: "Designed and deployed a full-stack IoT safety monitoring system for LPG gas management. Built the React dashboard, embedded sensor firmware (ESP32), and automated shut-off relay logic. Live at mevrickneal.github.io/UrbanGaz-websiteforthem/",
+    date: "Jan 2026 – Present",
+    title: "Tech Coordinator",
+    company: "UrbanGaz Limited — Khilkhet, Dhaka",
+    desc: "Developing and implementing strategies to achieve tech development goals. Building and maintaining strong relationships with principal partnership firms in software & hardware. Identifying potential working opportunities and negotiating contracts. Live product: mevrickneal.github.io/UrbanGaz-websiteforthem/",
+    link: "https://mevrickneal.github.io/UrbanGaz-websiteforthem/",
   },
   {
-    date: "2024 – Present",
-    title: "Lead Researcher — TVC & GNC Systems",
-    company: "Project NEAL — University Thesis",
-    desc: "Architected a complete Thrust Vector Control digital twin: OpenRocket mass model → 6-DOF MATLAB/Simulink plant → PID, MRAC, ADRC controller design → Monte Carlo robustness analysis. Manuscript submitted as IEEE-format research paper.",
+    date: "Jun 2025 – Dec 2025",
+    title: "Assistant to CEO",
+    company: "Cloud Company — Dhaka, Bangladesh",
+    desc: "Assisted in strategic planning and operations. Managed client communications and project coordination for freelance services including graphic design, web development, and video editing. cloudcompany.cc",
+    link: "https://www.cloudcompany.cc/",
   },
   {
-    date: "2024",
-    title: "Open Source GNC Contributor",
-    company: "TVC & GNC — Community Research",
-    desc: "Released open-source GNC algorithms for experimental rocketry including MRAC adaptive pitch stabilization and ADRC with Extended State Observer. Benchmarked against PID across wind disturbance scenarios.",
-  },
-  {
-    date: "2023 – 2024",
-    title: "Researcher — Quantum Multimodal Oncology",
-    company: "AI Research Initiative",
-    desc: "Investigating quantum-classical hybrid machine learning for multimodal cancer classification. Combines medical imaging, genomic markers, and clinical metadata through quantum kernel methods.",
+    date: "2021 – 2023",
+    title: "Jr. Embedded Engineer (Part-time)",
+    company: "Dhumketu Exploration Technologies Ltd. — Mymensingh",
+    desc: "Amateur rocket avionics development and testing — weather parameter and sounding rocket testing. Research and development on telemetry and tracking systems. Avionics bay assembly and testing with live broadcasting.",
+    link: null,
   },
 ];
 
@@ -37,8 +34,8 @@ const Experience = () => {
         <div className="reveal">
           <div className="section-tag">Timeline</div>
           <h2 className="section-heading">
-            Experience &<br />
-            <span className="section-heading-light">Research</span>
+            Professional<br />
+            <span className="section-heading-light">Experience</span>
           </h2>
         </div>
 
@@ -49,6 +46,27 @@ const Experience = () => {
               <div className="exp-title">{e.title}</div>
               <div className="exp-company">{e.company}</div>
               <p className="exp-desc">{e.desc}</p>
+              {e.link && (
+                <a
+                  href={e.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    display: "inline-block",
+                    marginTop: 12,
+                    fontFamily: "var(--font-display)",
+                    fontSize: 11,
+                    letterSpacing: "0.14em",
+                    textTransform: "uppercase",
+                    color: "var(--red)",
+                    textDecoration: "none",
+                    borderBottom: "1px solid var(--red)",
+                    paddingBottom: 2,
+                  }}
+                >
+                  Visit →
+                </a>
+              )}
             </div>
           ))}
         </div>

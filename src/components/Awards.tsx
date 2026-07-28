@@ -1,141 +1,275 @@
-import React, { useState } from "react";
-import { Trophy, Award, Medal, Star, ExternalLink, ZoomIn } from "lucide-react";
-import LightboxModal from "./LightboxModal";
+import React from "react";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 
-const honors = [
+const awards = [
   {
-    rank: "1st Place",
-    rankBadge: "badge-orange",
-    icon: Trophy,
-    iconColor: "text-orange-600",
-    title: "Rocketry Innovation Challenge 2022",
-    org: "a2i & Bangabandhu Aviation & Aerospace University",
-    desc: "1st place winner in Bangladesh's premier rocketry innovation competition for outstanding rocket design and engineering.",
-    img: "/lovable-uploads/c7364aa4-f619-4066-8c11-4af77564283c.png",
-    link: "https://drive.google.com/drive/folders/1cE9iPPTE2vz2R7t6SNu08gT15XpSTB5m",
+    year: "2022",
+    title: "Winner — Rocketry Innovation Challenge",
+    org: "a2i Aspire to Innovation, Ministry of ICT, Bangladesh · Aviation and Aerospace University",
+    desc: "National-level rocketry challenge awarded by the Ministry of ICT Bangladesh for innovative amateur rocket design and avionics development.",
+    badge: "🥇 Winner",
+    color: "#c8a000",
   },
   {
-    rank: "1st Runner-Up",
-    rankBadge: "badge-red",
-    icon: Award,
-    iconColor: "text-red-600",
-    title: "NASA Space Apps Challenge 2023",
-    org: "Team SolarSentinel — Mymensingh",
-    desc: "1st Runner-Up at NASA Space Apps Challenge Bangladesh 2023 for DSCOVR satellite space weather AI system.",
-    img: "/lovable-uploads/e00a481e-4e06-4e62-b409-b39661c31fcd.png",
+    year: "2023",
+    title: "Regional 1st Runner-Up — NASA Space Apps Challenge",
+    org: "NASA · Team: Solar Sentinel",
+    desc: "Built a machine learning model using NOAA satellite data from the Lagrange point to predict severe solar weather events and issue early warnings via Twitter integration — preventing large-scale power blackouts.",
+    badge: "🥈 Runner-Up",
+    color: "#c8102e",
   },
   {
-    rank: "1st Runner-Up",
-    rankBadge: "badge-grey",
-    icon: Medal,
-    iconColor: "text-slate-700",
-    title: "3rd National Science Fest",
-    org: "Project: Wireless Energy Transmission",
-    desc: "1st Runner-Up at 3rd National Science Fest for wireless energy transmission innovation.",
-    img: "/lovable-uploads/98808512-2995-4e9b-822e-702b4422ce82.png",
+    year: "2023",
+    title: "1st Runner-Up — 3rd National Science Fest",
+    org: "Walton Laptop · Senior Segment",
+    desc: "Project: Wireless energy transmission — demonstrated high-frequency resonant inductive coupling for practical wireless power delivery.",
+    badge: "🥈 Runner-Up",
+    color: "#c8102e",
   },
   {
-    rank: "National Finalist",
-    rankBadge: "badge-black",
-    icon: Trophy,
-    iconColor: "text-slate-950",
-    title: "Technoxian WRC 2024",
-    org: "World Robotics Championship — 15kg Battle Bot",
-    desc: "National Finalist at Technoxian World Robotics Championship 2024 with custom 15kg combat battle robot.",
-    img: "/lovable-uploads/01c1360a-62bc-4bad-996f-e32d933b1d48.png",
+    year: "2022",
+    title: "1st Runner-Up — Poster Presentation at Brainiac 2022",
+    org: "Brainiac National Competition",
+    desc: "Presented an automobile anti-theft system using GPS tracking, RFID authentication, and GSM-based owner alerts.",
+    badge: "🥈 Runner-Up",
+    color: "#c8102e",
   },
   {
-    rank: "Finalist",
-    rankBadge: "badge-orange",
-    icon: Star,
-    iconColor: "text-orange-600",
-    title: "National STEAM Olympiad",
-    org: "iTesseract & Ministry of Education",
-    desc: "Top team finalist at National STEAM Olympiad organized by Ministry of Education.",
-    img: "/lovable-uploads/ecf8b8e8-f9be-4a89-9b69-a4578f9ba6df.png",
-  },
-  {
-    rank: "Participant",
-    rankBadge: "badge-grey",
-    icon: Award,
-    iconColor: "text-slate-600",
-    title: "IIT Techfest Combat Robotics",
-    org: "IUBAT — 15kg Battle Bot",
-    desc: "Participated in IIT Techfest combat robotics division with Alpha Science Lab team's 15kg battle bot.",
-    img: "/lovable-uploads/cacaca86-a46b-419a-bec9-5777b25a91a1.png",
+    year: "2020",
+    title: "1st Runner-Up — Robo Race",
+    org: "CSE Carnival 2020 · Mymensingh Engineering College",
+    desc: "High-speed autonomous robot racing competition. Designed and built a line-following robot with optimized PID speed control.",
+    badge: "🥈 Runner-Up",
+    color: "#c8102e",
   },
 ];
 
-export default function Awards() {
-  const [lightbox, setLightbox] = useState<{ isOpen: boolean; src: string; title: string }>({
-    isOpen: false, src: "", title: ""
-  });
+const certifications = [
+  {
+    title: "Semiconductor Fabrication 101",
+    org: "Intel · Purdue University · Texas University",
+    date: "Jan 2025",
+    desc: "Comprehensive training on semiconductor fabrication processes, wafer processing, and chip design fundamentals. Intel-sponsored industry program.",
+  },
+  {
+    title: "IC Mask Design & Analog Layout",
+    org: "ULKASEMI PVT Limited — Industrial Training",
+    date: "Dec 2024",
+    desc: "Intensive training on Analog Design, IC Mask Design (Mixed-Signal Layout), and IC Physical Design using industry-standard tools.",
+  },
+  {
+    title: "Industrial Electrical Engineering",
+    org: "Training Institute for Chemical Industries (TICI)",
+    date: "Apr–May 2025",
+    desc: "Specialized training on industrial electrical systems — implementation and maintenance in chemical and manufacturing environments.",
+  },
+];
+
+const Awards = () => {
+  const ref = useScrollReveal();
 
   return (
-    <>
-      <LightboxModal
-        isOpen={lightbox.isOpen}
-        onClose={() => setLightbox(prev => ({ ...prev, isOpen: false }))}
-        imageSrc={lightbox.src}
-        title={lightbox.title}
-      />
-
-      <section id="awards" className="section-container">
-        <span className="section-subtitle">HONORS & COMPETITIONS</span>
-        <h2 className="section-title mb-3">Awards & Recognition</h2>
-        <p className="text-slate-600 mb-10">Winning across rocketry, robotics, AI, and science innovation.</p>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {honors.map((h, i) => {
-            const Icon = h.icon;
-            return (
-              <div
-                key={i}
-                className="aero-card flex flex-col justify-between"
-              >
-                <div>
-                  <div className="flex items-center justify-between gap-2 mb-4">
-                    <div className="w-10 h-10 rounded-xl bg-slate-100 border border-slate-200 flex items-center justify-center">
-                      <Icon className={`w-5 h-5 ${h.iconColor}`} />
-                    </div>
-                    <span className={h.rankBadge}>
-                      {h.rank}
-                    </span>
-                  </div>
-
-                  <h3 className="font-extrabold text-slate-950 text-base mb-1">{h.title}</h3>
-                  <p className="text-xs font-mono font-bold text-orange-600 mb-3">{h.org}</p>
-                  <p className="text-xs text-slate-600 leading-relaxed mb-4">{h.desc}</p>
-                </div>
-
-                <div>
-                  <div
-                    className="relative rounded-xl overflow-hidden cursor-zoom-in group border border-slate-200 shadow-sm mb-3"
-                    onClick={() => setLightbox({ isOpen: true, src: h.img, title: h.title })}
-                  >
-                    <img
-                      src={h.img}
-                      alt={h.title}
-                      className="w-full h-36 object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                    <div className="absolute inset-0 bg-slate-950/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                      <ZoomIn className="w-6 h-6 text-white" />
-                    </div>
-                  </div>
-
-                  {h.link && (
-                    <a href={h.link} target="_blank" rel="noreferrer"
-                      className="flex items-center gap-1.5 text-xs font-mono font-bold text-orange-600 hover:text-red-600 transition-colors">
-                      <ExternalLink className="w-3.5 h-3.5" />
-                      VIEW CERTIFICATE
-                    </a>
-                  )}
-                </div>
-              </div>
-            );
-          })}
+    <section id="awards" className="section" style={{ background: "var(--off-white)" }} ref={ref}>
+      <div className="section-inner">
+        <div className="reveal">
+          <div className="section-tag">Recognition</div>
+          <h2 className="section-heading">
+            Awards &<br />
+            <span className="section-heading-light">Achievements</span>
+          </h2>
         </div>
-      </section>
-    </>
+
+        {/* Awards listing */}
+        <div style={{ marginTop: 64 }}>
+          {awards.map((a, i) => (
+            <div
+              key={a.title}
+              className={`reveal delay-${i + 1}`}
+              style={{
+                display: "grid",
+                gridTemplateColumns: "80px 1fr auto",
+                gap: "32px",
+                alignItems: "start",
+                padding: "32px 0",
+                borderBottom: "1px solid var(--light-grey)",
+              }}
+            >
+              <div style={{
+                fontFamily: "var(--font-display)",
+                fontWeight: 700,
+                fontSize: 13,
+                color: "var(--mid-grey)",
+                letterSpacing: "0.1em",
+                paddingTop: 4,
+              }}>{a.year}</div>
+              <div>
+                <div style={{
+                  fontFamily: "var(--font-display)",
+                  fontWeight: 600,
+                  fontSize: "clamp(16px, 2vw, 22px)",
+                  textTransform: "uppercase",
+                  color: "var(--black)",
+                  marginBottom: 6,
+                  letterSpacing: "0.02em",
+                }}>{a.title}</div>
+                <div style={{
+                  fontFamily: "var(--font-display)",
+                  fontWeight: 300,
+                  fontSize: 13,
+                  letterSpacing: "0.1em",
+                  textTransform: "uppercase",
+                  color: "var(--mid-grey)",
+                  marginBottom: 12,
+                }}>{a.org}</div>
+                <p style={{ fontSize: 14, lineHeight: 1.75, color: "var(--dark-grey)" }}>{a.desc}</p>
+              </div>
+              <div style={{
+                fontFamily: "var(--font-display)",
+                fontSize: 12,
+                letterSpacing: "0.08em",
+                textTransform: "uppercase",
+                color: a.color,
+                background: `${a.color}15`,
+                border: `1px solid ${a.color}40`,
+                padding: "6px 14px",
+                whiteSpace: "nowrap",
+                alignSelf: "flex-start",
+              }}>{a.badge}</div>
+            </div>
+          ))}
+        </div>
+
+        {/* Certifications */}
+        <div style={{ marginTop: 80 }}>
+          <div className="reveal">
+            <div className="section-tag">Credentials</div>
+            <h2 className="section-heading" style={{ fontSize: "clamp(28px, 3vw, 48px)" }}>
+              Certifications &<br />
+              <span className="section-heading-light">Training</span>
+            </h2>
+          </div>
+
+          <div style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+            gap: 1,
+            background: "var(--light-grey)",
+            marginTop: 40,
+          }}>
+            {certifications.map((c, i) => (
+              <div
+                key={c.title}
+                className={`skill-card reveal delay-${i + 1}`}
+              >
+                <div style={{
+                  fontFamily: "var(--font-display)",
+                  fontSize: 11,
+                  letterSpacing: "0.15em",
+                  textTransform: "uppercase",
+                  color: "var(--red)",
+                  marginBottom: 12,
+                }}>{c.date}</div>
+                <div className="skill-card-name" style={{ marginBottom: 8 }}>{c.title}</div>
+                <div style={{
+                  fontFamily: "var(--font-display)",
+                  fontSize: 11,
+                  letterSpacing: "0.08em",
+                  textTransform: "uppercase",
+                  color: "var(--mid-grey)",
+                  marginBottom: 12,
+                }}>{c.org}</div>
+                <p style={{ fontSize: 13, lineHeight: 1.7, color: "var(--dark-grey)" }}>{c.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Education */}
+        <div style={{ marginTop: 80 }}>
+          <div className="reveal">
+            <div className="section-tag">Education</div>
+            <h2 className="section-heading" style={{ fontSize: "clamp(28px, 3vw, 48px)" }}>
+              Academic<br />
+              <span className="section-heading-light">Background</span>
+            </h2>
+          </div>
+
+          <div className={`reveal delay-1`} style={{
+            marginTop: 40,
+            display: "grid",
+            gridTemplateColumns: "1fr 1fr",
+            gap: 40,
+          }}>
+            <div style={{ borderLeft: "3px solid var(--red)", paddingLeft: 24 }}>
+              <div style={{
+                fontFamily: "var(--font-display)",
+                fontSize: 11,
+                letterSpacing: "0.15em",
+                textTransform: "uppercase",
+                color: "var(--red)",
+                marginBottom: 8,
+              }}>Jan 2020 – Jun 2025</div>
+              <div style={{
+                fontFamily: "var(--font-display)",
+                fontWeight: 700,
+                fontSize: "clamp(16px, 2vw, 22px)",
+                textTransform: "uppercase",
+                color: "var(--black)",
+                marginBottom: 6,
+              }}>B.Sc. Electrical & Electronic Engineering</div>
+              <div style={{
+                fontFamily: "var(--font-display)",
+                fontWeight: 300,
+                fontSize: 13,
+                letterSpacing: "0.08em",
+                textTransform: "uppercase",
+                color: "var(--mid-grey)",
+                marginBottom: 12,
+              }}>Mymensingh Engineering College · University of Dhaka Technology Unit</div>
+              <p style={{ fontSize: 13, lineHeight: 1.7, color: "var(--dark-grey)" }}>
+                Specialization in control systems, embedded electronics, power systems, and digital signal processing.
+                Thesis: TVC-based flight controller design with MATLAB/Simulink 6-DOF simulation.
+              </p>
+            </div>
+
+            {/* Leadership */}
+            <div style={{ borderLeft: "3px solid var(--dark-grey)", paddingLeft: 24 }}>
+              <div style={{
+                fontFamily: "var(--font-display)",
+                fontSize: 11,
+                letterSpacing: "0.15em",
+                textTransform: "uppercase",
+                color: "var(--dark-grey)",
+                marginBottom: 8,
+              }}>Leadership</div>
+              <div style={{
+                fontFamily: "var(--font-display)",
+                fontWeight: 700,
+                fontSize: 18,
+                textTransform: "uppercase",
+                color: "var(--black)",
+                marginBottom: 6,
+              }}>EEE Coordinator</div>
+              <div style={{
+                fontFamily: "var(--font-display)",
+                fontWeight: 300,
+                fontSize: 12,
+                letterSpacing: "0.08em",
+                textTransform: "uppercase",
+                color: "var(--mid-grey)",
+                marginBottom: 12,
+              }}>Alpha Science Lab · Head of Robotics</div>
+              <p style={{ fontSize: 13, lineHeight: 1.7, color: "var(--dark-grey)" }}>
+                Led the Alpha Science Lab robotics department — robot design, building, and competition strategy.
+                Mentored teams to competition success across national-level events.
+                Also served as Co-Publicity Editor at Bangladesh Human Rights Commission.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   );
-}
+};
+
+export default Awards;
