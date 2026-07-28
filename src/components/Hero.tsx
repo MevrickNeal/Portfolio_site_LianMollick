@@ -1,184 +1,183 @@
-import React, { useState } from "react";
-import { ArrowDownIcon, GithubIcon, LinkedinIcon, MailIcon, Rocket, ChevronRight, Star, Award, Cpu, Zap } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import React from "react";
+import { ArrowDownIcon, GithubIcon, LinkedinIcon, MailIcon, Rocket, ChevronRight, Cpu, Award, Zap, ShieldCheck } from "lucide-react";
 
 export default function Hero() {
   const stats = [
-    { label: "Rocketry Award", value: "1st Place", color: "text-amber-600" },
-    { label: "NASA Missions", value: "3+", color: "text-blue-600" },
-    { label: "Research Papers", value: "4+", color: "text-emerald-600" },
-    { label: "Projects Built", value: "15+", color: "text-portfolio-accent" },
+    { label: "Rocketry Award", value: "1st Place", color: "text-amber-400" },
+    { label: "NASA Missions", value: "3+", color: "text-cyan-400" },
+    { label: "Research Papers", value: "4+", color: "text-emerald-400" },
+    { label: "Projects Built", value: "15+", color: "text-orange-400" },
   ];
 
   const tags = [
     "Thrust Vector Control", "GNC Systems", "Embedded Avionics",
     "PID Flight Control", "LoRa Telemetry", "Rocket Propulsion",
-    "STM32 / Arduino", "MATLAB/Simulink", "Analog IC Design"
+    "STM32 / ARM", "MATLAB/Simulink", "Analog IC Design"
   ];
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center overflow-hidden">
-      {/* Animated background */}
-      <div className="absolute inset-0 animated-bg -z-10" />
-      <div className="absolute inset-0 -z-10" style={{
-        backgroundImage: `radial-gradient(circle at 20% 50%, rgba(92,151,171,0.08) 0%, transparent 50%),
-                          radial-gradient(circle at 80% 20%, rgba(236,108,76,0.06) 0%, transparent 50%),
-                          radial-gradient(circle at 60% 80%, rgba(51,65,92,0.05) 0%, transparent 40%)`
+    <section id="home" className="relative min-h-[92vh] flex items-center overflow-hidden py-12 md:py-20">
+      {/* High-tech radial background */}
+      <div className="absolute inset-0 bg-[#080C14] -z-10" />
+      <div className="absolute inset-0 -z-10 opacity-20" style={{
+        backgroundImage: `radial-gradient(circle at 50% 30%, rgba(0,240,255,0.15) 0%, transparent 60%),
+                          radial-gradient(circle at 80% 70%, rgba(255,85,0,0.1) 0%, transparent 50%),
+                          linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+                          linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)`,
+        backgroundSize: '100% 100%, 100% 100%, 40px 40px, 40px 40px'
       }} />
 
-      {/* Floating particles */}
-      <div className="absolute top-16 left-8 w-2 h-2 bg-portfolio-teal/40 rounded-full animate-float" style={{animationDelay:'0s'}} />
-      <div className="absolute top-32 right-16 w-3 h-3 bg-portfolio-accent/30 rounded-full animate-float" style={{animationDelay:'1.5s'}} />
-      <div className="absolute bottom-24 left-24 w-2 h-2 bg-portfolio-navy/20 rounded-full animate-float" style={{animationDelay:'3s'}} />
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20 w-full">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
 
-          {/* Left: Content */}
-          <div className="lg:col-span-7 animate-slide-left">
-            {/* Status badge */}
-            <div className="inline-flex items-center gap-2 bg-emerald-50 border border-emerald-200 rounded-full px-4 py-1.5 mb-6">
+          {/* Left Column: Heading & Intro */}
+          <div className="lg:col-span-7 animate-fade-in">
+            
+            {/* Status indicator */}
+            <div className="inline-flex items-center gap-2 bg-emerald-950/60 border border-emerald-500/30 rounded-full px-3.5 py-1.5 mb-6">
               <span className="live-dot" />
-              <span className="text-emerald-700 text-xs font-bold">Open to Research Collaboration & Internships</span>
+              <span className="text-emerald-400 text-xs font-mono font-bold tracking-wide">
+                Available for GNC / Avionics Research & Industry Collaboration
+              </span>
             </div>
 
-            {/* Name & title */}
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-slate-900 leading-[1.05] tracking-tight mb-4">
-              Lian Mollick<br />
-              <span className="gradient-text">Nehal</span>
+            {/* Main Headline */}
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white leading-[1.1] tracking-tight mb-4">
+              Lian Mollick <span className="gradient-text-cyan">Nehal</span>
             </h1>
 
-            <p className="text-lg font-semibold text-portfolio-navy mb-2 flex items-center gap-2">
-              <Rocket className="w-5 h-5 text-portfolio-accent animate-rocket" />
-              Rocketry Avionics · Thrust Vector Control · Embedded Systems Engineer
+            <p className="text-base sm:text-lg font-mono font-semibold text-cyan-400 mb-4 flex items-center gap-2">
+              <Rocket className="w-5 h-5 text-orange-400 animate-rocket" />
+              Rocketry Avionics · Thrust Vector Control · GNC Engineer
             </p>
 
-            <p className="text-slate-600 text-base leading-relaxed mb-6 max-w-xl">
-              B.Sc. EEE candidate at <strong>Mymensingh Engineering College</strong> (University of Dhaka).
-              Building Bangladesh's next-generation rocket avionics, GNC algorithms, and mission control systems.
-              Winner of <strong>Rocketry Innovation Challenge 2022</strong> · <strong>NASA Space Apps 2023 1st Runner-Up</strong> · <strong>NASA Planetary Defender</strong>.
+            <p className="text-slate-300 text-sm sm:text-base leading-relaxed mb-6 max-w-xl">
+              B.Sc. EEE candidate at <strong>Mymensingh Engineering College (University of Dhaka)</strong>.
+              Specializing in low-altitude rocket stabilization, 6-DOF trajectory simulation, STM32 embedded flight software, and real-time LoRa telemetry.
+              Winner of <strong>Rocketry Innovation Challenge 2022</strong> · <strong>NASA Space Apps 2023 1st Runner-Up</strong>.
             </p>
 
             {/* Skill tags */}
             <div className="flex flex-wrap gap-2 mb-8">
               {tags.map(tag => (
-                <span key={tag} className="badge-pill bg-slate-100 text-slate-700 border border-slate-200 hover:bg-portfolio-navy hover:text-white hover:border-portfolio-navy transition-all cursor-default">
+                <span key={tag} className="badge-pill bg-slate-900/90 text-slate-300 border border-slate-700 hover:border-cyan-400 hover:text-cyan-300 transition-all cursor-default">
                   {tag}
                 </span>
               ))}
             </div>
 
-            {/* CTA buttons */}
+            {/* Action buttons */}
             <div className="flex flex-wrap items-center gap-4">
               <a href="#tvc-simulator"
-                className="flex items-center gap-2 bg-portfolio-navy hover:bg-portfolio-dark-accent text-white font-semibold px-6 py-3 rounded-xl transition-all shadow-lg hover:shadow-portfolio-navy/30 hover:-translate-y-0.5">
+                className="flex items-center gap-2 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-slate-950 font-mono font-bold px-6 py-3 rounded-xl transition-all shadow-lg shadow-cyan-500/25 hover:-translate-y-0.5">
                 <Cpu className="w-4 h-4" />
-                Launch TVC Simulator
+                LAUNCH TVC SIMULATOR
                 <ChevronRight className="w-4 h-4" />
               </a>
 
               <a href="#projects"
-                className="flex items-center gap-2 bg-white hover:bg-slate-50 text-slate-800 font-semibold px-6 py-3 rounded-xl border border-slate-200 transition-all hover:border-portfolio-teal hover:-translate-y-0.5">
-                View Projects
+                className="flex items-center gap-2 bg-slate-900/90 hover:bg-slate-800 text-white font-mono text-xs font-bold px-6 py-3 rounded-xl border border-slate-700 hover:border-cyan-400 transition-all hover:-translate-y-0.5">
+                EXPLORE PROJECTS
                 <ChevronRight className="w-4 h-4" />
               </a>
 
               <a href="mailto:lianmollik@gmail.com"
-                className="flex items-center gap-2 text-slate-600 hover:text-portfolio-accent font-medium px-4 py-3 transition-colors">
+                className="flex items-center gap-2 text-slate-400 hover:text-cyan-400 font-mono text-xs font-semibold px-2 py-3 transition-colors">
                 <MailIcon className="w-4 h-4" />
                 lianmollik@gmail.com
               </a>
             </div>
 
-            {/* Social */}
-            <div className="flex items-center gap-4 mt-6">
+            {/* Social Links */}
+            <div className="flex items-center gap-5 mt-8 pt-6 border-t border-slate-800/80">
               <a href="https://linkedin.com/in/lianmollick" target="_blank" rel="noreferrer"
-                className="flex items-center gap-2 text-slate-500 hover:text-blue-600 transition-colors text-sm font-medium">
-                <LinkedinIcon className="h-5 w-5" />
-                LinkedIn
+                className="flex items-center gap-2 text-slate-400 hover:text-cyan-400 transition-colors text-xs font-mono font-semibold">
+                <LinkedinIcon className="h-4 w-4" />
+                LINKEDIN
               </a>
               <a href="https://github.com/MevrickNeal" target="_blank" rel="noreferrer"
-                className="flex items-center gap-2 text-slate-500 hover:text-slate-900 transition-colors text-sm font-medium">
-                <GithubIcon className="h-5 w-5" />
-                GitHub
+                className="flex items-center gap-2 text-slate-400 hover:text-white transition-colors text-xs font-mono font-semibold">
+                <GithubIcon className="h-4 w-4" />
+                GITHUB
               </a>
-              <span className="text-slate-300">·</span>
-              <span className="text-slate-500 text-sm">+880 1518 664917</span>
+              <span className="text-slate-700">|</span>
+              <span className="text-slate-400 font-mono text-xs">+880 1518 664917</span>
             </div>
           </div>
 
-          {/* Right: Photo + Stats */}
-          <div className="lg:col-span-5 flex flex-col items-center gap-6 animate-slide-right">
-            {/* Profile photo — formal suit portrait */}
-            <div className="relative">
-              {/* Engineering grid frame */}
-              <div className="absolute -inset-3 rounded-3xl border border-dashed border-portfolio-teal/30 z-0" />
-              <div className="absolute -inset-6 rounded-3xl border border-portfolio-navy/10 z-0" />
-              {/* Corner accent marks */}
-              <span className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-portfolio-accent rounded-tl-lg z-10" />
-              <span className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-portfolio-accent rounded-tr-lg z-10" />
-              <span className="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-portfolio-accent rounded-bl-lg z-10" />
-              <span className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-portfolio-accent rounded-br-lg z-10" />
+          {/* Right Column: Formal Suit Portrait & HUD Stats */}
+          <div className="lg:col-span-5 flex flex-col items-center gap-6">
+            
+            {/* Formal Suit Portrait with Aerospace Reticle Frame */}
+            <div className="relative group">
+              {/* Outer HUD Corner Reticles */}
+              <span className="absolute -top-2 -left-2 w-6 h-6 border-t-2 border-l-2 border-cyan-400 rounded-tl-lg z-20" />
+              <span className="absolute -top-2 -right-2 w-6 h-6 border-t-2 border-r-2 border-cyan-400 rounded-tr-lg z-20" />
+              <span className="absolute -bottom-2 -left-2 w-6 h-6 border-b-2 border-l-2 border-cyan-400 rounded-bl-lg z-20" />
+              <span className="absolute -bottom-2 -right-2 w-6 h-6 border-b-2 border-r-2 border-cyan-400 rounded-br-lg z-20" />
 
-              <div className="w-72 h-[340px] md:w-80 md:h-[380px] rounded-2xl overflow-hidden border-2 border-white shadow-2xl animate-border-glow relative z-1">
+              {/* Photo Frame Container */}
+              <div className="w-72 h-[350px] sm:w-80 sm:h-[390px] rounded-2xl overflow-hidden border-2 border-slate-700 bg-slate-900 shadow-2xl relative z-10 animate-border-glow">
                 <img
                   src="/lovable-uploads/97da3591-aa27-464b-b81c-c8d2f868ba6e.png"
-                  alt="Lian Mollick Nehal — Formal Portrait"
+                  alt="Lian Mollick Nehal — Formal Suit Portrait"
                   className="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-700"
                 />
-                {/* Subtle gradient overlay at bottom */}
-                <div className="absolute bottom-0 inset-x-0 h-16 bg-gradient-to-t from-slate-900/40 to-transparent pointer-events-none" />
+                <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-slate-950 via-slate-950/60 to-transparent pointer-events-none" />
+                
+                {/* ID Tag Overlay */}
+                <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between bg-slate-950/80 backdrop-blur-md border border-slate-800 px-3 py-1.5 rounded-lg">
+                  <div>
+                    <span className="text-white text-xs font-bold block leading-none">Lian Mollick Nehal</span>
+                    <span className="text-[10px] font-mono text-cyan-400">EEE / Avionics Engineer</span>
+                  </div>
+                  <ShieldCheck className="w-4 h-4 text-emerald-400" />
+                </div>
               </div>
 
-              {/* Floating badges on photo */}
-              <div className="absolute -top-3 -right-4 bg-amber-500 text-white text-[10px] font-black px-2.5 py-1.5 rounded-xl shadow-lg rotate-3 z-20">
-                🏆 1st Place
+              {/* Floating Award Badges */}
+              <div className="absolute -top-4 -right-4 bg-amber-500 text-slate-950 text-[11px] font-mono font-extrabold px-3 py-1 rounded-xl shadow-xl rotate-3 z-30 flex items-center gap-1">
+                🏆 1ST PLACE ROCKETRY
               </div>
-              <div className="absolute -bottom-3 -left-4 bg-portfolio-navy text-white text-[10px] font-bold px-2.5 py-1.5 rounded-xl shadow-lg -rotate-2 flex items-center gap-1 z-20">
-                <Rocket className="w-3 h-3" />
-                NEAL-1.2
-              </div>
-              {/* ID-tag style label */}
-              <div className="absolute top-2 left-2 bg-black/30 backdrop-blur-sm text-white text-[9px] font-mono px-2 py-1 rounded-md z-20 tracking-wider">
-                ID // LMN-2024
+              <div className="absolute -bottom-4 -left-4 bg-slate-900 border border-slate-700 text-cyan-400 text-[11px] font-mono font-bold px-3 py-1 rounded-xl shadow-xl -rotate-2 z-30 flex items-center gap-1">
+                <Rocket className="w-3.5 h-3.5 text-orange-400" />
+                PROJECT NEAL-1.2
               </div>
             </div>
 
-            {/* Stats grid */}
+            {/* Stats Grid */}
             <div className="grid grid-cols-2 gap-3 w-full">
               {stats.map((s) => (
                 <div key={s.label}
-                  className="bg-white border border-slate-200 rounded-2xl p-4 text-center shadow-sm hover:shadow-md transition-shadow">
-                  <div className={`text-2xl font-black ${s.color} mb-1`}>{s.value}</div>
-                  <div className="text-xs text-slate-500 font-medium">{s.label}</div>
+                  className="bg-slate-900/90 border border-slate-800 rounded-xl p-3.5 text-center shadow-lg hover:border-slate-700 transition-colors">
+                  <div className={`text-2xl font-black font-mono ${s.color} mb-0.5`}>{s.value}</div>
+                  <div className="text-[11px] text-slate-400 font-mono font-semibold">{s.label}</div>
                 </div>
               ))}
             </div>
 
-            {/* NEAL Project badge */}
+            {/* Project NEAL Badge Card — White Container for Logo to POP */}
             <a href="#projects"
-              className="w-full flex items-center justify-between bg-gradient-to-br from-portfolio-navy to-slate-800 text-white rounded-2xl p-4 hover:shadow-xl transition-all hover:-translate-y-0.5 group">
+              className="w-full flex items-center justify-between bg-slate-900 border border-slate-800 hover:border-cyan-500/50 rounded-xl p-3.5 transition-all group shadow-xl">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center">
-                  <Rocket className="w-5 h-5" />
+                {/* White Container ensures black text on Project NEAL logo pops cleanly */}
+                <div className="bg-white rounded-lg p-1.5 border border-slate-200 shadow-sm flex items-center justify-center">
+                  <img
+                    src="/lovable-uploads/project-neal-logo.png"
+                    alt="Project NEAL Logo"
+                    className="h-6 w-auto object-contain"
+                  />
                 </div>
                 <div>
-                  <div className="font-bold text-sm">Project NEAL</div>
-                  <div className="text-[11px] text-slate-300">B.Sc. Thesis · TVC Rocket</div>
+                  <div className="font-bold text-white text-xs">Project NEAL Thesis</div>
+                  <div className="text-[10px] font-mono text-slate-400">TVC Rocket · GNC · STM32</div>
                 </div>
               </div>
-              <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-white group-hover:translate-x-1 transition-all" />
+              <ChevronRight className="w-4 h-4 text-slate-500 group-hover:text-cyan-400 group-hover:translate-x-1 transition-all" />
             </a>
+
           </div>
         </div>
-      </div>
-
-      {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-        <a href="#about" className="flex flex-col items-center gap-1 text-slate-400 hover:text-portfolio-accent transition-colors">
-          <span className="text-[10px] font-medium uppercase tracking-widest">Scroll</span>
-          <ArrowDownIcon className="h-5 w-5" />
-        </a>
       </div>
     </section>
   );

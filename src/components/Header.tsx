@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Mail, Phone, Linkedin, Github, ArrowRight, Rocket, Award, BookOpen, Briefcase, ExternalLink, ChevronDown, Cpu, Satellite, Star, Zap, Menu, X } from "lucide-react";
+import { Mail, Linkedin, Github, Menu, X, Rocket, Terminal } from "lucide-react";
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -8,65 +8,67 @@ export default function Header() {
     { href: "#about", label: "About" },
     { href: "#projects", label: "Projects" },
     { href: "#tvc-simulator", label: "TVC Sim" },
+    { href: "#experience", label: "Experience" },
+    { href: "#skills", label: "Skills" },
     { href: "#awards", label: "Awards" },
-    { href: "#wall-of-fame", label: "Honors" },
     { href: "#certifications", label: "Certs" },
+    { href: "#personal", label: "Growth" },
     { href: "#contact", label: "Contact" },
   ];
 
   return (
-    <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200/80 shadow-sm">
+    <header className="sticky top-0 z-50 bg-slate-950/90 backdrop-blur-xl border-b border-slate-800/80 shadow-2xl">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          {/* Logo */}
+          
+          {/* Official Project NEAL Logo + Branding */}
           <a href="#home" className="flex items-center gap-3 group">
-            {/* Project NEAL SVG Logo */}
-            <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-portfolio-navy to-portfolio-teal flex items-center justify-center shadow-md group-hover:shadow-lg transition-shadow">
-              <svg viewBox="0 0 32 32" fill="none" className="w-5 h-5">
-                {/* Stylized N for NEAL with rocket accent */}
-                <path d="M4 26V6l10 14V6" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
-                <path d="M14 6h6" stroke="white" strokeWidth="2.5" strokeLinecap="round"/>
-                <path d="M20 6v8" stroke="white" strokeWidth="2.5" strokeLinecap="round"/>
-                <path d="M20 14l-3 5" stroke="white" strokeWidth="2" strokeLinecap="round"/>
-                {/* Rocket tip */}
-                <circle cx="26" cy="8" r="3" fill="#EC6C4C" />
-                <path d="M26 11v9" stroke="#EC6C4C" strokeWidth="1.5" strokeLinecap="round" strokeDasharray="2 2"/>
-              </svg>
+            {/* White card wrapper for logo so black text & red fins pop sharply */}
+            <div className="bg-white rounded-lg px-2.5 py-1 border border-slate-200 shadow-md group-hover:border-cyan-400 transition-colors flex items-center justify-center h-9">
+              <img
+                src="/lovable-uploads/5e9aa584-e39f-426c-b9fe-dc65ce0f79da.png"
+                alt="Project NEAL TVC Logo"
+                className="h-5 w-auto object-contain"
+              />
             </div>
             <div>
-              <span className="font-black text-slate-900 text-sm tracking-tight block leading-none">Lian Mollick Nehal</span>
-              <span className="text-[10px] font-semibold text-portfolio-accent uppercase tracking-widest">EEE · TVC · GNC</span>
+              <span className="font-extrabold text-white text-sm tracking-tight block leading-none group-hover:text-cyan-400 transition-colors">
+                Lian Mollick Nehal
+              </span>
+              <span className="text-[10px] font-mono font-bold text-cyan-400 tracking-widest uppercase mt-0.5 block">
+                EEE · TVC · GNC ENGINEER
+              </span>
             </div>
           </a>
 
-          {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center gap-1">
+          {/* Desktop Navigation */}
+          <nav className="hidden lg:flex items-center gap-6">
             {links.map(l => (
-              <a key={l.href} href={l.href} className="nav-link px-3 py-1.5 rounded-lg hover:bg-slate-50">
+              <a key={l.href} href={l.href} className="nav-link">
                 {l.label}
               </a>
             ))}
           </nav>
 
-          {/* CTA */}
-          <div className="hidden md:flex items-center gap-3">
+          {/* Social & Contact */}
+          <div className="hidden sm:flex items-center gap-3">
             <a href="https://linkedin.com/in/lianmollick" target="_blank" rel="noreferrer"
-              className="text-slate-500 hover:text-portfolio-teal transition-colors">
+              className="text-slate-400 hover:text-cyan-400 transition-colors p-1.5 rounded-lg hover:bg-slate-900">
               <Linkedin className="w-4 h-4" />
             </a>
             <a href="https://github.com/MevrickNeal" target="_blank" rel="noreferrer"
-              className="text-slate-500 hover:text-slate-900 transition-colors">
+              className="text-slate-400 hover:text-white transition-colors p-1.5 rounded-lg hover:bg-slate-900">
               <Github className="w-4 h-4" />
             </a>
             <a href="mailto:lianmollik@gmail.com"
-              className="flex items-center gap-1.5 bg-portfolio-navy hover:bg-portfolio-dark-accent text-white text-xs font-semibold px-4 py-2 rounded-lg transition-colors">
+              className="flex items-center gap-1.5 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-slate-950 font-mono text-xs font-bold px-3.5 py-1.5 rounded-lg transition-all shadow-lg shadow-cyan-500/20">
               <Mail className="w-3.5 h-3.5" />
-              Contact
+              CONTACT
             </a>
           </div>
 
           {/* Mobile menu toggle */}
-          <button onClick={() => setMenuOpen(!menuOpen)} className="md:hidden p-2 rounded-lg text-slate-600 hover:bg-slate-50">
+          <button onClick={() => setMenuOpen(!menuOpen)} className="lg:hidden p-2 rounded-lg text-slate-300 hover:bg-slate-900 border border-slate-800">
             {menuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
         </div>
@@ -74,18 +76,18 @@ export default function Header() {
 
       {/* Mobile menu */}
       {menuOpen && (
-        <div className="md:hidden border-t border-slate-200 bg-white">
-          <div className="max-w-7xl mx-auto px-4 py-4 flex flex-col gap-2">
+        <div className="lg:hidden border-t border-slate-800 bg-slate-950 p-4">
+          <div className="flex flex-col gap-3">
             {links.map(l => (
               <a key={l.href} href={l.href} onClick={() => setMenuOpen(false)}
-                className="text-slate-700 hover:text-portfolio-accent font-medium py-2 px-3 rounded-lg hover:bg-slate-50 transition-colors">
+                className="text-slate-300 hover:text-cyan-400 font-mono text-xs uppercase tracking-wider py-2 px-3 rounded-lg hover:bg-slate-900">
                 {l.label}
               </a>
             ))}
             <a href="mailto:lianmollik@gmail.com"
-              className="mt-2 flex items-center justify-center gap-2 bg-portfolio-navy text-white font-semibold py-3 px-4 rounded-xl text-sm">
+              className="mt-2 flex items-center justify-center gap-2 bg-gradient-to-r from-cyan-500 to-blue-600 text-slate-950 font-mono text-xs font-bold py-2.5 px-4 rounded-lg">
               <Mail className="w-4 h-4" />
-              Get in Touch
+              GET IN TOUCH
             </a>
           </div>
         </div>

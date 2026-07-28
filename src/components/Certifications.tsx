@@ -10,8 +10,6 @@ const certifications = [
     year: "2023",
     category: "Hardware",
     icon: Cpu,
-    iconBg: "bg-blue-100",
-    iconColor: "text-blue-600",
     img: "/lovable-uploads/603836fa-feeb-4a00-b7fd-0bd5609a9888.png",
     link: "https://drive.google.com/drive/folders/1cE9iPPTE2vz2R7t6SNu08gT15XpSTB5m",
   },
@@ -22,8 +20,6 @@ const certifications = [
     year: "2025",
     category: "Industry",
     icon: Award,
-    iconBg: "bg-amber-100",
-    iconColor: "text-amber-600",
     img: "/lovable-uploads/Screenshot 2025-02-14 at 5.19.49 PM.png",
     link: "https://forage-uploads-prod.s3.amazonaws.com/completion-certificates/ay2tsYxaTif7Nt6z7/ntFrRvKxX5AmquXRr_ay2tsYxaTif7Nt6z7_RAZA8nua5RLumyJpu_1740978804858_completion_certificate.pdf",
   },
@@ -34,8 +30,6 @@ const certifications = [
     year: "2023",
     category: "Space",
     icon: Globe,
-    iconBg: "bg-indigo-100",
-    iconColor: "text-indigo-600",
     img: "/lovable-uploads/Screenshot 2025-02-14 at 5.26.15 PM.png",
     link: "https://drive.google.com/drive/folders/1cE9iPPTE2vz2R7t6SNu08gT15XpSTB5m",
   },
@@ -46,8 +40,6 @@ const certifications = [
     year: "2025",
     category: "Industrial",
     icon: FileCheck,
-    iconBg: "bg-emerald-100",
-    iconColor: "text-emerald-600",
     img: "/lovable-uploads/471479605_122171552672048239_7736058077222623760_n.jpg",
     link: "https://drive.google.com/drive/folders/1cE9iPPTE2vz2R7t6SNu08gT15XpSTB5m",
   },
@@ -58,32 +50,20 @@ const certifications = [
     year: "2023",
     category: "Space",
     icon: Globe,
-    iconBg: "bg-sky-100",
-    iconColor: "text-sky-600",
     img: "/lovable-uploads/galactic problem solver.jpeg",
     link: "https://drive.google.com/drive/folders/1cE9iPPTE2vz2R7t6SNu08gT15XpSTB5m",
   },
   {
-    title: "Udemy Professional Course",
-    issuer: "Udemy",
-    sponsor: "Engineering Program",
+    title: "7 Days Industrial Training on Analog Design",
+    issuer: "ULKASEMI PVT Limited",
+    sponsor: "IC Mask & Mixed-Signal Layout",
     year: "2024",
-    category: "Online",
-    icon: BookOpen,
-    iconBg: "bg-purple-100",
-    iconColor: "text-purple-600",
-    img: "/lovable-uploads/428710431_3357967617837500_4496798535136347615_n.jpg",
-    link: "https://drive.google.com/drive/folders/1cE9iPPTE2vz2R7t6SNu08gT15XpSTB5m",
+    category: "Hardware",
+    icon: Cpu,
+    img: "/lovable-uploads/34415cf9-ffa7-445e-ac9e-d7c51cbbc77c.png",
+    link: "https://drive.google.com/file/d/1I2O84TAIzwUc64hMu_hTgsM5hklZjBLS/view?usp=sharing",
   },
 ];
-
-const categoryColors: Record<string, string> = {
-  "Hardware": "bg-blue-100 text-blue-700",
-  "Industry": "bg-amber-100 text-amber-700",
-  "Space": "bg-indigo-100 text-indigo-700",
-  "Industrial": "bg-emerald-100 text-emerald-700",
-  "Online": "bg-purple-100 text-purple-700",
-};
 
 export default function Certifications() {
   const [lightbox, setLightbox] = useState<{ isOpen: boolean; src: string; title: string }>({
@@ -103,11 +83,11 @@ export default function Certifications() {
         title={lightbox.title}
       />
 
-      <section id="certifications" className="section-container bg-slate-50/60">
-        <span className="section-subtitle">Training & Certified Courses</span>
-        <h2 className="section-title mb-2">Certifications</h2>
-        <p className="text-slate-500 mb-6 max-w-xl">
-          Verified credentials from NASA, Purdue University, GE Aerospace, and international science programs.
+      <section id="certifications" className="section-container">
+        <span className="section-subtitle">VERIFIED CREDENTIALS</span>
+        <h2 className="section-title mb-3">Certifications</h2>
+        <p className="text-slate-400 mb-6 max-w-xl">
+          Professional qualifications from NASA, Intel/Purdue, GE Aerospace, and ULKASEMI.
         </p>
 
         {/* Category filter */}
@@ -116,10 +96,10 @@ export default function Certifications() {
             <button
               key={cat}
               onClick={() => setFilter(cat)}
-              className={`px-4 py-1.5 rounded-lg text-xs font-bold border transition-all ${
+              className={`px-3.5 py-1.5 rounded-lg text-xs font-mono font-bold border transition-all ${
                 filter === cat
-                  ? "bg-portfolio-navy text-white border-portfolio-navy shadow-sm"
-                  : "bg-white text-slate-600 border-slate-200 hover:border-portfolio-teal hover:text-portfolio-teal"
+                  ? "bg-cyan-500 text-slate-950 border-cyan-400 shadow-md shadow-cyan-500/20"
+                  : "bg-slate-900 text-slate-300 border-slate-800 hover:border-slate-700"
               }`}
             >
               {cat}
@@ -127,63 +107,42 @@ export default function Certifications() {
           ))}
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 stagger-children">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {filtered.map((cert, i) => {
             const Icon = cert.icon;
             return (
-              <div key={i}
-                className="hover-card bg-white border border-slate-200 rounded-2xl overflow-hidden flex flex-col animate-fade-in shadow-sm hover:shadow-xl">
-                {/* Certificate image */}
-                <div
-                  className="relative cursor-zoom-in group"
-                  onClick={() => cert.img && setLightbox({ isOpen: true, src: cert.img, title: cert.title })}
-                >
-                  <div className="h-40 bg-slate-100 overflow-hidden">
-                    {cert.img ? (
-                      <img
-                        src={cert.img}
-                        alt={cert.title}
-                        className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
-                      />
-                    ) : (
-                      <div className={`w-full h-full flex items-center justify-center ${cert.iconBg}`}>
-                        <Icon className={`w-12 h-12 ${cert.iconColor} opacity-40`} />
-                      </div>
-                    )}
-                  </div>
-                  {cert.img && (
-                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all flex items-center justify-center">
-                      <ZoomIn className="w-6 h-6 text-white opacity-0 group-hover:opacity-100 transition-opacity" />
+              <div key={i} className="tech-card border border-slate-800 flex flex-col justify-between">
+                <div>
+                  <div
+                    className="relative cursor-zoom-in group rounded-xl overflow-hidden border border-slate-800 mb-4 bg-slate-950"
+                    onClick={() => setLightbox({ isOpen: true, src: cert.img, title: cert.title })}
+                  >
+                    <img
+                      src={cert.img}
+                      alt={cert.title}
+                      className="w-full h-40 object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-slate-950/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                      <ZoomIn className="w-6 h-6 text-cyan-400" />
                     </div>
-                  )}
-                  <div className="absolute top-2 right-2">
-                    <span className={`badge-pill ${categoryColors[cert.category] || "bg-slate-100 text-slate-600"} text-[10px]`}>
-                      {cert.category}
-                    </span>
+                  </div>
+
+                  <div className="flex items-start gap-3 mb-2">
+                    <div className="w-8 h-8 rounded-lg bg-slate-800 border border-slate-700 flex items-center justify-center flex-shrink-0 text-cyan-400">
+                      <Icon className="w-4 h-4" />
+                    </div>
+                    <div>
+                      <h3 className="font-bold text-white text-sm leading-tight">{cert.title}</h3>
+                      <p className="text-xs font-mono text-cyan-400 mt-0.5">{cert.issuer}</p>
+                    </div>
                   </div>
                 </div>
 
-                {/* Card body */}
-                <div className="p-4 flex flex-col gap-2 flex-1">
-                  <div className="flex items-start gap-3">
-                    <div className={`w-8 h-8 rounded-lg ${cert.iconBg} flex items-center justify-center flex-shrink-0`}>
-                      <Icon className={`w-4 h-4 ${cert.iconColor}`} />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <h3 className="font-bold text-slate-900 text-sm leading-tight">{cert.title}</h3>
-                      <p className="text-xs text-slate-500 mt-0.5">{cert.issuer}</p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center justify-between mt-1">
-                    <span className="text-[11px] text-slate-400 font-medium">{cert.sponsor}</span>
-                    <span className="badge-pill bg-slate-100 text-slate-600 text-[10px]">{cert.year}</span>
-                  </div>
-
+                <div className="mt-3 pt-3 border-t border-slate-800/80 flex items-center justify-between">
+                  <span className="text-[11px] font-mono text-slate-400">{cert.sponsor}</span>
                   <a href={cert.link} target="_blank" rel="noreferrer"
-                    className="flex items-center gap-1.5 text-xs font-semibold text-portfolio-teal hover:text-portfolio-accent transition-colors mt-1">
-                    <ExternalLink className="w-3.5 h-3.5" />
-                    View Certificate
+                    className="flex items-center gap-1 text-xs font-mono font-bold text-cyan-400 hover:text-cyan-300">
+                    VERIFY <ExternalLink className="w-3.5 h-3.5" />
                   </a>
                 </div>
               </div>
@@ -191,16 +150,15 @@ export default function Certifications() {
           })}
         </div>
 
-        {/* View all link */}
         <div className="text-center mt-10">
           <a
             href="https://drive.google.com/drive/folders/1cE9iPPTE2vz2R7t6SNu08gT15XpSTB5m"
             target="_blank"
             rel="noreferrer"
-            className="inline-flex items-center gap-2 bg-portfolio-navy hover:bg-portfolio-dark-accent text-white font-semibold px-6 py-3 rounded-xl text-sm transition-all hover:-translate-y-0.5 shadow-md"
+            className="inline-flex items-center gap-2 bg-slate-900 hover:bg-slate-800 text-white border border-slate-700 hover:border-cyan-400 font-mono text-xs font-bold px-6 py-3 rounded-xl transition-all shadow-lg"
           >
-            <ExternalLink className="w-4 h-4" />
-            View All Certificates on Google Drive
+            <ExternalLink className="w-4 h-4 text-cyan-400" />
+            VIEW ALL CREDENTIALS ON GOOGLE DRIVE
           </a>
         </div>
       </section>

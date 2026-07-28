@@ -1,5 +1,5 @@
-
-import { ArrowUp, Github, Linkedin, Mail } from "lucide-react";
+import React from "react";
+import { ArrowUp, Github, Linkedin, Mail, Rocket } from "lucide-react";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -9,72 +9,40 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-portfolio-navy text-white py-10">
+    <footer className="bg-slate-950 border-t border-slate-800 text-white py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row justify-between items-center">
-          <div className="mb-6 md:mb-0">
-            <h3 className="text-2xl font-bold">
-              Lian<span className="text-portfolio-accent">.</span>
-            </h3>
-            <p className="mt-2 text-gray-300">Embedded System Designer</p>
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+          <div>
+            <div className="flex items-center gap-2 mb-2">
+              <Rocket className="w-5 h-5 text-cyan-400" />
+              <h3 className="text-xl font-extrabold text-white">
+                Lian Mollick <span className="text-cyan-400">Nehal</span>
+              </h3>
+            </div>
+            <p className="text-xs font-mono text-slate-400">
+              Rocketry Avionics · Thrust Vector Control · GNC Engineer
+            </p>
           </div>
           
-          <div className="flex flex-col md:flex-row md:items-center gap-6 md:gap-12">
-            <div>
-              <h4 className="font-semibold mb-3">Contact</h4>
-              <a 
-                href="mailto:lianmollik@gmail.com"
-                className="text-gray-300 hover:text-white block mb-2"
-              >
-                lianmollik@gmail.com
-              </a>
-              <a 
-                href="tel:+8801518664917"
-                className="text-gray-300 hover:text-white block"
-              >
-                +8801518664917
-              </a>
-            </div>
-            
-            <div>
-              <h4 className="font-semibold mb-3">Follow Me</h4>
-              <div className="flex space-x-4">
-                <a 
-                  href="https://linkedin.com/in/lianmollick" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="text-gray-300 hover:text-white"
-                >
-                  <Linkedin className="h-5 w-5" />
-                </a>
-                <a 
-                  href="https://github.com/MevrickNeal" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="text-gray-300 hover:text-white"
-                >
-                  <Github className="h-5 w-5" />
-                </a>
-                <a 
-                  href="mailto:lianmollik@gmail.com"
-                  className="text-gray-300 hover:text-white"
-                >
-                  <Mail className="h-5 w-5" />
-                </a>
-              </div>
-            </div>
+          <div className="flex flex-wrap items-center gap-6 font-mono text-xs text-slate-400">
+            <a href="#about" className="hover:text-cyan-400 transition-colors">About</a>
+            <a href="#projects" className="hover:text-cyan-400 transition-colors">Projects</a>
+            <a href="#tvc-simulator" className="hover:text-cyan-400 transition-colors">TVC Sim</a>
+            <a href="#experience" className="hover:text-cyan-400 transition-colors">Experience</a>
+            <a href="#awards" className="hover:text-cyan-400 transition-colors">Awards</a>
+            <a href="#contact" className="hover:text-cyan-400 transition-colors">Contact</a>
           </div>
         </div>
         
-        <div className="mt-10 pt-6 border-t border-gray-700 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-gray-400 text-sm">
-            © {currentYear} Lian Mollick Nehal. All rights reserved.
+        <div className="mt-8 pt-6 border-t border-slate-800/80 flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-mono text-slate-400">
+          <p>
+            © {currentYear} Lian Mollick Nehal. Built with React, Vite & Tailwind CSS.
           </p>
           <button 
             onClick={scrollToTop}
-            className="mt-4 md:mt-0 flex items-center text-gray-300 hover:text-white transition-colors"
+            className="flex items-center gap-1.5 text-cyan-400 hover:text-cyan-300 font-bold transition-colors"
           >
-            Back to top <ArrowUp className="ml-1 h-4 w-4" />
+            TOP <ArrowUp className="h-4 w-4" />
           </button>
         </div>
       </div>

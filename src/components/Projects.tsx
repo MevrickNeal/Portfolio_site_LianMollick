@@ -10,6 +10,7 @@ interface Project {
   subtitle?: string;
   description: string;
   images: { src: string; caption: string }[];
+  logo?: string;
   links?: { href: string; label: string; icon: React.ReactNode }[];
   badges: string[];
   featured?: boolean;
@@ -22,11 +23,12 @@ const projects: Project[] = [
   {
     id: "neal-tvc-digital-twin",
     tag: "Open-Source Research",
-    tagColor: "bg-amber-100 text-amber-800 border-amber-200",
+    tagColor: "bg-cyan-950 text-cyan-400 border-cyan-500/40",
     title: "TVC Digital Twin — 6-DOF Benchmark Framework",
     subtitle: "Project NEAL · github.com/MevrickNeal/TVC-DigitalTwin-Simulation",
     description:
       "High-fidelity 6-DOF non-linear Digital Twin for Thrust Vector Controlled rockets, built on physical parameters extracted from OpenRocket telemetry of Project NEAL-1.2. Benchmarks four distinct attitude control algorithms — Cascaded PID, Time-Varying LQR, MRAC (Model Reference Adaptive Control), and ADRC (Active Disturbance Rejection Control) — under dynamic mass decay, time-varying pitch moment of inertia, CG shift, and aerodynamic restoring forces. Includes a 200-run Monte Carlo uncertainty quantification framework and generates publication-ready IEEE vector figures.",
+    logo: "/lovable-uploads/project-neal-logo.png",
     images: [
       { src: "/lovable-uploads/tvc-gnc-banner.png", caption: "Project NEAL TVC & GNC system diagram" },
       { src: "/lovable-uploads/tvc-flight-sim.png", caption: "Flight simulation — altitude, velocity & trajectory vs time" },
@@ -53,15 +55,16 @@ const projects: Project[] = [
     },
   },
 
-  // ─── PROJECT NEAL THESIS ─────────────────────────────────────────────────────
+  // ─── PROJECT NEAL THESIS HARDWARE ──────────────────────────────────────────
   {
     id: "neal-tvc",
     tag: "B.Sc. Thesis",
-    tagColor: "bg-amber-100 text-amber-800 border-amber-200",
+    tagColor: "bg-amber-950 text-amber-400 border-amber-500/40",
     title: "Project NEAL — TVC Rocket Hardware",
     subtitle: "Design, Simulation & Implementation · STM32 + 3D-Printed Gimbal",
     description:
       "Physical implementation of the Project NEAL-1.2 TVC rocket — from MATLAB/Simulink digital twin to real-hardware STM32 flight controller, 3D-printed servo-actuated gimbal nozzle, and bi-directional LoRa telemetry. Thesis covers OpenRocket aerodynamic modeling, PID closed-loop attitude control, custom IMU filtering, and live ground station WebGUI.",
+    logo: "/lovable-uploads/project-neal-logo.png",
     images: [
       { src: "/lovable-uploads/9bb0f2d1-6f94-4e8c-8f1b-d67358fe2989.png", caption: "NEAL-1.2 flight simulation — velocity, altitude & trajectory (OpenRocket)" },
       { src: "/lovable-uploads/f76e9520-627b-496b-b2ad-6c3ad9625331.png", caption: "MATLAB/Simulink PID TVC block diagram & LTI control system" },
@@ -79,14 +82,14 @@ const projects: Project[] = [
   {
     id: "ugl-iot",
     tag: "IoT · Embedded · Web Dashboard",
-    tagColor: "bg-orange-100 text-orange-800 border-orange-200",
+    tagColor: "bg-orange-950 text-orange-400 border-orange-500/40",
     title: "UrbanGaz (UGL) — Smart LPG IoT Dashboard",
     subtitle: "Real-Time Gas Distribution Management System",
     description:
       "Full-stack IoT gas distribution monitoring system for UrbanGaz Limited (UGL). Features an Arduino-based TFT LCD + Bluetooth smart manifold controller (Iteaduino BT 1.1 with UGL logo bitmap embedded in PROGMEM), a Python backend server for live data updates, and a comprehensive web dashboard with billing, refill analytics, inventory tracking, project location maps, and cylinder forecast charts. Ingests real June 2026 gas distribution Excel data.",
+    logo: "/lovable-uploads/ugl-logo.png",
     images: [
-      { src: "/lovable-uploads/ugl-logo.png", caption: "UrbanGaz (UGL) — company branding" },
-      { src: "/lovable-uploads/56392b97-45a5-4722-a185-5c4d1221044c.png", caption: "IoT dashboard example — real-time monitoring interface" },
+      { src: "/lovable-uploads/56392b97-45a5-4722-a185-5c4d1221044c.png", caption: "UGL IoT Dashboard — real-time gas distribution & inventory analytics" },
     ],
     badges: ["Arduino C++", "TFT LCD", "Bluetooth UART", "Python Flask", "HTML Dashboard", "Recharts", "Excel Data Pipeline", "LoRa"],
   },
@@ -95,13 +98,12 @@ const projects: Project[] = [
   {
     id: "quantum-oncology",
     tag: "Quantum ML · AI Research",
-    tagColor: "bg-violet-100 text-violet-800 border-violet-200",
+    tagColor: "bg-violet-950 text-violet-400 border-violet-500/40",
     title: "Quantum Multimodal Leukemia Classification",
     subtitle: "Hybrid QML Framework — PennyLane · Qiskit · PyTorch",
     description:
-      "Research-grade hybrid Quantum-Classical Machine Learning framework for multimodal leukemia classification. Integrates variational quantum circuits (PennyLane/Qiskit) with PyTorch deep learning encoders and multimodal data fusion (imaging + tabular + genomic). Includes SHAP/Captum explainability, LightGBM and CatBoost classical baselines, and a full ablation study comparing quantum advantage against purely classical models. Targeted at the TCGA-ALL and BALL-seq datasets.",
+      "Research-grade hybrid Quantum-Classical Machine Learning framework for multimodal leukemia classification. Integrates variational quantum circuits (PennyLane/Qiskit) with PyTorch deep learning encoders and multimodal data fusion (imaging + tabular + genomic). Includes SHAP/Captum explainability, LightGBM and CatBoost classical baselines, and a full ablation study comparing quantum advantage against purely classical models.",
     images: [],
-    links: [],
     badges: ["PennyLane", "Qiskit", "PyTorch", "Variational QCircuits", "Multimodal Fusion", "SHAP Explainability", "LightGBM", "CatBoost", "Medical AI"],
   },
 
@@ -109,7 +111,7 @@ const projects: Project[] = [
   {
     id: "dets",
     tag: "Ground Control System",
-    tagColor: "bg-sky-100 text-sky-800 border-sky-200",
+    tagColor: "bg-sky-950 text-sky-400 border-sky-500/40",
     title: "DETS — Engine Telemetry System",
     subtitle: "DhumketuX Propulsion Research Program",
     description:
@@ -125,7 +127,7 @@ const projects: Project[] = [
   {
     id: "putimach",
     tag: "Sounding Rocket",
-    tagColor: "bg-orange-100 text-orange-800 border-orange-200",
+    tagColor: "bg-orange-950 text-orange-400 border-orange-500/40",
     title: "PUTIMACH Sounding Rocket",
     subtitle: "Bangladesh's First Sounding Rocket",
     description:
@@ -144,7 +146,7 @@ const projects: Project[] = [
   {
     id: "ground-station",
     tag: "Telemetry & GCS",
-    tagColor: "bg-indigo-100 text-indigo-800 border-indigo-200",
+    tagColor: "bg-indigo-950 text-indigo-400 border-indigo-500/40",
     title: "Rocket Ground Control Station",
     subtitle: "LoRa-based Real-time GCS",
     description:
@@ -155,32 +157,18 @@ const projects: Project[] = [
     badges: ["LoRa", "GPS Tracking", "3D Trajectory", "WebApp"],
   },
 
-  // ─── SPACE WEATHER ───────────────────────────────────────────────────────────
-  {
-    id: "space-weather",
-    tag: "AI / Satellite",
-    tagColor: "bg-violet-100 text-violet-800 border-violet-200",
-    title: "DSCOVR Space Weather AI",
-    subtitle: "NASA Space Apps Challenge 2023 — 1st Runner-Up",
-    description:
-      "ML model detecting anomalies in NOAA DSCOVR satellite (Lagrange L1 point) telemetry to predict geomagnetic storms and prevent power grid blackouts. Team SolarSentinel dashboard with live solar wind & magnetic field data.",
-    images: [
-      { src: "/lovable-uploads/b9d2c90a-71e6-4f1c-accd-de40b7a9b806.png", caption: "SolarSentinel dashboard — DSCOVR satellite fault prediction & solar wind data" },
-    ],
-    badges: ["Machine Learning", "DSCOVR API", "Anomaly Detection", "Space Weather"],
-  },
-
   // ─── COMBAT ROBOT ────────────────────────────────────────────────────────────
   {
     id: "combat-robot",
     tag: "Robotics",
-    tagColor: "bg-red-100 text-red-800 border-red-200",
+    tagColor: "bg-red-950 text-red-400 border-red-500/40",
     title: "15kg Combat Robot (Battle Bot)",
     subtitle: "Technoxian WRC 2024 — National Finalist",
     description:
       "Designed and built a 15kg full-combat battle bot featuring high-torque brushless drivetrain, weapon spinner, and custom ESC tuning. National Finalist at Technoxian World Robotics Championship 2024.",
     images: [
-      { src: "/lovable-uploads/cacaca86-a46b-419a-bec9-5777b25a91a1.png", caption: "Alpha Science Lab team with the 15kg battle bot — Technoxian WRC 2024" },
+      { src: "/lovable-uploads/428710431_3357967617837500_4496798535136347615_n.jpg", caption: "15kg Combat Robot — heavy-duty welded chassis & spinning weapon" },
+      { src: "/lovable-uploads/cacaca86-a46b-419a-bec9-5777b25a91a1.png", caption: "Team Alpha Science Lab at Technoxian WRC 2024" },
     ],
     links: [
       { href: "https://www.facebook.com/photo/?fbid=122153093834048239", label: "View on Facebook", icon: <ExternalLink className="w-3.5 h-3.5" /> },
@@ -188,19 +176,6 @@ const projects: Project[] = [
     badges: ["Brushless DC", "Weapon System", "Combat Robotics", "National Finalist"],
   },
 ];
-
-const ProjectIcon = ({ id }: { id: string }) => {
-  const cls = "w-5 h-5";
-  if (id.startsWith("neal")) return <Rocket className={`${cls} text-amber-600`} />;
-  if (id === "ugl-iot") return <Wifi className={`${cls} text-orange-600`} />;
-  if (id === "quantum-oncology") return <Atom className={`${cls} text-violet-600`} />;
-  if (id === "dets") return <Satellite className={`${cls} text-sky-600`} />;
-  if (id === "putimach") return <Rocket className={`${cls} text-orange-600`} />;
-  if (id === "ground-station") return <Satellite className={`${cls} text-indigo-600`} />;
-  if (id === "space-weather") return <Satellite className={`${cls} text-violet-600`} />;
-  if (id === "combat-robot") return <Bot className={`${cls} text-red-600`} />;
-  return <Cpu className={cls} />;
-};
 
 export default function Projects() {
   const [lightbox, setLightbox] = useState({ isOpen: false, src: "", title: "", caption: "" });
@@ -220,83 +195,82 @@ export default function Projects() {
       />
 
       <section id="projects" className="section-container">
-        <span className="section-subtitle">Engineering Portfolio</span>
-        <h2 className="section-title mb-2">Projects & Research</h2>
-        <p className="text-slate-500 mb-10 max-w-2xl">
-          From rocket GNC digital twins and quantum ML research to IoT industrial dashboards — built end-to-end from hardware to software.
+        <span className="section-subtitle">ENGINEERING PORTFOLIO</span>
+        <h2 className="section-title mb-3">Projects & Research</h2>
+        <p className="text-slate-400 mb-10 max-w-2xl text-sm sm:text-base leading-relaxed">
+          6-DOF rocket control digital twins, industrial IoT dashboards, and quantum ML algorithms — built end-to-end with high precision.
         </p>
 
-        <div className="space-y-4">
+        <div className="space-y-5">
           {projects.map((project) => {
             const isExpanded = expanded === project.id;
             return (
               <div
                 key={project.id}
-                className={`border rounded-2xl overflow-hidden transition-all duration-300 bg-white ${
+                className={`tech-card ${
                   project.nealProject
-                    ? "border-amber-300 shadow-lg glow-amber"
-                    : "border-slate-200 hover:border-slate-300 shadow-sm hover:shadow-md"
+                    ? "border-amber-500/40 shadow-amber-500/5"
+                    : project.id === "ugl-iot"
+                    ? "border-orange-500/40"
+                    : "border-slate-800"
                 }`}
               >
-                {/* Header */}
+                {/* Header Toggle */}
                 <button
                   onClick={() => setExpanded(isExpanded ? null : project.id)}
-                  className="w-full text-left p-5 md:p-6 flex items-start md:items-center gap-4"
+                  className="w-full text-left flex items-start sm:items-center justify-between gap-4"
                 >
-                  <div className={`flex-shrink-0 w-10 h-10 rounded-xl flex items-center justify-center ${
-                    project.nealProject ? "bg-amber-100" :
-                    project.id === "quantum-oncology" ? "bg-violet-100" :
-                    project.id === "ugl-iot" ? "bg-orange-100" : "bg-slate-100"
-                  }`}>
-                    <ProjectIcon id={project.id} />
-                  </div>
+                  <div className="flex items-start sm:items-center gap-4 flex-1 min-w-0">
+                    
+                    {/* Logo / Icon Badge Container — White backdrop for official logos so black text is 100% sharp */}
+                    {project.logo ? (
+                      <div className="bg-white border border-slate-200 rounded-xl p-2 h-11 min-w-[3.5rem] flex items-center justify-center shadow-md flex-shrink-0">
+                        <img src={project.logo} alt={project.title} className="h-6 w-auto object-contain" />
+                      </div>
+                    ) : (
+                      <div className="w-11 h-11 rounded-xl bg-slate-800 border border-slate-700 flex items-center justify-center flex-shrink-0 text-cyan-400">
+                        {project.id === "quantum-oncology" ? <Atom className="w-5 h-5" /> : <Rocket className="w-5 h-5" />}
+                      </div>
+                    )}
 
-                  <div className="flex-1 min-w-0">
-                    <div className="flex flex-wrap items-center gap-2 mb-1">
-                      <span className={`badge-pill border ${project.tagColor} text-[10px]`}>{project.tag}</span>
-                      {project.nealProject && (
-                        <span className="badge-pill bg-amber-500 text-white text-[10px] font-black">⭐ THESIS</span>
-                      )}
-                      {project.id === "quantum-oncology" && (
-                        <span className="badge-pill bg-violet-600 text-white text-[10px] font-black">⚛ QML RESEARCH</span>
-                      )}
-                      {project.id === "ugl-iot" && (
-                        <span className="badge-pill bg-orange-500 text-white text-[10px] font-black">🏭 INDUSTRY</span>
-                      )}
-                      {project.id === "neal-tvc-digital-twin" && (
-                        <span className="badge-pill bg-blue-600 text-white text-[10px] font-black">📄 IEEE PAPER</span>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex flex-wrap items-center gap-2 mb-1">
+                        <span className={`badge-pill border ${project.tagColor}`}>{project.tag}</span>
+                        {project.nealProject && (
+                          <span className="badge-pill bg-amber-500 text-slate-950 font-black text-[10px]">⭐ THESIS</span>
+                        )}
+                      </div>
+                      <h3 className="text-base sm:text-lg font-extrabold text-white tracking-tight">{project.title}</h3>
+                      {project.subtitle && (
+                        <p className="text-xs text-slate-400 font-mono mt-0.5">{project.subtitle}</p>
                       )}
                     </div>
-                    <h3 className="text-base md:text-lg font-bold text-slate-900">{project.title}</h3>
-                    {project.subtitle && (
-                      <p className="text-xs text-slate-500 mt-0.5 font-mono">{project.subtitle}</p>
-                    )}
                   </div>
 
                   <ChevronRight
-                    className={`w-5 h-5 text-slate-400 flex-shrink-0 transition-transform duration-300 ${isExpanded ? "rotate-90" : ""}`}
+                    className={`w-5 h-5 text-slate-400 flex-shrink-0 transition-transform duration-300 ${isExpanded ? "rotate-90 text-cyan-400" : ""}`}
                   />
                 </button>
 
-                {/* Expanded body */}
+                {/* Expanded Details */}
                 {isExpanded && (
-                  <div className="px-5 md:px-6 pb-6 border-t border-slate-100 pt-5 animate-fade-in">
-                    <p className="text-slate-600 text-sm leading-relaxed mb-5">{project.description}</p>
+                  <div className="mt-6 pt-5 border-t border-slate-800/80 animate-fade-in space-y-6">
+                    <p className="text-slate-300 text-sm leading-relaxed">{project.description}</p>
 
-                    {/* Benchmark table (TVC Digital Twin) */}
+                    {/* Benchmark Table (TVC Digital Twin) */}
                     {project.benchmarkTable && (
-                      <div className="mb-5 overflow-x-auto">
-                        <div className="flex items-center gap-2 mb-2">
-                          <BarChart2 className="w-4 h-4 text-portfolio-accent" />
-                          <span className="text-xs font-bold uppercase tracking-wider text-slate-600">
-                            Benchmark Results — +5° Step Response (N=200 Monte Carlo)
+                      <div className="bg-slate-950/80 border border-slate-800 rounded-xl p-4 overflow-x-auto">
+                        <div className="flex items-center gap-2 mb-3">
+                          <BarChart2 className="w-4 h-4 text-cyan-400" />
+                          <span className="text-xs font-mono font-bold uppercase tracking-wider text-cyan-400">
+                            IEEE Benchmark Performance (+5° Step Response, N=200 Monte Carlo)
                           </span>
                         </div>
-                        <table className="w-full text-xs border-collapse">
+                        <table className="w-full text-xs font-mono text-left border-collapse">
                           <thead>
-                            <tr className="bg-slate-900 text-white">
+                            <tr className="border-b border-slate-800 text-slate-400 uppercase text-[10px] tracking-wider">
                               {project.benchmarkTable.headers.map(h => (
-                                <th key={h} className="px-3 py-2 text-left font-bold tracking-wide">{h}</th>
+                                <th key={h} className="pb-2 px-3">{h}</th>
                               ))}
                             </tr>
                           </thead>
@@ -304,55 +278,50 @@ export default function Projects() {
                             {project.benchmarkTable.rows.map((row, i) => (
                               <tr
                                 key={i}
-                                className={`border-b border-slate-100 ${row[0].includes("★") ? "bg-amber-50 font-bold" : i % 2 === 0 ? "bg-white" : "bg-slate-50"}`}
+                                className={`border-b border-slate-800/50 ${row[0].includes("★") ? "text-cyan-300 font-bold bg-cyan-950/30" : "text-slate-300"}`}
                               >
                                 {row.map((cell, j) => (
-                                  <td key={j} className={`px-3 py-2 font-mono ${j === 0 ? "font-semibold text-slate-800" : "text-slate-600"}`}>
-                                    {cell}
-                                  </td>
+                                  <td key={j} className="py-2 px-3">{cell}</td>
                                 ))}
                               </tr>
                             ))}
                           </tbody>
                         </table>
-                        <p className="text-[10px] text-slate-400 mt-1.5 font-mono">★ Best RMSE and fastest settling time · ADRC shows highest parametric consistency (σ=0.007°)</p>
                       </div>
                     )}
 
-                    {/* Images */}
+                    {/* Project Images Gallery */}
                     {project.images.length > 0 && (
-                      <div className={`grid gap-3 mb-5 ${
-                        project.images.length === 1 ? "grid-cols-1 max-w-lg" :
-                        project.images.length === 2 ? "grid-cols-1 sm:grid-cols-2" :
+                      <div className={`grid gap-3 ${
+                        project.images.length === 1 ? "grid-cols-1 max-w-xl" :
                         "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
                       }`}>
                         {project.images.map((img, idx) => (
                           <div
                             key={idx}
-                            className="lightbox-trigger group rounded-xl overflow-hidden border border-slate-200 relative cursor-zoom-in"
+                            className="group relative rounded-xl overflow-hidden border border-slate-800 bg-slate-950 cursor-zoom-in"
                             onClick={() => openLightbox(img.src, project.title, img.caption)}
                           >
                             <img
                               src={img.src}
                               alt={img.caption}
-                              className="w-full h-44 object-cover transition-transform duration-500 group-hover:scale-105"
+                              className="w-full h-44 object-cover group-hover:scale-105 transition-transform duration-500"
                             />
-                            <div className="lightbox-overlay rounded-xl" />
-                            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent px-3 py-2 rounded-b-xl">
-                              <p className="text-white text-[10px] font-medium leading-tight">{img.caption}</p>
+                            <div className="absolute inset-0 bg-slate-950/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                              <ZoomIn className="w-6 h-6 text-cyan-400" />
                             </div>
-                            <div className="absolute top-2 right-2 bg-black/40 backdrop-blur-sm p-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity">
-                              <ZoomIn className="w-3.5 h-3.5 text-white" />
+                            <div className="absolute bottom-0 inset-x-0 bg-slate-950/90 border-t border-slate-800 p-2 text-[11px] font-mono text-slate-300">
+                              {img.caption}
                             </div>
                           </div>
                         ))}
                       </div>
                     )}
 
-                    {/* Badges */}
-                    <div className="flex flex-wrap gap-1.5 mb-4">
+                    {/* Tech Badges */}
+                    <div className="flex flex-wrap gap-1.5 pt-2">
                       {project.badges.map(b => (
-                        <span key={b} className="badge-pill bg-slate-100 text-slate-600 border border-slate-200 text-[10px]">
+                        <span key={b} className="badge-pill bg-slate-800/80 text-slate-300 border border-slate-700 text-[10px]">
                           {b}
                         </span>
                       ))}
@@ -360,10 +329,10 @@ export default function Projects() {
 
                     {/* Links */}
                     {project.links && project.links.length > 0 && (
-                      <div className="flex flex-wrap gap-3">
+                      <div className="flex flex-wrap gap-4 pt-2">
                         {project.links.map(l => (
                           <a key={l.href} href={l.href} target="_blank" rel="noreferrer"
-                            className="flex items-center gap-1.5 text-portfolio-accent hover:text-portfolio-navy text-sm font-semibold transition-colors">
+                            className="flex items-center gap-1.5 text-xs font-mono font-bold text-cyan-400 hover:text-cyan-300 transition-colors">
                             {l.icon}
                             {l.label}
                           </a>

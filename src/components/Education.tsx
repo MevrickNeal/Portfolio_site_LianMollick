@@ -1,86 +1,97 @@
-import { BookOpen, ExternalLink } from "lucide-react";
-import { Card, CardContent } from "@/components/ui/card";
+import React from "react";
+import { BookOpen, ExternalLink, GraduationCap, Award } from "lucide-react";
 
 export default function Education() {
   return (
-    <section id="education" className="section-container bg-gray-50">
+    <section id="education" className="section-container">
+      <span className="section-subtitle">ACADEMIC BACKGROUND</span>
       <h2 className="section-title mb-8">Education</h2>
       
-      <div className="space-y-8 mt-8">
-        <Card className="card-hover animate-fade-in">
-          <CardContent className="p-6">
-            <div className="flex flex-col md:flex-row gap-6">
-              <div className="flex-shrink-0 flex items-center justify-center">
-                <div className="w-16 h-16 bg-portfolio-teal/10 rounded-full flex items-center justify-center">
-                  <BookOpen className="h-8 w-8 text-portfolio-teal" />
-                </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        
+        {/* B.Sc. EEE */}
+        <div className="tech-card border border-cyan-500/30 flex flex-col justify-between">
+          <div>
+            <div className="flex items-center justify-between gap-2 mb-4">
+              <div className="w-10 h-10 rounded-xl bg-slate-800 border border-slate-700 flex items-center justify-center text-cyan-400">
+                <GraduationCap className="w-5 h-5" />
               </div>
-              <div className="flex-grow">
-                <div className="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-2">
-                  <h3 className="text-xl font-bold text-portfolio-navy">B.Sc. in Electrical and Electronic Engineering</h3>
-                  <span className="text-portfolio-accent font-medium">2020 - Present</span>
-                </div>
-                <h4 className="text-lg font-medium mb-3 flex items-center">
-                  Mymensingh Engineering College 
-                  <a href="http://mec.ac.bd" target="_blank" rel="noopener noreferrer" className="inline-flex items-center ml-2 text-portfolio-teal hover:text-portfolio-navy">
-                    <ExternalLink className="h-4 w-4" />
-                  </a>
-                </h4>
-                <p className="text-portfolio-light-text mb-4">
-                  Currently pursuing a bachelor's degree with a focus on embedded systems and electronics design.
-                </p>
-                <div>
-                  <h5 className="font-medium mb-2">Key Courses:</h5>
-                  <div className="flex flex-wrap gap-2">
-                    {["VLSI Circuits", "Control Systems", "DSP", "Optical Fiber Communication", "Embedded Systems", "Digital Electronics"].map((course) => (
-                      <span key={course} className="bg-portfolio-teal/10 text-portfolio-teal px-3 py-1 rounded-full text-sm">
-                        {course}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </div>
+              <span className="badge-pill bg-cyan-950 text-cyan-400 border border-cyan-500/40">
+                2020 – PRESENT
+              </span>
             </div>
-          </CardContent>
-        </Card>
 
-        <Card className="card-hover animate-fade-in delay-100">
-          <CardContent className="p-6">
-            <div className="flex flex-col md:flex-row gap-6">
-              <div className="flex-shrink-0 flex items-center justify-center">
-                <div className="w-16 h-16 bg-portfolio-teal/10 rounded-full flex items-center justify-center">
-                  <BookOpen className="h-8 w-8 text-portfolio-teal" />
-                </div>
-              </div>
-              <div className="flex-grow">
-                <div className="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-2">
-                  <h3 className="text-xl font-bold text-portfolio-navy">Higher Secondary Certificate (HSC)</h3>
-                  <span className="text-portfolio-accent font-medium">2017 - 2019</span>
-                </div>
-                <h4 className="text-lg font-medium mb-3 flex items-center">
-                  Shaheed Police Smrity College
-                  <a href="https://www.spsc.edu.bd" target="_blank" rel="noopener noreferrer" className="inline-flex items-center ml-2 text-portfolio-teal hover:text-portfolio-navy">
-                    <ExternalLink className="h-4 w-4" />
-                  </a>
-                </h4>
-                <p className="text-portfolio-light-text mb-4">
-                  Completed HSC with focus on science subjects, achieving a GPA of 4.75 out of 5.00.
-                </p>
-                <div>
-                  <h5 className="font-medium mb-2">Achievements:</h5>
-                  <div className="flex flex-wrap gap-2">
-                    <span className="bg-portfolio-teal/10 text-portfolio-teal px-3 py-1 rounded-full text-sm">
-                      GPA: 4.75/5.00
-                    </span>
-                    <span className="bg-portfolio-teal/10 text-portfolio-teal px-3 py-1 rounded-full text-sm">
-                      Science Group
-                    </span>
-                  </div>
-                </div>
-              </div>
+            <h3 className="text-lg sm:text-xl font-extrabold text-white mb-1">
+              B.Sc. in Electrical & Electronic Engineering
+            </h3>
+            <p className="text-xs font-mono text-cyan-400 mb-4 flex items-center gap-1.5">
+              Mymensingh Engineering College (University of Dhaka)
+              <a href="http://mec.ac.bd" target="_blank" rel="noreferrer" className="text-slate-400 hover:text-white">
+                <ExternalLink className="w-3.5 h-3.5" />
+              </a>
+            </p>
+
+            <p className="text-slate-300 text-sm leading-relaxed mb-6">
+              Specializing in embedded systems, control engineering, and rocket avionics. Senior thesis focused on 6-DOF TVC Digital Twin and closed-loop PID attitude control.
+            </p>
+          </div>
+
+          <div>
+            <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-slate-400 block mb-2">
+              KEY COURSEWORK:
+            </span>
+            <div className="flex flex-wrap gap-1.5">
+              {["Control Systems", "Embedded Avionics", "DSP", "VLSI Circuits", "Digital Electronics", "Optical Communication"].map(c => (
+                <span key={c} className="badge-pill bg-slate-800/80 text-slate-300 border border-slate-700 text-[10px]">
+                  {c}
+                </span>
+              ))}
             </div>
-          </CardContent>
-        </Card>
+          </div>
+        </div>
+
+        {/* HSC */}
+        <div className="tech-card border border-slate-800 flex flex-col justify-between">
+          <div>
+            <div className="flex items-center justify-between gap-2 mb-4">
+              <div className="w-10 h-10 rounded-xl bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-400">
+                <BookOpen className="w-5 h-5" />
+              </div>
+              <span className="badge-pill bg-slate-800 text-slate-300 border border-slate-700">
+                2017 – 2019
+              </span>
+            </div>
+
+            <h3 className="text-lg sm:text-xl font-extrabold text-white mb-1">
+              Higher Secondary Certificate (HSC)
+            </h3>
+            <p className="text-xs font-mono text-slate-400 mb-4 flex items-center gap-1.5">
+              Shaheed Police Smrity College
+              <a href="https://www.spsc.edu.bd" target="_blank" rel="noreferrer" className="text-slate-400 hover:text-white">
+                <ExternalLink className="w-3.5 h-3.5" />
+              </a>
+            </p>
+
+            <p className="text-slate-300 text-sm leading-relaxed mb-6">
+              Completed Higher Secondary Certificate with focus on Higher Mathematics, Physics, and Chemistry.
+            </p>
+          </div>
+
+          <div>
+            <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-slate-400 block mb-2">
+              RESULT:
+            </span>
+            <div className="flex flex-wrap gap-2">
+              <span className="badge-pill bg-emerald-950 text-emerald-400 border border-emerald-500/40 text-[11px]">
+                GPA: 4.75 / 5.00
+              </span>
+              <span className="badge-pill bg-slate-800 text-slate-300 border border-slate-700 text-[11px]">
+                Science Group
+              </span>
+            </div>
+          </div>
+        </div>
+
       </div>
     </section>
   );
