@@ -29,22 +29,20 @@ const About = () => {
           <div className="about-text-block reveal-left delay-1">
             <p>
               I'm <strong>Lian Mollick Nehal</strong> — a B.Sc. Electrical &amp; Electronic
-              Engineering candidate at Ahsanullah University of Science &amp; Technology, Dhaka.
-              My work sits at the intersection of rocketry, avionics, and intelligent control
+              Engineering graduate from Technology Unit, University of Dhaka (Mymensingh Engineering College).
+              My work sits at the intersection of rocketry, avionics, industrial IoT, and intelligent control
               systems.
             </p>
             <p>
-              My flagship project — <strong>Project NEAL</strong> — is a full-stack Thrust
+              My flagship academic research — <strong>Project NEAL</strong> — is a full-stack Thrust
               Vector Control (TVC) system built from scratch: from OpenRocket aerodynamics
               modeling to 6-DOF MATLAB Simulink flight simulation, comparing PID, MRAC, and ADRC
-              controllers under Monte Carlo uncertainty analysis. It's been developed as an IEEE
-              research paper.
+              controllers under Monte Carlo uncertainty analysis.
             </p>
             <p>
-              Beyond rocketry, I built <strong>UrbanGaz</strong> — a smart IoT LPG safety
-              dashboard — and contribute to quantum multimodal oncology research. I believe
-              every system, from a rocket nozzle to a hospital sensor network, deserves
-              precision engineering.
+              Professionally, I serve as <strong>Tech Coordinator at UrbanGaz Limited</strong> and
+              <strong>Technical Manager at Maestro Tech Ltd.</strong> (its sister concern), leading software,
+              hardware, team building, and LPG reticulated system operations.
             </p>
 
             <div className="about-disciplines">
@@ -71,8 +69,8 @@ const About = () => {
               />
               <div className="about-img-caption">
                 <p>
-                  B.Sc. EEE · Ahsanullah University of Science &amp; Technology<br />
-                  Rocketry · GNC · Embedded Systems · Biomedical AI
+                  B.Sc. EEE · Technology Unit, University of Dhaka (MEC)<br />
+                  Rocketry · GNC · Embedded Systems · Industrial IoT
                 </p>
               </div>
             </div>

@@ -16,18 +16,28 @@ const PersonalSection = () => {
         </div>
 
         <div className="personal-grid">
-          {/* Images */}
+          {/* Single High Quality Gym Photo - No Cropping */}
           <div className="personal-img-col reveal-left delay-1">
-            <img
-              src="/lovable-uploads/gym.jpeg"
-              alt="Lian Mollick Nehal — Personal"
-              className="personal-img-main"
-            />
-            <img
-              src="/lovable-uploads/gym2.jpeg"
-              alt="Lian Mollick Nehal — Training"
-              className="personal-img-secondary"
-            />
+            <div style={{
+              width: "100%",
+              borderRadius: "4px",
+              overflow: "hidden",
+              border: "1px solid rgba(255,255,255,0.15)",
+              background: "#050505",
+              boxShadow: "0 20px 40px rgba(0,0,0,0.5)",
+            }}>
+              <img
+                src="/lovable-uploads/gym-bench-press.jpeg"
+                alt="Lian Mollick Nehal — Bench Press Training"
+                style={{
+                  width: "100%",
+                  height: "auto",
+                  maxHeight: "650px",
+                  objectFit: "contain",
+                  display: "block",
+                }}
+              />
+            </div>
           </div>
 
           {/* Content */}

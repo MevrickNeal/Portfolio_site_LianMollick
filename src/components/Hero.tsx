@@ -28,7 +28,7 @@ const Hero = () => {
       {/* Left: text */}
       <div className="hero-left" ref={nameRef}>
         <div className="hero-tagline">
-          B.Sc. Electrical &amp; Electronic Engineering · AUST
+          B.Sc. Electrical &amp; Electronic Engineering · University of Dhaka (MEC)
         </div>
 
         <h1 className="hero-name">
@@ -43,7 +43,7 @@ const Hero = () => {
 
         <p className="hero-desc">
           Designing, simulating, and launching the future of aerospace guidance.
-          B.Sc. EEE candidate specializing in Thrust Vector Control, 6-DOF flight
+          B.Sc. EEE graduate specializing in Thrust Vector Control, 6-DOF flight
           simulation, embedded control systems, and biomedical AI research.
         </p>
 
@@ -73,7 +73,7 @@ const Hero = () => {
       {/* Stats */}
       <div className="hero-stats">
         <div className="hero-stat">
-          <div className="hero-stat-num">3+</div>
+          <div className="hero-stat-num">8+</div>
           <div className="hero-stat-label">Major Projects</div>
         </div>
         <div className="hero-stat">
