@@ -64,7 +64,7 @@ const About = () => {
           <div className="about-img-block reveal-right delay-2">
             <div className="about-img-frame">
               <img
-                src="/lovable-uploads/lian-formal.png"
+                src="/lovable-uploads/97da3591-aa27-464b-b81c-c8d2f868ba6e.png"
                 alt="Lian Mollick Nehal — Professional Portrait"
               />
               <div className="about-img-caption">

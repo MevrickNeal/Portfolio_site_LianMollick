@@ -19,6 +19,8 @@ const awards = [
     badge: "🥈 Runner-Up",
     color: "#c8102e",
     certImg: "/lovable-uploads/cert-pdf-1st-runner-up-27.png",
+    eventImg: "/lovable-uploads/429deff5-c417-48f8-8aed-2b208ab805ac.png",
+    trophyImg: "/lovable-uploads/e00a481e-4e06-4e62-b409-b39661c31fcd.png",
   },
   {
     year: "2023",
@@ -27,7 +29,26 @@ const awards = [
     desc: "Project: Wireless energy transmission. Demonstrated high frequency resonant inductive coupling for practical wireless power delivery.",
     badge: "🥈 Runner-Up",
     color: "#c8102e",
-    certImg: "/lovable-uploads/4110bdb4-908d-4993-ba9d-6df3c08c8453.png",
+    certImg: "/lovable-uploads/98808512-2995-4e9b-822e-702b4422ce82.png",
+  },
+  {
+    year: "2024",
+    title: "National Finalist — WRC Bot Combat",
+    org: "1st Technoxian Bangladesh National Round · World's Biggest Robotics Championship",
+    desc: "Represented Mymensingh Engineering College at the national round of the world's biggest robotics championship. Team Alpha Science Lab competed in bot combat with the custom built CORE iFight combat robot.",
+    badge: "🏆 Finalist",
+    color: "#7c3aed",
+    certImg: "/lovable-uploads/National finalist robowar.png",
+    eventImg: "/lovable-uploads/cacaca86-a46b-419a-bec9-5777b25a91a1.png",
+  },
+  {
+    year: "2022",
+    title: "Finalist — National STEAM Olympiad",
+    org: "iTesseract · Ministry of Education, Bangladesh",
+    desc: "Selected as a national finalist at the STEAM Olympiad organized by iTesseract under the Ministry of Education. Competed in the technology track representing Mymensingh Engineering College.",
+    badge: "🎖 Finalist",
+    color: "#0284c7",
+    certImg: "/lovable-uploads/ecf8b8e8-f9be-4a89-9b69-a4578f9ba6df.png",
   },
   {
     year: "2022",
@@ -48,6 +69,7 @@ const awards = [
     certImg: "/lovable-uploads/cert-pdf-Lian_Mollick_Certificate.png",
   },
 ];
+
 
 const certifications = [
   {
@@ -138,27 +160,71 @@ const Awards = () => {
                   marginBottom: 12,
                 }}>{a.org}</div>
                 <p style={{ fontSize: 14, lineHeight: 1.75, color: "var(--dark-grey)", marginBottom: 12 }}>{a.desc}</p>
-                {a.certImg && (
-                  <button
-                    onClick={() => setActiveModalImg(a.certImg)}
-                    style={{
-                      fontFamily: "var(--font-display)",
-                      fontSize: 11,
-                      letterSpacing: "0.1em",
-                      textTransform: "uppercase",
-                      color: "var(--red)",
-                      background: "none",
-                      border: "none",
-                      padding: 0,
-                      cursor: "pointer",
-                      display: "inline-flex",
-                      alignItems: "center",
-                      gap: 6,
-                    }}
-                  >
-                    🔍 View Certificate Document →
-                  </button>
-                )}
+                <div style={{ display: "flex", flexWrap: "wrap", gap: 16, marginTop: 8 }}>
+                  {a.certImg && (
+                    <button
+                      onClick={() => setActiveModalImg(a.certImg)}
+                      style={{
+                        fontFamily: "var(--font-display)",
+                        fontSize: 11,
+                        letterSpacing: "0.1em",
+                        textTransform: "uppercase",
+                        color: "var(--red)",
+                        background: "none",
+                        border: "none",
+                        padding: 0,
+                        cursor: "pointer",
+                        display: "inline-flex",
+                        alignItems: "center",
+                        gap: 6,
+                      }}
+                    >
+                      🔍 View Certificate Document →
+                    </button>
+                  )}
+                  {a.eventImg && (
+                    <button
+                      onClick={() => setActiveModalImg(a.eventImg)}
+                      style={{
+                        fontFamily: "var(--font-display)",
+                        fontSize: 11,
+                        letterSpacing: "0.1em",
+                        textTransform: "uppercase",
+                        color: "var(--red)",
+                        background: "none",
+                        border: "none",
+                        padding: 0,
+                        cursor: "pointer",
+                        display: "inline-flex",
+                        alignItems: "center",
+                        gap: 6,
+                      }}
+                    >
+                      🖼️ View Team Photo →
+                    </button>
+                  )}
+                  {a.trophyImg && (
+                    <button
+                      onClick={() => setActiveModalImg(a.trophyImg)}
+                      style={{
+                        fontFamily: "var(--font-display)",
+                        fontSize: 11,
+                        letterSpacing: "0.1em",
+                        textTransform: "uppercase",
+                        color: "var(--red)",
+                        background: "none",
+                        border: "none",
+                        padding: 0,
+                        cursor: "pointer",
+                        display: "inline-flex",
+                        alignItems: "center",
+                        gap: 6,
+                      }}
+                    >
+                      🏆 View Trophy Photo →
+                    </button>
+                  )}
+                </div>
               </div>
               <div style={{
                 fontFamily: "var(--font-display)",
