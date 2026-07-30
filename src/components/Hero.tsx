@@ -42,7 +42,7 @@ const Hero = () => {
         </div>
 
         <p className="hero-desc" style={{ fontSize: "clamp(15px, 1.2vw, 18px)", lineHeight: 1.7, color: "var(--dark-grey)", marginTop: 16, maxWidth: 580 }}>
-          I love to solve complex engineering problems using clean design, robust architecture, and systematic methodology. <strong>Throw me in a mess — I know how to fix it, follow a rigorous process, and make exceptional documentation out of it.</strong> My lifelong goal is simple: to become a truly outstanding engineer.
+          I enjoy solving engineering problems through practical design, clear process, and solid documentation. <strong>Throw me in a mess — I know how to fix it, follow process, and make good documentation out of it.</strong> My goal is simple: to become a very good engineer.
         </p>
 
         <div className="hero-cta-row" style={{ marginTop: 28, display: "flex", gap: 16, flexWrap: "wrap" }}>

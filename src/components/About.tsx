@@ -35,7 +35,7 @@ const About = () => {
               borderRadius: "0 6px 6px 0",
             }}>
               <p style={{
-                fontSize: "clamp(16px, 1.3vw, 20px)",
+                fontSize: "clamp(15px, 1.2vw, 19px)",
                 fontFamily: "var(--font-display)",
                 fontWeight: 600,
                 color: "var(--black)",
@@ -48,13 +48,13 @@ const About = () => {
 
             <p>
               I am a <strong>B.Sc. Electrical &amp; Electronic Engineering</strong> graduate from Technology Unit, University of Dhaka (Mymensingh Engineering College).
-              My engineering philosophy revolves around clarity under pressure, disciplined methodology, and practical system execution across software, hardware, and control systems.
+              My work focuses on practical problem solving across software, hardware, control systems, and technical documentation.
             </p>
             <p>
-              Currently, I serve as <strong>Tech Coordinator at UrbanGaz Limited</strong> and <strong>Technical Manager at Maestro Tech Ltd.</strong>, managing multi-disciplinary engineering teams, hardware-software solutions, and LPG reticulated gas system operations across Bangladesh.
+              Currently, I serve as <strong>Tech Coordinator at UrbanGaz Limited</strong> and <strong>Technical Manager at Maestro Tech Ltd.</strong>, leading multi-disciplinary engineering teams, software hardware solutions, and LPG reticulated gas system operations.
             </p>
             <p>
-              In research, my flagship work — <strong>Project NEAL</strong> — is an end-to-end Thrust Vector Control (TVC) flight simulation digital twin built from scratch in MATLAB Simulink, evaluating PID, MRAC, and ADRC controllers under Monte Carlo disturbance models.
+              In research, my flagship work — <strong>Project NEAL</strong> — is a Thrust Vector Control (TVC) flight simulation digital twin built in MATLAB Simulink, evaluating PID, MRAC, and ADRC controllers under disturbance models.
             </p>
 
             <div className="about-disciplines">
@@ -76,7 +76,7 @@ const About = () => {
           <div className="about-img-block reveal-right delay-2">
             <div className="about-img-frame">
               <img
-                src="/lovable-uploads/97da3591-aa27-464b-b81c-c8d2f868ba6e.png"
+                src="/lovable-uploads/lian-formal.png"
                 alt="Lian Mollick Nehal — Professional Portrait"
               />
               <div className="about-img-caption">

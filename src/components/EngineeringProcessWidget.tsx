@@ -103,13 +103,13 @@ const EngineeringProcessWidget = () => {
     <section className="section" style={{ background: "#0a0c10", color: "#f8fafc" }} ref={ref}>
       <div className="section-inner">
         <div className="reveal">
-          <div className="section-tag" style={{ color: "#38bdf8" }}>03 / Operational Excellence</div>
+          <div className="section-tag" style={{ color: "#38bdf8" }}>03 / Engineering Method</div>
           <h2 className="section-heading" style={{ color: "#ffffff" }}>
-            The Engineering Method<br />
-            <span style={{ color: "#94a3b8", fontWeight: 300 }}>Throw Me in a Mess — I Will Fix It</span>
+            Problem Solving Process<br />
+            <span style={{ color: "#94a3b8", fontWeight: 300 }}>Throw Me in a Mess — I Know How to Fix It</span>
           </h2>
           <p style={{ color: "#94a3b8", maxWidth: 680, fontSize: 16, lineHeight: 1.7, marginTop: 12 }}>
-            Whether it is an industrial gas reticulation system, a rocket guidance system, or a computer vision prosthetic, I follow a disciplined 4-step engineering workflow to turn chaotic problems into reliable, documented solutions.
+            Across industrial gas reticulation systems, rocket guidance simulations, and assistive robotics, I follow a practical 4 step process to diagnose issues, implement fixes, and create clear documentation.
           </p>
         </div>
 
