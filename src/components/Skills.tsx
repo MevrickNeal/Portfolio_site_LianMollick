@@ -3,44 +3,44 @@ import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 const skillGroups = [
   {
+    icon: "🔧",
+    name: "Industrial & LPG Operations",
+    tags: ["LPG Reticulated Systems", "Gas Pressure Regulators", "SOP Documentation", "Pipeline Safety", "Technical Team Leadership"],
+  },
+  {
     icon: "🚀",
     name: "Rocketry & GNC",
     tags: ["Thrust Vector Control", "6-DOF Simulation", "OpenRocket", "Trajectory Optimization", "Monte Carlo"],
   },
   {
     icon: "⚡",
-    name: "Embedded Systems",
-    tags: ["C/C++", "STM32", "Arduino", "ESP32", "RTOS", "Sensor Fusion"],
+    name: "Embedded Systems & Hardware",
+    tags: ["C/C++", "STM32", "ESP32", "Arduino", "Circuit PCB Design", "Sensor Fusion"],
   },
   {
     icon: "🧠",
-    name: "Control Theory",
-    tags: ["PID", "MRAC", "ADRC", "LQR", "ESO", "State Space"],
+    name: "Control Systems",
+    tags: ["PID", "MRAC", "ADRC", "LQR", "Extended State Observer (ESO)", "State-Space"],
   },
   {
     icon: "💻",
-    name: "Software & Tools",
-    tags: ["Python", "MATLAB", "Simulink", "React", "Firebase", "Git"],
+    name: "Software Engineering",
+    tags: ["Python", "MATLAB", "Simulink", "React / TypeScript", "Node.js", "Git & CI/CD"],
   },
   {
     icon: "📡",
-    name: "IoT & Instrumentation",
-    tags: ["SCADA", "Modbus", "RS485", "LoRa", "Real-Time Monitoring"],
+    name: "IoT & Telemetry",
+    tags: ["Pressure Transducers", "MQTT Cloud", "Modbus RS485", "Franchise Mapping", "Real-Time Dashboards"],
   },
   {
-    icon: "🔬",
-    name: "Research & Writing",
-    tags: ["IEEE Papers", "LaTeX", "Technical Writing", "Data Analysis", "Signal Processing"],
+    icon: "📄",
+    name: "Process & Documentation",
+    tags: ["Standard Operating Procedures (SOP)", "IEEE Papers", "System Architecture Specs", "LaTeX", "Root-Cause Analysis"],
   },
   {
     icon: "🏥",
-    name: "Biomedical AI",
-    tags: ["Quantum ML", "Oncology Classification", "TensorFlow", "PyTorch"],
-  },
-  {
-    icon: "🎨",
-    name: "Design & Web",
-    tags: ["React / TypeScript", "Tailwind CSS", "Figma", "UI/UX", "Dashboard Design"],
+    name: "Biomedical & Vision AI",
+    tags: ["Quantum ML", "OpenCV Vision", "Oncology Classification", "Assistive Robotics"],
   },
 ];
 
@@ -51,10 +51,10 @@ const Skills = () => {
     <section id="skills" className="section" style={{ background: "var(--off-white)" }} ref={ref}>
       <div className="section-inner">
         <div className="reveal">
-          <div className="section-tag">Technical Arsenal</div>
+          <div className="section-tag">05 / Technical Arsenal</div>
           <h2 className="section-heading">
-            Skills &<br />
-            <span className="section-heading-light">Expertise</span>
+            Skills &amp;<br />
+            <span className="section-heading-light">Engineering Expertise</span>
           </h2>
         </div>
 

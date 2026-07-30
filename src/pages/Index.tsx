@@ -4,6 +4,7 @@ import Navbar from "@/components/Header";
 import Hero from "@/components/Hero";
 import Marquee from "@/components/Marquee";
 import About from "@/components/About";
+import EngineeringProcessWidget from "@/components/EngineeringProcessWidget";
 import Projects from "@/components/Projects";
 import Research from "@/components/Research";
 import Skills from "@/components/Skills";
@@ -25,6 +26,7 @@ const Index = () => {
         <Hero />
         <Marquee />
         <About />
+        <EngineeringProcessWidget />
         <Projects />
         <Research />
         <Skills />

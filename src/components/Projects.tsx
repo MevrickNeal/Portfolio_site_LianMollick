@@ -130,10 +130,10 @@ const Projects = () => {
     <section id="projects" className="section" style={{ background: "var(--off-white)" }} ref={ref}>
       <div className="section-inner">
         <div className="reveal">
-          <div className="section-tag">My Work</div>
+          <div className="section-tag">02 / Multi-Disciplinary Builds</div>
           <h2 className="section-heading">
-            Projects &<br />
-            <span className="section-heading-light">Builds</span>
+            Projects &amp;<br />
+            <span className="section-heading-light">Engineering Solutions</span>
           </h2>
         </div>
 
