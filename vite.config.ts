@@ -4,7 +4,8 @@ import path from "path";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
-  base: mode === "production" ? "/Portfolio_site_LianMollick/" : "/",
+  // Use '/' on Vercel (or when VERCEL env is set), otherwise default to root or repo path for GitHub Pages
+  base: process.env.VERCEL ? "/" : (mode === "production" ? "/Portfolio_site_LianMollick/" : "/"),
   server: {
     host: "0.0.0.0",
     port: 8080,
