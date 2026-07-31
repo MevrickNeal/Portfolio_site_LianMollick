@@ -62,7 +62,7 @@ const Hero = () => {
       {/* Right: portrait */}
       <div className="hero-right">
         <img
-          src="/lovable-uploads/97da3591-aa27-464b-b81c-c8d2f868ba6e.png"
+          src="/lovable-uploads/lian-generated-1.png"
           alt="Lian Mollick Nehal"
           className="hero-img"
         />
