@@ -38,7 +38,7 @@ const caseStudies: CaseStudy[] = [
     id: "tvc-rocketry",
     category: "Aerospace Guidance & Control Systems",
     title: "Project NEAL 6-DOF Thrust Vector Control (TVC)",
-    mess: "High-dynamic non-linear rocket pitch instability under aerodynamic aerodynamic disturbance during low-speed launch clearing phase.",
+    mess: "Non-linear rocket pitch instability under aerodynamic disturbance during low-speed launch clearing phase.",
     rootCause: "Unmodeled actuator lag and mass moment of inertia variations during solid motor grain burn.",
     processFix: [
       "Derived full 6-DOF non-linear flight dynamics in MATLAB Simulink.",
@@ -57,9 +57,9 @@ const caseStudies: CaseStudy[] = [
   {
     id: "cyber-prosthetic",
     category: "Robotics & Biomedical Engineering",
-    title: "Cyber ProstheticOS — Vision-Guided Robotic Bionics",
+    title: "Cyber ProstheticOS: Vision Guided Robotic Bionics",
     mess: "High latency and stuttering in hand pose estimation for prosthetic limb motor actuation.",
-    rootCause: "Unoptimized OpenCV camera feed pipeline consuming 90% CPU cycles on embedded arm controller.",
+    rootCause: "Unoptimized OpenCV camera feed pipeline consuming high CPU cycles on embedded arm controller.",
     processFix: [
       "Offloaded gesture detection to quantized edge neural network model.",
       "Implemented asynchronous multi-threaded frame queue and PID joint angle solver.",
@@ -84,7 +84,7 @@ const caseStudies: CaseStudy[] = [
       "Developed predictive wear-and-tear algorithm based on usage velocity.",
       "Built real-time mobile dashboard with threshold push alerts."
     ],
-    documentationOutput: "Hardware Schematic Schematic PCB Layout + MQTT Cloud Sync Firmware Manual.",
+    documentationOutput: "Hardware Schematic & PCB Layout + MQTT Cloud Sync Firmware Manual.",
     icon: "💧",
     metrics: [
       { label: "Cartridge Life Saved", value: "28%" },
@@ -106,7 +106,7 @@ const EngineeringProcessWidget = () => {
           <div className="section-tag" style={{ color: "#38bdf8" }}>03 / Engineering Method</div>
           <h2 className="section-heading" style={{ color: "#ffffff" }}>
             Problem Solving Process<br />
-            <span style={{ color: "#94a3b8", fontWeight: 300 }}>Throw Me in a Mess — I Know How to Fix It</span>
+            <span style={{ color: "#94a3b8", fontWeight: 300 }}>From Root Cause Analysis to Standard Operating Procedures</span>
           </h2>
           <p style={{ color: "#94a3b8", maxWidth: 680, fontSize: 16, lineHeight: 1.7, marginTop: 12 }}>
             Across industrial gas reticulation systems, rocket guidance simulations, and assistive robotics, I follow a practical 4 step process to diagnose issues, implement fixes, and create clear documentation.
@@ -182,7 +182,7 @@ const EngineeringProcessWidget = () => {
             {/* Step 1: The Mess */}
             <div style={{ marginBottom: 24, padding: "16px", background: "rgba(239, 68, 68, 0.1)", borderLeft: "3px solid #ef4444", borderRadius: 4 }}>
               <div style={{ fontSize: 12, fontWeight: 700, textTransform: "uppercase", color: "#f87171", letterSpacing: "0.1em", marginBottom: 6 }}>
-                01. The Problem / "The Mess"
+                01. Problem Isolation
               </div>
               <p style={{ fontSize: 14, lineHeight: 1.6, color: "#fecdd3" }}>{active.mess}</p>
             </div>

@@ -42,19 +42,19 @@ const About = () => {
                 lineHeight: 1.6,
                 margin: 0,
               }}>
-                "Hi, I am Lian Mollick. I love to solve problems using my engineering knowledge. Throw me in a mess — I know how to fix it, follow process, and make good documentation out of it. I wish to become a very good engineer."
+                "Hi, I am Lian Mollick. I love to solve problems using my engineering knowledge. Throw me in a mess, I know how to fix it, follow process, and make good documentation out of it. I wish to become a very good engineer."
               </p>
             </div>
 
             <p>
               I am a <strong>B.Sc. Electrical &amp; Electronic Engineering</strong> graduate from Technology Unit, University of Dhaka (Mymensingh Engineering College).
-              My work focuses on practical problem solving across software, hardware, control systems, and technical documentation.
+              My work focuses on practical engineering solutions across software, hardware, control systems, and technical documentation.
             </p>
             <p>
-              Currently, I serve as <strong>Tech Coordinator at UrbanGaz Limited</strong> and <strong>Technical Manager at Maestro Tech Ltd.</strong>, leading multi-disciplinary engineering teams, software hardware solutions, and LPG reticulated gas system operations.
+              Currently, I serve as <strong>Tech Coordinator at UrbanGaz Limited</strong> and <strong>Technical Manager at Maestro Tech Ltd.</strong>, leading engineering teams, software hardware solutions, and LPG reticulated gas system operations.
             </p>
             <p>
-              In research, my flagship work — <strong>Project NEAL</strong> — is a Thrust Vector Control (TVC) flight simulation digital twin built in MATLAB Simulink, evaluating PID, MRAC, and ADRC controllers under disturbance models.
+              In research, my primary project, <strong>Project NEAL</strong>, is a Thrust Vector Control (TVC) flight simulation digital twin built in MATLAB Simulink to evaluate PID, MRAC, and ADRC controllers under disturbance models.
             </p>
 
             <div className="about-disciplines">

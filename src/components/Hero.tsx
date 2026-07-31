@@ -42,7 +42,7 @@ const Hero = () => {
         </div>
 
         <p className="hero-desc" style={{ fontSize: "clamp(15px, 1.2vw, 18px)", lineHeight: 1.7, color: "var(--dark-grey)", marginTop: 16, maxWidth: 580 }}>
-          I enjoy solving engineering problems through practical design, clear process, and solid documentation. <strong>Throw me in a mess — I know how to fix it, follow process, and make good documentation out of it.</strong> My goal is simple: to become a very good engineer.
+          Hi, I am Lian Mollick. I use engineering principles to turn messy technical challenges into organized, reliable systems. Give me a complex problem, and I will isolate the root cause, execute a clean fix, and write documentation that empowers the team to scale.
         </p>
 
         <div className="hero-cta-row" style={{ marginTop: 28, display: "flex", gap: 16, flexWrap: "wrap" }}>
